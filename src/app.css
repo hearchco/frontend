@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.body {
+    @apply custom-bg dark:custom-bg flex min-h-screen flex-col
+}
+
+.footer {
+    @apply custom-bg-headfoot dark:custom-bg-headfoot mt-auto flex h-20 w-full place-content-center items-center border border-gray-100 dark:border-0;
+}
+
+
 .custom-bg, .custom-bg-button, .custom-bg-headfoot {
     background-color: #fff;
 }

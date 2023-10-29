@@ -1,3 +1,5 @@
+<svelte:head><title>Not Found | BrzaGuza</title></svelte:head>
+
 <!-- this is hard fixed top space -->
 <div class="mx-auto mb-4 mt-20 min-w-fit max-w-screen-sm">
 	<div class="mx-auto max-w-screen-sm text-center">
