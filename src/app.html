@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title itemprop="name">BrzaGuza</title>
+		<meta name="application-name" content="BrzaGuza" />
+		<meta itemprop="name" content="BrzaGuza" />
+		<meta
+			name="description"
+			content="BrzaGuza is a private metasearch engine with speed and quality as the primary goals."
+		/>
+
+		<link
+			rel="search"
+			type="application/opensearchdescription+xml"
+			href="/opensearch.xml"
+			title="BrzaGuza"
+		/>
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+		<link rel="icon" type="image/svg" sizes="64x64" href="/favicon/favicon.svg" />
+		<link rel="manifest" href="/favicon/site.webmanifest" />
+		<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+		%sveltekit.head%
+	</head>
+	<body
+		data-sveltekit-preload-data="hover"
+		class="custom-bg dark:custom-bg flex min-h-screen flex-col"
+	>
+		<div style="display: contents">%sveltekit.body%</div>
+		<!-- Footer section -->
+		<footer
+			class="custom-bg-headfoot dark:custom-bg-headfoot mt-auto flex h-20 w-full place-content-center items-center border border-gray-100 dark:border-0"
+		>
+			<div>
+				<a
+					class="brzaguza-text-blue hover:brzaguza-text-pink"
+					href="https://github.com/tminaorg/brzaguza"
+					><b>Source code</b></a
+				>
+			</div>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>BrzaGuza</ShortName>
+  <Description>BrzaGuza is a private distributed metasearch engine with crowdsourced cache and speed as the primary goal.</Description>
+  <Tags>brzaguza</Tags>
+  <Language>en-us</Language>
+  <InputEncoding>UTF-8</InputEncoding>
+  <OutputEncoding>UTF-8</OutputEncoding>
+  <Contact>brzaguza@tmina.org</Contact>
+  <Query role="example" searchTerms="BrzaGuza"/>
+  <Url type="text/html"
+       template="https://brzaguza.rs/search?q={searchTerms}"/>
+</OpenSearchDescription>

@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-bg, .custom-bg-button, .custom-bg-headfoot {
+    background-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+    .dark\:custom-bg {
+        background-color: #222428;
+    }
+    .dark\:custom-bg-button {
+        background-color: #2b2e36;
+    }
+    .dark\:custom-bg-headfoot {
+        background-color: #1e1e22;
+    }
+}
+
+.brzaguza-bg-pink, .hover\:brzaguza-bg-pink:hover {
+    background-color: #ffc8dd;
+}
+
+.brzaguza-bg-blue, .hover\:brzaguza-bg-blue:hover {
+    background-color: #7dd2ed;
+}
+
+.brzaguza-text-pink, .hover\:brzaguza-text-pink:hover {
+    color: #ffc8dd;
+}
+
+.brzaguza-text-blue, .hover\:brzaguza-text-blue:hover {
+    color: #7dd2ed;
+}
