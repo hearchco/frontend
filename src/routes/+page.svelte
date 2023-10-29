@@ -5,9 +5,7 @@
 <svelte:head><title>BrzaGuza</title></svelte:head>
 
 <!-- this is hard fixed top space -->
-<div class="mx-auto mb-4 mt-20 min-w-fit max-w-screen-sm">
-	<div>
-		<img class="mx-auto h-40 w-40" src="/img/brzaguza.svg" alt="" />
-	</div>
-	<div class="mx-4 min-w-fit max-w-full"><Searchbox /></div>
+<div class="mx-4 mb-4 mt-20 min-w-fit">
+	<img class="mx-auto h-auto w-40" src="/img/brzaguza.svg" alt="" />
+	<div class="mx-auto max-w-screen-sm"><Searchbox /></div>
 </div>
