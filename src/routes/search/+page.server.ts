@@ -1,7 +1,7 @@
-import type { PageLoad } from './$types';
-import { PUBLIC_API_URL } from '$env/static/public';
+import type { PageServerLoad } from './$types';
+import { API_URL } from '$env/static/private';
 
-export const load: PageLoad = async ({ fetch, url }) => {
+export const load: PageServerLoad = async ({ fetch, url }) => {
 	const q = url.searchParams.get('q');
 	if (q === null || q === '') {
 		return {
@@ -9,7 +9,7 @@ export const load: PageLoad = async ({ fetch, url }) => {
 			results: []
 		};
 	}
-	const apiUrl = `${PUBLIC_API_URL}/search?q=${q}`;
+	const apiUrl = `${API_URL}/search?q=${q}`;
 	const response = await fetch(apiUrl);
 	const results = await response.json();
 
