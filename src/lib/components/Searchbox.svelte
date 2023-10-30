@@ -1,7 +1,15 @@
-<div
+<script lang="ts">
+	export let query = '';
+</script>
+
+<form
 	class="custom-bg-button dark:custom-bg-button flex h-12 w-full rounded-full border border-gray-100 shadow-2xl dark:border-0 dark:text-white"
+	method="get"
+	action="/search"
+	on:submit
 >
 	<input
+		name="q"
 		class="mx-4 h-full w-full bg-transparent focus:outline-none"
 		type="text"
 		placeholder="Guzni..."
@@ -10,7 +18,7 @@
 		spellcheck="false"
 		autocorrect="off"
 		dir="auto"
-		value=""
+		bind:value={query}
 	/>
 	<!-- <button
             class="brzaguza-text-blue hover:brzaguza-text-pink h-full w-8 rounded-full bg-transparent"
@@ -30,7 +38,10 @@
               ></path>
             </svg>
           </button> -->
-	<button class="brzaguza-text-blue hover:brzaguza-bg-pink h-full w-20 rounded-full bg-transparent">
+	<button
+		type="submit"
+		class="brzaguza-text-blue hover:brzaguza-bg-pink h-full w-20 rounded-full bg-transparent"
+	>
 		<svg class="mx-auto h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
 			<path
 				d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
@@ -49,4 +60,4 @@
 			/>
 		</svg>
 	</button>
-</div>
+</form>

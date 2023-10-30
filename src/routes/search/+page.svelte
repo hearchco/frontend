@@ -1,5 +1,9 @@
-<script>
+<script lang="ts">
 	import Searchbox from '$lib/components/Searchbox.svelte';
+
+	import type { PageData } from './$types';
+	export let data: PageData;
+	//export let form: ActionData;
 </script>
 
 <svelte:head><title>Search | BrzaGuza</title></svelte:head>
@@ -13,84 +17,29 @@
 			<a href="/">
 				<img class="h-auto w-20" src="/img/brzaguza.svg" alt="" />
 			</a>
-			<Searchbox />
+			<Searchbox bind:query={data.query} />
 			<div class="w-0 sm:w-20" />
 		</div>
 	</div>
 </header>
 <div class="mx-auto mb-4 max-w-screen-sm">
 	<div id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
-		<div>
+		{#each data.results as result}
 			<article id="result">
-				<a id="link" href="https://brzaguza.rs" class="dark:text-white" rel="noreferrer"
-					>https://brzaguza.rs</a
-				>
+				<a id="link" href={result.URL} class="dark:text-white" rel="noreferrer">{result.URL}</a>
 				<h1 id="title" class="brzaguza-text-blue hover:brzaguza-text-pink text-xl hover:underline">
-					<a href="https://brzaguza.rs" rel="noreferrer">BrzaGuza - Metasearch engine</a>
+					<a href={result.URL} rel="noreferrer">{result.Title}</a>
 				</h1>
 				<p id="description" class="my-1 text-justify text-sm text-gray-600 dark:text-gray-200">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-					ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-					sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-					est laborum.
+					{result.Description}
 				</p>
 				<div id="engines" class="my-2 text-right text-xs text-gray-800 dark:text-gray-400">
-					<span class="mx-0.5">BrzaGuza</span>
-					<span class="mx-0.5">BrzaGuza</span>
-					<span class="mx-0.5">BrzaGuza</span>
+					{#each result.EngineRanks as engineRank}
+						<span class="mx-0.5">{engineRank.SearchEngine}</span>
+					{/each}
 				</div>
 			</article>
 			<hr class="my-2 border border-gray-200 dark:border-gray-600" />
-		</div>
-		<div>
-			<article id="result">
-				<a id="link" href="https://brzaguza.rs" class="dark:text-white" rel="noreferrer"
-					>https://brzaguza.rs</a
-				>
-				<h1 id="title" class="brzaguza-text-blue hover:brzaguza-text-pink text-xl hover:underline">
-					<a href="https://brzaguza.rs" rel="noreferrer">BrzaGuza - Metasearch engine</a>
-				</h1>
-				<p id="description" class="my-1 text-justify text-sm text-gray-600 dark:text-gray-200">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-					ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-					sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-					est laborum.
-				</p>
-				<div id="engines" class="my-2 text-right text-xs text-gray-800 dark:text-gray-400">
-					<span class="mx-0.5">BrzaGuza</span>
-					<span class="mx-0.5">BrzaGuza</span>
-					<span class="mx-0.5">BrzaGuza</span>
-				</div>
-			</article>
-			<hr class="my-2 border border-gray-200 dark:border-gray-600" />
-		</div>
-		<div>
-			<article id="result">
-				<a id="link" href="https://brzaguza.rs" class="dark:text-white" rel="noreferrer"
-					>https://brzaguza.rs</a
-				>
-				<h1 id="title" class="brzaguza-text-blue hover:brzaguza-text-pink text-xl hover:underline">
-					<a href="https://brzaguza.rs" rel="noreferrer">BrzaGuza - Metasearch engine</a>
-				</h1>
-				<p id="description" class="my-1 text-justify text-sm text-gray-600 dark:text-gray-200">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-					ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-					sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-					est laborum.
-				</p>
-				<div id="engines" class="my-2 text-right text-xs text-gray-800 dark:text-gray-400">
-					<span class="mx-0.5">BrzaGuza</span>
-					<span class="mx-0.5">BrzaGuza</span>
-					<span class="mx-0.5">BrzaGuza</span>
-				</div>
-			</article>
-			<hr class="my-2 border border-gray-200 dark:border-gray-600" />
-		</div>
+		{/each}
 	</div>
 </div>
