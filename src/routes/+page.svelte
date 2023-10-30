@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Searchbox from '$lib/components/Searchbox.svelte';
-
 	export let query = '';
 </script>
 

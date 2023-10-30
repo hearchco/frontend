@@ -1,9 +1,7 @@
 <script lang="ts">
 	import Searchbox from '$lib/components/Searchbox.svelte';
-
 	import type { PageData } from './$types';
 	export let data: PageData;
-	//export let form: ActionData;
 </script>
 
 <svelte:head><title>Search | BrzaGuza</title></svelte:head>
