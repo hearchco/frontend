@@ -2,7 +2,6 @@ app = "prednjica"
 primary_region = "cdg"
 
 [build]
-  # image = "ghcr.io/tminaorg/prednjica:latest"
 
 [env]
   PORT = "8080"
@@ -18,7 +17,7 @@ primary_region = "cdg"
     type = "requests"
     hard_limit = 20
     soft_limit = 10
-  
+
   [[http_service.checks]]
     interval = "30s"
     timeout = "5s"
