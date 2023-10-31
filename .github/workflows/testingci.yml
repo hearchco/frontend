@@ -18,6 +18,3 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-        env:
-          API_URL: 'http://example.org'
-          PUBLIC_API_URL: 'http://example.org'

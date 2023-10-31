@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { API_URL } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
 export const load: PageServerLoad = async ({ fetch, url }) => {
 	const q = url.searchParams.get('q');
@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 			results: []
 		};
 	}
-	const apiUrl = `${API_URL}/search?q=${q}`;
+	const apiUrl = `${env.PRIVATE_API_URL}/search?q=${q}`;
 	const response = await fetch(apiUrl);
 	const results = await response.json();
 

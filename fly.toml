@@ -6,6 +6,8 @@ primary_region = "cdg"
 
 [env]
   PORT = "8080"
+  PRIVATE_API_URL = "http://zadnjica.internal:3030"
+  PUBLIC_API_URL = "https://zadnjica.fly.dev"
 
 [http_service]
   internal_port = 8080
