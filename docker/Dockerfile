@@ -2,6 +2,7 @@
 
 # Adjust NODE_VERSION as desired
 ARG NODE_VERSION=18.16.0
+ARG PORT=8080
 FROM node:${NODE_VERSION}-slim as base
 
 LABEL fly_launch_runtime="NodeJS"
@@ -11,7 +12,7 @@ WORKDIR /app
 
 # Set production environment
 ENV NODE_ENV=production
-
+ENV PORT="${PORT}"
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -21,8 +22,8 @@ RUN apt-get update -qq && \
     apt-get install -y python-is-python3 pkg-config build-essential 
 
 # Install node modules
-COPY --link package.json package-lock.json .
-RUN npm install --production=false
+COPY --link package.json package-lock.json ./
+RUN npm ci --include=dev
 
 # Copy application code
 COPY --link . .
@@ -40,5 +41,10 @@ FROM base
 # Copy built application
 COPY --from=build /app /app
 
+# Expose port
+EXPOSE ${PORT}
+
 # Start the server by default, this can be overwritten at runtime
 CMD [ "npm", "run", "start" ]
+
+LABEL org.opencontainers.image.source="https://github.com/tminaorg/prednjica"
