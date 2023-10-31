@@ -30,11 +30,12 @@ jobs:
           PUBLIC_API_URL: 'http://example.org'
         with:
           context: .
-          file: ./docker/Dockerfile
+          file: ./Dockerfile
           push: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
+          cache-to: type=gha,mode=max
           platforms: |-
             linux/amd64
             linux/arm64

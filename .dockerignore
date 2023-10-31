@@ -1,5 +1,5 @@
 fly.toml
-docker/Dockerfile
+Dockerfile
 .dockerignore
 node_modules
 .git
