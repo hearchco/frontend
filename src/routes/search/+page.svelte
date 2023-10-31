@@ -11,16 +11,17 @@
 	class="custom-bg-headfoot dark:custom-bg-headfoot flex h-36 items-center border border-gray-100 dark:border-0"
 >
 	<div class="mx-4 w-full min-w-fit">
-		<div class="mx-auto flex max-w-screen-md items-center">
+		<div class="md:mx-auto flex max-w-screen-md items-center">
 			<a href="/">
 				<img class="h-auto w-20" src="/img/brzaguza.svg" alt="" />
 			</a>
 			<Searchbox bind:query={data.query} />
-			<div class="w-0 sm:w-20" />
+			<div class="w-0 md:w-20" />
 		</div>
 	</div>
 </header>
-<div class="mx-auto mb-4 max-w-screen-sm">
+
+<div class="sm:mx-auto mb-4 max-w-screen-sm">
 	<div id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
 		{#each data.results as result (result.URL)}
 			<article id="result-{result.Rank}">
