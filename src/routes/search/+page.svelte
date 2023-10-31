@@ -22,8 +22,8 @@
 </header>
 <div class="mx-auto mb-4 max-w-screen-sm">
 	<div id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
-		{#each data.results as result}
-			<article id="result">
+		{#each data.results as result (result.URL)}
+			<article id="result-{result.Rank}">
 				<a id="link" href={result.URL} class="dark:text-white" rel="noreferrer">{result.URL}</a>
 				<h1 id="title" class="brzaguza-text-blue hover:brzaguza-text-pink text-xl hover:underline">
 					<a href={result.URL} rel="noreferrer">{result.Title}</a>
@@ -32,7 +32,7 @@
 					{result.Description}
 				</p>
 				<div id="engines" class="my-2 text-right text-xs text-gray-800 dark:text-gray-400">
-					{#each result.EngineRanks as engineRank}
+					{#each result.EngineRanks as engineRank (engineRank.SearchEngine)}
 						<span class="mx-0.5">{engineRank.SearchEngine}</span>
 					{/each}
 				</div>
