@@ -2,9 +2,7 @@ app = "prednjica"
 primary_region = "cdg"
 
 [build]
-
-[env]
-  PORT = "8080"
+  image = "ghcr.io/tminaorg/prednjica:latest"
 
 [http_service]
   internal_port = 8080
