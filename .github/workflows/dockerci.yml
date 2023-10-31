@@ -29,8 +29,6 @@ jobs:
           API_URL: 'http://example.org'
           PUBLIC_API_URL: 'http://example.org'
         with:
-          context: .
-          file: ./Dockerfile
           push: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
