@@ -4,7 +4,7 @@
 ARG API_URL
 ARG PUBLIC_API_URL
 # Adjust NODE_VERSION as desired
-ARG NODE_VERSION=18.16.0
+ARG NODE_VERSION=20.9.0
 ARG PORT=8080
 FROM node:${NODE_VERSION}-slim as base
 
@@ -23,9 +23,6 @@ FROM base as build
 # Build env vars
 ENV API_URL=${API_URL}
 ENV PUBLIC_API_URL=${PUBLIC_API_URL}
-# Install packages needed to build node modules
-RUN apt-get update -qq && \
-    apt-get install -y python-is-python3 pkg-config build-essential 
 
 # Install node modules
 COPY --link package.json package-lock.json ./
