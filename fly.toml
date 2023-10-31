@@ -4,6 +4,9 @@ primary_region = "cdg"
 [build]
   image = "ghcr.io/tminaorg/prednjica:latest"
 
+[env]
+  PORT = "8080"
+
 [http_service]
   internal_port = 8080
   force_https = true
