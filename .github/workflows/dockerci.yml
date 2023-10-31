@@ -25,9 +25,6 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - uses: docker/build-push-action@v5
-        env:
-          API_URL: 'http://example.org'
-          PUBLIC_API_URL: 'http://example.org'
         with:
           push: false
           tags: ${{ steps.meta.outputs.tags }}
@@ -37,3 +34,6 @@ jobs:
           platforms: |-
             linux/amd64
             linux/arm64
+          build-args: |-
+            API_URL=http://example.org
+            PUBLIC_API_URL=http://example.org

@@ -1,5 +1,8 @@
 # syntax = docker/dockerfile:1
 
+# Build env vars
+ARG API_URL
+ARG PUBLIC_API_URL
 # Adjust NODE_VERSION as desired
 ARG NODE_VERSION=18.16.0
 ARG PORT=8080
@@ -17,6 +20,9 @@ ENV PORT="${PORT}"
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
+# Build env vars
+ENV API_URL=${API_URL}
+ENV PUBLIC_API_URL=${PUBLIC_API_URL}
 # Install packages needed to build node modules
 RUN apt-get update -qq && \
     apt-get install -y python-is-python3 pkg-config build-essential 

@@ -31,9 +31,6 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - uses: docker/build-push-action@v5
-        env:
-          API_URL: ${{ secrets.API_URL }}
-          PUBLIC_API_URL: ${{ secrets.PUBLIC_API_URL }}
         with:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
@@ -43,6 +40,9 @@ jobs:
           platforms: |-
             linux/amd64
             linux/arm64
+          build-args: |-
+            API_URL=${{ secrets.API_URL }}
+            PUBLIC_API_URL=${{ secrets.PUBLIC_API_URL }}
 
   deploy:
     needs: build
