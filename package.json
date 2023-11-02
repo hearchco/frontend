@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "bun run index.js",
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",

@@ -1,28 +1,24 @@
+# use dumb-init to add graceful shutdown
+FROM building5/dumb-init:1.2.1 as init
+
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
 FROM oven/bun:1 as base
 WORKDIR /usr/src/app
 
 # use the official Node image until Bun fixes bug for static assets
-FROM node:20.9.0-slim as node-base
-WORKDIR /usr/src/app
-
 # install dependencies into temp directory
 # this will cache them and speed up future builds
-FROM node-base AS install
-RUN mkdir -p /temp/dev
-COPY package.json package-lock.json /temp/dev/
-RUN cd /temp/dev && npm ci
-
-# install with --production (exclude devDependencies)
-RUN mkdir -p /temp/prod
-COPY package.json package-lock.json /temp/prod/
-RUN cd /temp/prod && npm ci --production
+FROM node:20.9.0-slim AS install
+WORKDIR /usr/src/app
+RUN mkdir -p /temp
+COPY package.json package-lock.json /temp/
+RUN cd /temp && npm ci
 
 # copy node_modules from temp directory
 # then copy all (non-ignored) project files into the image
 FROM base AS prerelease
-COPY --from=install /temp/dev/node_modules node_modules
+COPY --from=install /temp/node_modules node_modules
 COPY . .
 
 # build
@@ -31,11 +27,15 @@ RUN bun run build
 
 # copy production dependencies and source code into final image
 FROM base AS release
-COPY --from=install /temp/prod/node_modules node_modules
-COPY --from=prerelease /usr/src/app/index.ts .
-COPY --from=prerelease /usr/src/app/package.json .
+COPY --from=init /dumb-init /usr/local/bin/
+COPY --from=prerelease /usr/src/app/node_modules node_modules
+COPY --from=prerelease /usr/src/app/build ./
+COPY --from=prerelease /usr/src/app/package.json ./
 
-# run the app
+# switch to nonroot user
 USER bun
 EXPOSE 3000
-ENTRYPOINT [ "bun", "run", "index.ts" ]
+
+# run the app
+ENTRYPOINT [ "/usr/local/bin/dumb-init", "--" ]
+CMD [ "bun", "run", "start" ]
