@@ -1,46 +1,41 @@
-# syntax = docker/dockerfile:1
+# use the official Bun image
+# see all versions at https://hub.docker.com/r/oven/bun/tags
+FROM oven/bun:1 as base
+WORKDIR /usr/src/app
 
-# Adjust NODE_VERSION as desired
-ARG NODE_VERSION=20.9.0
-ARG PORT=8080
-FROM node:${NODE_VERSION}-slim as base
+# use the official Node image until Bun fixes bug for static assets
+FROM node:20.9.0-slim as node-base
+WORKDIR /usr/src/app
 
-LABEL fly_launch_runtime="NodeJS"
+# install dependencies into temp directory
+# this will cache them and speed up future builds
+FROM node-base AS install
+RUN mkdir -p /temp/dev
+COPY package.json package-lock.json /temp/dev/
+RUN cd /temp/dev && npm ci
 
-# NodeJS app lives here
-WORKDIR /app
+# install with --production (exclude devDependencies)
+RUN mkdir -p /temp/prod
+COPY package.json package-lock.json /temp/prod/
+RUN cd /temp/prod && npm ci --production
 
-# Set production environment
+# copy node_modules from temp directory
+# then copy all (non-ignored) project files into the image
+FROM base AS prerelease
+COPY --from=install /temp/dev/node_modules node_modules
+COPY . .
+
+# build
 ENV NODE_ENV=production
-ENV PORT="${PORT}"
+RUN bun run build
 
-# Throw-away build stage to reduce size of final image
-FROM base as build
+# copy production dependencies and source code into final image
+FROM base AS release
+COPY --from=install /temp/prod/node_modules node_modules
+COPY --from=prerelease /usr/src/app/index.ts .
+COPY --from=prerelease /usr/src/app/package.json .
 
-# Install node modules
-COPY --link package.json package-lock.json ./
-RUN npm ci --include=dev
-
-# Copy application code
-COPY --link . .
-
-# Build application
-RUN npm run build
-
-# Remove development dependencies
-RUN npm prune --production
-
-
-# Final stage for app image
-FROM base
-
-# Copy built application
-COPY --from=build /app /app
-
-# Expose port
-EXPOSE ${PORT}
-
-# Start the server by default, this can be overwritten at runtime
-CMD [ "npm", "run", "start" ]
-
-LABEL org.opencontainers.image.source="https://github.com/tminaorg/prednjica"
+# run the app
+USER bun
+EXPOSE 3000
+ENTRYPOINT [ "bun", "run", "index.ts" ]

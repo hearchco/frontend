@@ -5,12 +5,11 @@ primary_region = "cdg"
   image = "ghcr.io/tminaorg/prednjica:latest"
 
 [env]
-  PORT = "8080"
   PRIVATE_API_URL = "http://zadnjica.internal:3030"
   PUBLIC_API_URL = "https://api.brzaguza.rs"
 
 [http_service]
-  internal_port = 8080
+  internal_port = 3000
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
