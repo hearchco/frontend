@@ -20,7 +20,7 @@ RUN cd /temp && npm ci
 # copy node_modules from temp directory
 # then copy all (non-ignored) project files into the image
 FROM base AS build
-COPY --from=install /temp/node_modules node_modules
+COPY --from=install /temp/node_modules node_modules/
 COPY . .
 
 # build
