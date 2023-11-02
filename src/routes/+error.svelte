@@ -1,3 +1,7 @@
+<script lang="ts">
+	import logo from '$lib/assets/brzaguza.svg';
+</script>
+
 <svelte:head><title>Not Found | BrzaGuza</title></svelte:head>
 
 <!-- this is hard fixed top space -->
@@ -16,9 +20,9 @@
 		</p>
 
 		<a href="/" class="mx-auto w-fit flex items-center">
-			<img class="h-auto w-20 rotate-180" src="/img/brzaguza.svg" alt="" />
+			<img class="h-auto w-20 rotate-180" src={logo} alt="" />
 			<p class="hover:brzaguza-text-pink italic dark:text-white">Go back to Assland</p>
-			<img class="h-auto w-20" src="/img/brzaguza.svg" alt="" />
+			<img class="h-auto w-20" src={logo} alt="" />
 		</a>
 	</div>
 </div>
