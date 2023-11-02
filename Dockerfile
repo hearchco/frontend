@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 # use the official Node image until Bun fixes bug for static assets
 # install dependencies into temp directory
 # this will cache them and speed up future builds
-FROM node:20.9.0-slim AS install
+FROM node:lts-slim AS install
 WORKDIR /usr/src/app
 RUN mkdir -p /temp
 COPY package.json package-lock.json /temp/
