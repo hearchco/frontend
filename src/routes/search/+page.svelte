@@ -1,4 +1,5 @@
 <script lang="ts">
+	import logo from '$lib/assets/brzaguza.svg';
 	import Searchbox from '$lib/components/Searchbox.svelte';
 	import type { PageData } from './$types';
 	export let data: PageData;
@@ -13,7 +14,7 @@
 	<div class="mx-4 w-full min-w-fit">
 		<div class="md:mx-auto flex max-w-screen-md items-center">
 			<a href="/">
-				<img class="h-auto w-20" src="/img/brzaguza.svg" alt="" />
+				<img class="h-auto w-20" src={logo} alt="" />
 			</a>
 			<Searchbox bind:query={data.query} />
 			<div class="w-0 md:w-20" />

@@ -1,46 +1,41 @@
-# syntax = docker/dockerfile:1
+# use dumb-init to add graceful shutdown
+FROM building5/dumb-init:1.2.1 as init
 
-# Adjust NODE_VERSION as desired
-ARG NODE_VERSION=20.9.0
-ARG PORT=8080
-FROM node:${NODE_VERSION}-slim as base
+# use the official Bun image
+# see all versions at https://hub.docker.com/r/oven/bun/tags
+FROM oven/bun:1 as base
+WORKDIR /usr/src/app
 
-LABEL fly_launch_runtime="NodeJS"
+# use the official Node image until Bun fixes bug for static assets
+# install dependencies into temp directory
+# this will cache them and speed up future builds
+FROM node:20.9.0-slim AS install
+WORKDIR /usr/src/app
+RUN mkdir -p /temp
+COPY package.json package-lock.json /temp/
+RUN cd /temp && npm ci
 
-# NodeJS app lives here
-WORKDIR /app
+# copy node_modules from temp directory
+# then copy all (non-ignored) project files into the image
+FROM base AS prerelease
+COPY --from=install /temp/node_modules node_modules
+COPY . .
 
-# Set production environment
+# build
 ENV NODE_ENV=production
-ENV PORT="${PORT}"
+RUN bun run build
 
-# Throw-away build stage to reduce size of final image
-FROM base as build
+# copy production dependencies and source code into final image
+FROM base AS release
+COPY --from=init /dumb-init /usr/local/bin/
+COPY --from=prerelease /usr/src/app/node_modules node_modules
+COPY --from=prerelease /usr/src/app/build ./
+COPY --from=prerelease /usr/src/app/package.json ./
 
-# Install node modules
-COPY --link package.json package-lock.json ./
-RUN npm ci --include=dev
+# switch to nonroot user
+USER bun
+EXPOSE 3000
 
-# Copy application code
-COPY --link . .
-
-# Build application
-RUN npm run build
-
-# Remove development dependencies
-RUN npm prune --production
-
-
-# Final stage for app image
-FROM base
-
-# Copy built application
-COPY --from=build /app /app
-
-# Expose port
-EXPOSE ${PORT}
-
-# Start the server by default, this can be overwritten at runtime
-CMD [ "npm", "run", "start" ]
-
-LABEL org.opencontainers.image.source="https://github.com/tminaorg/prednjica"
+# run the app
+ENTRYPOINT [ "/usr/local/bin/dumb-init", "--" ]
+CMD [ "bun", "run", "start" ]
