@@ -28,11 +28,10 @@ ENV NODE_ENV=production
 RUN [ "bun", "run", "build" ]
 
 # copy production dependencies and source code into final image
-FROM oven/bun:1-distroless AS release
-WORKDIR /usr/src/app
+FROM base AS release
 
 COPY --from=init /usr/bin/tini /usr/bin/
-COPY --from=build /usr/src/app/node_modules node_modules/20.9.0
+COPY --from=build /usr/src/app/node_modules node_modules/
 COPY --from=build /usr/src/app/build ./
 COPY --from=build /usr/src/app/package.json ./
 
