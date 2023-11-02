@@ -1,4 +1,4 @@
-# use dumb-init to add graceful shutdown
+# use tini to add graceful shutdown
 FROM debian:stable-slim as init
 RUN apt-get -qq update \
     && apt-get -qq install -y tini
@@ -31,7 +31,7 @@ RUN [ "bun", "run", "build" ]
 FROM oven/bun:1-distroless AS release
 WORKDIR /usr/src/app
 
-COPY --from=init /usr/bin/tini /usr/local/bin/
+COPY --from=init /usr/bin/tini /usr/bin/
 COPY --from=build /usr/src/app/node_modules node_modules/20.9.0
 COPY --from=build /usr/src/app/build ./
 COPY --from=build /usr/src/app/package.json ./
@@ -39,5 +39,5 @@ COPY --from=build /usr/src/app/package.json ./
 EXPOSE 3000
 
 # run the app
-ENTRYPOINT [ "/usr/local/bin/dumb-init", "--" ]
+ENTRYPOINT [ "tini", "--" ]
 CMD [ "bun", "run", "start" ]
