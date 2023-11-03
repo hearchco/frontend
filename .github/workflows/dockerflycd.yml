@@ -18,6 +18,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # install deps (using npm until bun fixes bug for static assets)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'npm'
+      - run: npm ci 
+
+      # build project
+      - uses: oven-sh/setup-bun@v1
+      - run: bun run build
+
+      # setup docker (arm64)
       - uses: docker/setup-qemu-action@v3
         with:
           platforms: arm64
@@ -35,8 +47,11 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      # build docker
       - uses: docker/build-push-action@v5
         with:
+          context: .
+          file: ./docker/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
