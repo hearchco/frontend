@@ -12,7 +12,6 @@ WORKDIR /usr/src/app
 # install dependencies into temp directory
 # this will cache them and speed up future builds
 FROM node:lts-slim AS install
-WORKDIR /usr/src/app
 RUN mkdir -p /temp
 COPY package.json package-lock.json /temp/
 RUN cd /temp && npm ci
