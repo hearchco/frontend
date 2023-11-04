@@ -9,7 +9,7 @@ export const load: PageLoad = async ({ fetch, url }) => {
 			results: []
 		};
 	}
-	const apiUrl = `${env.PUBLIC_API_URL}/search?q=${q}`;
+	const apiUrl = `${env.PUBLIC_API_URL}/search${url.searchParams}`;
 	const response = await fetch(apiUrl);
 	const results = await response.json();
 
