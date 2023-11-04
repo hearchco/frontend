@@ -5,7 +5,7 @@ primary_region = "cdg"
   image = "ghcr.io/tminaorg/prednjica:latest"
 
 [env]
-  PRIVATE_API_URL = "http://zadnjica.internal:3030"
+  API_URL = "http://zadnjica.internal:3030"
   PUBLIC_API_URL = "https://api.brzaguza.rs"
 
 [http_service]

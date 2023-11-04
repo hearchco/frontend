@@ -1,3 +1,5 @@
+export const ssr = false;
+
 import type { PageLoad } from './$types';
 import { env } from '$env/dynamic/public';
 
