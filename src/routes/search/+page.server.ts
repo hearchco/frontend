@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
 import { env } from '$env/dynamic/private';
 
-export const load: PageServerLoad = async ({ fetch, url }) => {
+export const load: PageServerLoad = async ({ url }) => {
 	const q = url.searchParams.get('q');
 	if (q === null || q === '') {
 		return {
@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 			results: []
 		};
 	}
-	const apiUrl = `${env.PRIVATE_API_URL}/search?q=${q}`;
+	const apiUrl = `${env.API_URL}/search?${url.searchParams}`;
 	const response = await fetch(apiUrl);
 	const results = await response.json();
 
