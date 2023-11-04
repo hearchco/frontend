@@ -1,8 +1,7 @@
 import type { PageServerLoad } from './$types';
-import { env as envPriv } from '$env/dynamic/private';
-import { env as envPub } from '$env/dynamic/public';
+import { env } from '$env/dynamic/private';
 
-export const load: PageServerLoad = async ({ fetch, url }) => {
+export const load: PageServerLoad = async ({ url }) => {
 	const q = url.searchParams.get('q');
 	if (q === null || q === '') {
 		return {
@@ -10,12 +9,8 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 			results: []
 		};
 	}
-	const apiUrl = `${envPriv.API_URL}/search${url.searchParams}`;
-	const response = await fetch(apiUrl, {
-		headers: {
-			origin: `${envPub.PUBLIC_API_URL}`
-		}
-	});
+	const apiUrl = `${env.API_URL}/search?${url.searchParams}`;
+	const response = await fetch(apiUrl);
 	const results = await response.json();
 
 	return {

@@ -5,6 +5,7 @@ primary_region = "cdg"
   image = "ghcr.io/tminaorg/prednjica:latest"
 
 [env]
+  ORIGIN = "https://brzaguza.rs"
   API_URL = "http://zadnjica.internal:3030"
   PUBLIC_API_URL = "https://api.brzaguza.rs"
 
