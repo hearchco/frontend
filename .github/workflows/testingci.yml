@@ -23,5 +23,4 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
 
-      - uses: oven-sh/setup-bun@v1
-      - run: bun run build
+      - run: npm run build

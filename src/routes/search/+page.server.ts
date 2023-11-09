@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
 import { env } from '$env/dynamic/private';
 
-export const load: PageServerLoad = async ({ url }) => {
+export const load: PageServerLoad = async ({ fetch, url }) => {
 	const q = url.searchParams.get('q');
 	if (q === null || q === '') {
 		return {
