@@ -1,4 +1,4 @@
-FROM oven/bun:1 as base
+FROM node:lts-slim
 
 WORKDIR /usr/src/app
 
@@ -7,5 +7,5 @@ RUN mv build/* ./
 
 EXPOSE 3000
 
-ENTRYPOINT [ "bun" ]
+ENTRYPOINT [ "npm" ]
 CMD [ "run", "start" ]
