@@ -2,7 +2,7 @@ import type { PageLoad } from './$types';
 import { env } from '$env/dynamic/public';
 import { browser } from '$app/environment';
 
-export const load: PageLoad = async ({ data, fetch, url }) => {
+export const load: PageLoad = async ({ fetch, url }) => {
 	const q = url.searchParams.get('q');
 	if (q === null || q === '') {
 		return {
