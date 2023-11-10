@@ -24,7 +24,7 @@
 
 <div class="sm:mx-auto mb-4 max-w-screen-sm">
 	<div id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
-		{#each data.results as result (result.URL)}
+		{#each data.results as result}
 			<article id="result-{result.Rank}">
 				<a id="link" href={result.URL} class="dark:text-white" rel="noreferrer">{result.URL}</a>
 				<h1 id="title" class="brzaguza-text-blue hover:brzaguza-text-pink text-xl hover:underline">
