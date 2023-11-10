@@ -1,4 +1,4 @@
-fly.toml
-.dockerignore
-.github
-.env*
+**
+!docker/
+!build/
+!package.json
