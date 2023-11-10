@@ -1,6 +1,6 @@
-import type { PageLoad } from './$types';
 import { env } from '$env/dynamic/public';
 import { browser } from '$app/environment';
+import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ fetch, url }) => {
 	const q = url.searchParams.get('q');
@@ -17,13 +17,21 @@ export const load: PageLoad = async ({ fetch, url }) => {
 	} else {
 		apiUri = env.PUBLIC_API_URL_CSR;
 	}
-
 	const apiUrl = `${apiUri}/search?${url.searchParams}`;
-	const response = await fetch(apiUrl);
-	const results = await response.json();
+
+	// it's important to use the included fetch so that the fetch is not run again in the browser
+	const resultsP = new Promise((resolve, reject) => {
+		fetch(apiUrl)
+			.then((res) => {
+				resolve(res.json());
+			})
+			.catch((err) => {
+				reject(err);
+			});
+	});
 
 	return {
 		query: q,
-		results: results
+		results: browser ? resultsP : await resultsP
 	};
 };
