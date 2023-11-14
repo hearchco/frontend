@@ -6,7 +6,7 @@ primary_region = "cdg"
 
 [env]
   ORIGIN = "https://brzaguza.rs"
-  PUBLIC_API_URL_SSR = "http://zadnjica.flycast:3030"
+  PUBLIC_API_URL_SSR = "http://zadnjica.flycast"
   PUBLIC_API_URL_CSR = "https://api.brzaguza.rs"
 
 [http_service]
