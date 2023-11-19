@@ -1,13 +1,16 @@
 import { env } from '$env/dynamic/public';
 import { browser } from '$app/environment';
-import type { PageLoad } from './$types';
 
-export const load: PageLoad = async ({ fetch, url }) => {
+import type { PageLoad } from './$types';
+import type { Result } from './types';
+
+export const load: PageLoad = async ({ fetch, url, setHeaders }) => {
 	const q = url.searchParams.get('q');
 	if (q === null || q === '') {
+		const results: Result[] = [];
 		return {
 			query: '',
-			results: []
+			results: results
 		};
 	}
 
@@ -17,21 +20,22 @@ export const load: PageLoad = async ({ fetch, url }) => {
 	} else {
 		apiUri = env.PUBLIC_API_URL_CSR;
 	}
-	const apiUrl = `${apiUri}/search?${url.searchParams}`;
 
-	// it's important to use the included fetch so that the fetch is not run again in the browser
-	const resultsP = new Promise((resolve, reject) => {
-		fetch(apiUrl)
-			.then((res) => {
-				resolve(res.json());
-			})
-			.catch((err) => {
-				reject(err);
-			});
-	});
+	const apiUrl = `${apiUri}/search?${url.searchParams}`;
+	const response = await fetch(apiUrl);
+	const results: Result[] = await response.json();
+
+	const age = response.headers.get('age');
+	const cacheControl = response.headers.get('cache-control');
+	if (age != null && cacheControl != null) {
+		setHeaders({
+			age: age,
+			'cache-control': cacheControl
+		});
+	}
 
 	return {
 		query: q,
-		results: browser ? resultsP : await resultsP
+		results: results
 	};
 };
