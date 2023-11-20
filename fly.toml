@@ -2,7 +2,7 @@ app = "prednjica"
 primary_region = "cdg"
 
 [build]
-  image = "ghcr.io/tminaorg/prednjica:latest"
+  image = "ghcr.io/brzaguza/prednjica:latest"
 
 [env]
   ORIGIN = "https://brzaguza.rs"
