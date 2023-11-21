@@ -1,7 +1,7 @@
 <script lang="ts">
 	import logo from '$lib/assets/brzaguza.svg';
 	import Searchbox from '$lib/components/Searchbox.svelte';
-	export let query = '';
+	let query = '';
 </script>
 
 <svelte:head><title>BrzaGuza</title></svelte:head>
