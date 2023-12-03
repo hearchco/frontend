@@ -2,6 +2,6 @@
 	import Error from '$lib/components/Error.svelte';
 </script>
 
-<svelte:head><title>API Error | BrzaGuza</title></svelte:head>
+<svelte:head><title>API Error | Hearchco</title></svelte:head>
 
 <Error statusCode={'500'} message={'Fastasst API failed.'} />

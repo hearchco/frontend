@@ -1,10 +1,10 @@
 <script lang="ts">
-	import logo from '$lib/assets/brzaguza.svg';
+	import logo from '$lib/assets/hearchco.svg';
 	import Searchbox from '$lib/components/Searchbox.svelte';
 	let query = '';
 </script>
 
-<svelte:head><title>BrzaGuza</title></svelte:head>
+<svelte:head><title>Hearchco</title></svelte:head>
 
 <!-- this is hard fixed top space -->
 <div class="mx-4 mb-4 mt-20 min-w-fit">

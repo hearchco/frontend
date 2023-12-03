@@ -1,5 +1,5 @@
 <script lang="ts">
-	import logo from '$lib/assets/brzaguza.svg';
+	import logo from '$lib/assets/hearchco.svg';
 	export let statusCode = '';
 	export let message = '';
 </script>
@@ -21,7 +21,7 @@
 
 		<a href="/" class="mx-auto w-fit flex items-center">
 			<img class="h-auto w-20 rotate-180" src={logo} alt="" />
-			<p class="hover:brzaguza-text-pink italic dark:text-white">Go back to Assland</p>
+			<p class="hover:hearchco-text-pink italic dark:text-white">Go back to Assland</p>
 			<img class="h-auto w-20" src={logo} alt="" />
 		</a>
 	</div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import logo from '$lib/assets/brzaguza.svg';
+	import logo from '$lib/assets/hearchco.svg';
 </script>
 
 <!-- this is hard fixed top space -->

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import logo from '$lib/assets/brzaguza.svg';
+	import logo from '$lib/assets/hearchco.svg';
 	import Searchbox from '$lib/components/Searchbox.svelte';
 	import Load from '$lib/components/Load.svelte';
 	import Error from '$lib/components/Error.svelte';
@@ -8,7 +8,7 @@
 	export let data: PageData;
 </script>
 
-<svelte:head><title>Search | BrzaGuza</title></svelte:head>
+<svelte:head><title>Search | Hearchco</title></svelte:head>
 
 <!-- Header section -->
 <header
@@ -36,7 +36,7 @@
 					<a id="link" href={result.URL} class="dark:text-white" rel="noreferrer">{result.URL}</a>
 					<h1
 						id="title"
-						class="brzaguza-text-blue hover:brzaguza-text-pink text-xl hover:underline"
+						class="hearchco-text-blue hover:hearchco-text-pink text-xl hover:underline"
 					>
 						<a href={result.URL} rel="noreferrer">{result.Title}</a>
 					</h1>

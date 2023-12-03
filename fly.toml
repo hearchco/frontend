@@ -2,12 +2,12 @@ app = "prednjica"
 primary_region = "cdg"
 
 [build]
-  image = "ghcr.io/brzaguza/prednjica:latest"
+  image = "ghcr.io/hearchco/prednjica:latest"
 
 [env]
-  ORIGIN = "https://brzaguza.rs"
+  ORIGIN = "https://hearchco.rs"
   PUBLIC_API_URL_SSR = "http://zadnjica.flycast"
-  PUBLIC_API_URL_CSR = "https://api.brzaguza.rs"
+  PUBLIC_API_URL_CSR = "https://api.hearchco.rs"
 
 [http_service]
   internal_port = 3000

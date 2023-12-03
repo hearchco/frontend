@@ -21,7 +21,7 @@
 		bind:value={query}
 	/>
 	<!-- <button
-            class="brzaguza-text-blue hover:brzaguza-text-pink h-full w-8 rounded-full bg-transparent"
+            class="hearchco-text-blue hover:hearchco-text-pink h-full w-8 rounded-full bg-transparent"
           >
             <svg
               class="h-1/2 w-full bg-transparent"
@@ -40,7 +40,7 @@
           </button> -->
 	<button
 		type="submit"
-		class="brzaguza-text-blue hover:brzaguza-bg-pink h-full w-20 rounded-full bg-transparent"
+		class="hearchco-text-blue hover:hearchco-bg-pink h-full w-20 rounded-full bg-transparent"
 	>
 		<svg class="mx-auto h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
 			<path
