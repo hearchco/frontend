@@ -1,5 +1,5 @@
 <script lang="ts">
-	import logo from '$lib/assets/hearchco.svg';
+	import logo from '$lib/assets/logo.svg';
 	export let statusCode = '';
 	export let message = '';
 </script>

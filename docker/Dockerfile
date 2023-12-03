@@ -1,11 +1,12 @@
-FROM node:lts-slim
+FROM gcr.io/distroless/nodejs20-debian12:nonroot
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY . ./
 RUN mv build/* ./
 
+CMD [ "index.js" ]
+
 EXPOSE 3000
 
-ENTRYPOINT [ "npm" ]
-CMD [ "run", "start" ]
+LABEL org.opencontainers.image.source="https://github.com/hearchco/frontend"

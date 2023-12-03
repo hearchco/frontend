@@ -9,5 +9,5 @@
   <Contact>hearchco@tmina.org</Contact>
   <Query role="example" searchTerms="Hearchco"/>
   <Url type="text/html"
-       template="https://hearchco.rs/search?q={searchTerms}"/>
+       template="https://hearch.co/search?q={searchTerms}"/>
 </OpenSearchDescription>

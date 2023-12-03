@@ -1,13 +1,13 @@
-app = "prednjica"
+app = "frontend"
 primary_region = "cdg"
 
 [build]
-  image = "ghcr.io/hearchco/prednjica:latest"
+  image = "ghcr.io/hearchco/frontend:latest"
 
 [env]
-  ORIGIN = "https://hearchco.rs"
-  PUBLIC_API_URL_SSR = "http://zadnjica.flycast"
-  PUBLIC_API_URL_CSR = "https://api.hearchco.rs"
+  ORIGIN = "https://hearch.co"
+  PUBLIC_API_URL_SSR = "http://hearchco.flycast"
+  PUBLIC_API_URL_CSR = "https://api.hearch.co"
 
 [http_service]
   internal_port = 3000

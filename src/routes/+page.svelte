@@ -1,5 +1,5 @@
 <script lang="ts">
-	import logo from '$lib/assets/hearchco.svg';
+	import logo from '$lib/assets/logo.svg';
 	import Searchbox from '$lib/components/Searchbox.svelte';
 	let query = '';
 </script>
