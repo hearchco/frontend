@@ -2,7 +2,7 @@ FROM gcr.io/distroless/nodejs20-debian12:nonroot
 
 WORKDIR /app
 
-COPY build/ ./
+COPY package.json build/ ./
 
 CMD [ "index.js" ]
 
