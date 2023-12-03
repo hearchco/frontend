@@ -17,10 +17,10 @@
 	<div class="mx-4 w-full min-w-fit">
 		<div class="md:mx-auto flex max-w-screen-md items-center">
 			<a href="/">
-				<img class="h-auto w-20" src={logo} alt="" />
+				<img class="h-16 w-16 mr-6 md:mr-8" src={logo} alt="logo" />
 			</a>
 			<Searchbox bind:query={data.query} />
-			<div class="w-0 md:w-20" />
+			<div class="w-0 md:w-16 md:ml-8" />
 		</div>
 	</div>
 </header>
@@ -36,7 +36,7 @@
 					<a id="link" href={result.URL} class="dark:text-white" rel="noreferrer">{result.URL}</a>
 					<h1
 						id="title"
-						class="hearchco-text-blue hover:hearchco-text-pink text-xl hover:underline"
+						class="hearchco-text-primary text-xl hover:underline"
 					>
 						<a href={result.URL} rel="noreferrer">{result.Title}</a>
 					</h1>
@@ -54,5 +54,5 @@
 		</div>
 	</div>
 {:catch error}
-	<Error statusCode={'500'} message={'Fastasst API failed.'} />
+	<Error statusCode={'500'} message={'Hearchco API failed.'} />
 {/await}

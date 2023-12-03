@@ -20,9 +20,9 @@
 		</p>
 
 		<a href="/" class="mx-auto w-fit flex items-center">
-			<img class="h-auto w-20 rotate-180" src={logo} alt="" />
-			<p class="hover:hearchco-text-pink italic dark:text-white">Go back to Assland</p>
-			<img class="h-auto w-20" src={logo} alt="" />
+			<img class="mr-2 h-20 w-20 rotate-180" src={logo} alt="logo" />
+			<p class="hover:hearchco-text-primary italic dark:text-white">Go back to homepage</p>
+			<img class="ml-2 h-20 w-20" src={logo} alt="logo" />
 		</a>
 	</div>
 </div>

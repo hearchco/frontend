@@ -12,7 +12,7 @@
 		name="q"
 		class="mx-4 h-full w-full bg-transparent focus:outline-none"
 		type="text"
-		placeholder="Guzni..."
+		placeholder="Hearch..."
 		autocomplete="off"
 		autocapitalize="none"
 		spellcheck="false"
@@ -21,7 +21,7 @@
 		bind:value={query}
 	/>
 	<!-- <button
-            class="hearchco-text-blue hover:hearchco-text-pink h-full w-8 rounded-full bg-transparent"
+            class="hearchco-text-secondary hover:hearchco-text-primary h-full w-8 rounded-full bg-transparent"
           >
             <svg
               class="h-1/2 w-full bg-transparent"
@@ -40,7 +40,7 @@
           </button> -->
 	<button
 		type="submit"
-		class="hearchco-text-blue hover:hearchco-bg-pink h-full w-20 rounded-full bg-transparent"
+		class="hearchco-text-primary hover:hearchco-bg-secondary h-full w-20 rounded-full bg-transparent"
 	>
 		<svg class="mx-auto h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
 			<path

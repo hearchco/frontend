@@ -10,6 +10,6 @@
 		>
 			Loading...
 		</p>
-		<img class="h-auto w-40 mx-auto" src={logo} alt="" />
+		<img class="h-40 w-40 mx-auto" src={logo} alt="logo" />
 	</div>
 </div>
