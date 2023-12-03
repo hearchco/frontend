@@ -4,4 +4,4 @@
 
 <svelte:head><title>API Error | Hearchco</title></svelte:head>
 
-<Error statusCode={'500'} message={'Fastasst API failed.'} />
+<Error statusCode={'500'} message={'Hearchco API failed.'} />

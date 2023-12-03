@@ -38,7 +38,7 @@ export const load: PageServerLoad = async ({ fetch, setHeaders, url }) => {
 	const apiUri = env.PUBLIC_API_URL_SSR;
 
 	const apiUrl = `${apiUri}/search?${url.searchParams}`;
-	const results = await fetchResultsJSON(fetch, setHeaders, apiUrl);
+	const results = fetchResultsJSON(fetch, setHeaders, apiUrl);
 
 	return {
 		query: q,

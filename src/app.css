@@ -27,18 +27,18 @@
     }
 }
 
-.hearchco-bg-pink, .hover\:hearchco-bg-pink:hover {
-    background-color: #ffc8dd;
+.hearchco-bg-primary, .hover\:hearchco-bg-primary:hover {
+    background-color: #ffb280;
 }
 
-.hearchco-bg-blue, .hover\:hearchco-bg-blue:hover {
-    background-color: #7dd2ed;
+.hearchco-bg-secondary, .hover\:hearchco-bg-secondary:hover {
+    background-color: #2b1100;
 }
 
-.hearchco-text-pink, .hover\:hearchco-text-pink:hover {
-    color: #ffc8dd;
+.hearchco-text-primary, .hover\:hearchco-text-primary:hover {
+    color: #ffb280;
 }
 
-.hearchco-text-blue, .hover\:hearchco-text-blue:hover {
-    color: #7dd2ed;
+.hearchco-text-secondary, .hover\:hearchco-text-secondary:hover {
+    color: #2b1100;
 }
