@@ -1,4 +1,9 @@
-app = "frontend"
+# fly.toml app configuration file generated for hearchco-frontend on 2023-12-03T17:09:42+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "hearchco-frontend"
 primary_region = "cdg"
 
 [build]
@@ -6,8 +11,8 @@ primary_region = "cdg"
 
 [env]
   ORIGIN = "https://hearch.co"
-  PUBLIC_API_URL_SSR = "http://hearchco.flycast"
   PUBLIC_API_URL_CSR = "https://api.hearch.co"
+  PUBLIC_API_URL_SSR = "http://hearchco.flycast"
 
 [http_service]
   internal_port = 3000
