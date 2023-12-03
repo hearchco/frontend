@@ -10,15 +10,25 @@
 
 <svelte:head><title>Search | Hearchco</title></svelte:head>
 
+<style>
+	#logo-holder > * {
+		grid-column-start: 1;
+		grid-row-start: 1;
+	}
+</style>
+
 <!-- Header section -->
 <header
 	class="custom-bg-headfoot dark:custom-bg-headfoot flex h-36 items-center border border-gray-100 dark:border-0"
 >
 	<div class="mx-4 w-full min-w-fit">
 		<div class="md:mx-auto flex max-w-screen-md items-center">
-			<a href="/">
-				<img class="h-16 w-16 mr-6 md:mr-8" src={logo} alt="logo" />
-			</a>
+			<div id="logo-holder" style="display: grid;">
+				<img class="h-16 w-16 mr-6 md:mr-8" style="pointer-events: none;" src={logo} alt="logo" />
+				<a draggable="false" id="logo" href="/">
+				</a>
+			</div>
+			
 			<Searchbox bind:query={data.query} />
 			<div class="w-0 md:w-16 md:ml-8" />
 		</div>
