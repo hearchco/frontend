@@ -21,7 +21,7 @@
 		bind:value={query}
 	/>
 	<!-- <button
-            class="hearchco-text-secondary hover:hearchco-text-primary h-full w-8 rounded-full bg-transparent"
+            class="hearchco-text-primary hover:hearchco-text-primary h-full w-8 rounded-full bg-transparent"
           >
             <svg
               class="h-1/2 w-full bg-transparent"
