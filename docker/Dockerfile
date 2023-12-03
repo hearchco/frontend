@@ -1,8 +1,8 @@
-FROM gcr.io/distroless/nodejs20-debian12:nonroot
+FROM cgr.dev/chainguard/node-lts:latest
 
-WORKDIR /app
+ENV NODE_ENV=production
 
-COPY package.json build/ ./
+COPY --chown=node:node ["package.json", "build/", "./"]
 
 CMD [ "index.js" ]
 
