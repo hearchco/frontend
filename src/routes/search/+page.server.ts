@@ -1,7 +1,6 @@
 import { env } from '$env/dynamic/public';
-import { browser } from '$app/environment';
 
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import type { Result } from './types';
 
 async function fetchResultsJSON(
@@ -24,7 +23,7 @@ async function fetchResultsJSON(
 	return results;
 }
 
-export const load: PageLoad = async ({ fetch, setHeaders, url }) => {
+export const load: PageServerLoad = async ({ fetch, setHeaders, url }) => {
 	const q = url.searchParams.get('q');
 	if (q === null || q === '') {
 		const results: Result[] = [];
@@ -36,20 +35,15 @@ export const load: PageLoad = async ({ fetch, setHeaders, url }) => {
 		};
 	}
 
-	let apiUri;
-	if (!browser) {
-		apiUri = env.PUBLIC_API_URL_SSR;
-	} else {
-		apiUri = env.PUBLIC_API_URL_CSR;
-	}
+	const apiUri = env.PUBLIC_API_URL_SSR;
 
 	const apiUrl = `${apiUri}/search?${url.searchParams}`;
-	const results = fetchResultsJSON(fetch, setHeaders, apiUrl);
+	const results = await fetchResultsJSON(fetch, setHeaders, apiUrl);
 
 	return {
 		query: q,
 		streamed: {
-			results: browser ? results : await results
+			results: results
 		}
 	};
 };
