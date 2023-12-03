@@ -3,7 +3,7 @@ FROM gcr.io/distroless/nodejs20-debian12:nonroot
 WORKDIR /app
 
 COPY . ./
-RUN mv build/* ./
+RUN ["mv", "build/*", "./"]
 
 CMD [ "index.js" ]
 
