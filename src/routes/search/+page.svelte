@@ -16,9 +16,12 @@
 >
 	<div class="mx-4 w-full min-w-fit">
 		<div class="md:mx-auto flex max-w-screen-md items-center">
-			<a href="/">
-				<img class="h-16 w-16 mr-6 md:mr-8" src={logo} alt="logo" />
-			</a>
+			<div class="grid">
+				<img class="col-start-1 row-start-1 h-16 w-16 mr-6 md:mr-8 pointer-events-none" src={logo} alt="logo" />
+				<a class="col-start-1 row-start-1" draggable="false" href="/"> 
+				</a>
+			</div>
+			
 			<Searchbox bind:query={data.query} />
 			<div class="w-0 md:w-16 md:ml-8" />
 		</div>
