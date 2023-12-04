@@ -10,22 +10,15 @@
 
 <svelte:head><title>Search | Hearchco</title></svelte:head>
 
-<style>
-	#logo-holder > * {
-		grid-column-start: 1;
-		grid-row-start: 1;
-	}
-</style>
-
 <!-- Header section -->
 <header
 	class="custom-bg-headfoot dark:custom-bg-headfoot flex h-36 items-center border border-gray-100 dark:border-0"
 >
 	<div class="mx-4 w-full min-w-fit">
 		<div class="md:mx-auto flex max-w-screen-md items-center">
-			<div id="logo-holder" style="display: grid;">
-				<img class="h-16 w-16 mr-6 md:mr-8" style="pointer-events: none;" src={logo} alt="logo" />
-				<a draggable="false" id="logo" href="/">
+			<div class="grid">
+				<img class="col-start-1 row-start-1 h-16 w-16 mr-6 md:mr-8 pointer-events-none" src={logo} alt="logo" />
+				<a class="col-start-1 row-start-1" draggable="false" href="/"> 
 				</a>
 			</div>
 			
