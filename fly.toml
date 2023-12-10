@@ -10,9 +10,7 @@ primary_region = "cdg"
   image = "ghcr.io/hearchco/frontend:latest"
 
 [env]
-  ORIGIN = "https://hearch.co"
-  PUBLIC_API_URL_CSR = "https://api.hearch.co"
-  PUBLIC_API_URL_SSR = "http://hearchco.flycast"
+  API_URL = "http://hearchco.flycast"
 
 [http_service]
   internal_port = 3000

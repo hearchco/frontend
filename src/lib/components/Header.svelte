@@ -1,0 +1,25 @@
+<script lang="ts">
+	import logo from '$lib/assets/logo.svg';
+	import Searchbox from '$lib/components/Searchbox.svelte';
+	export let query: string;
+</script>
+
+<header
+	class="custom-bg-headfoot dark:custom-bg-headfoot flex h-36 items-center border border-gray-100 dark:border-0"
+>
+	<div class="mx-4 w-full min-w-fit">
+		<div class="md:mx-auto flex max-w-screen-md items-center">
+			<div class="grid">
+				<a class="col-start-1 row-start-1" draggable="false" href="/">
+					<img
+						class="col-start-1 row-start-1 h-16 w-16 mr-6 md:mr-8 pointer-events-none"
+						src={logo}
+						alt="logo"
+					/>
+				</a>
+			</div>
+			<Searchbox bind:query />
+			<div class="w-0 md:w-16 md:ml-8" />
+		</div>
+	</div>
+</header>

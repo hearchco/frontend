@@ -1,6 +1,6 @@
 {
 	"name": "frontend",
-	"version": "0.3.3",
+	"version": "0.0.1",
 	"private": true,
 	"scripts": {
 		"start": "node ./build/index.js",
@@ -13,7 +13,6 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-node": "^1.3.1",
 		"@sveltejs/kit": "^1.27.6",
 		"@typescript-eslint/eslint-plugin": "^6.12.0",
@@ -32,5 +31,8 @@
 		"typescript": "^5.3.2",
 		"vite": "^4.4.2"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"upgrade": "^1.1.0"
+	}
 }

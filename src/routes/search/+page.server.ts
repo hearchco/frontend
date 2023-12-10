@@ -1,7 +1,7 @@
-import { env } from '$env/dynamic/public';
+import { env } from '$env/dynamic/private';
 
 import type { PageServerLoad } from './$types';
-import type { Result } from './types';
+import type { Result } from '$lib/components/ResultType';
 
 async function fetchResultsJSON(
 	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>,
@@ -35,7 +35,7 @@ export const load: PageServerLoad = async ({ fetch, setHeaders, url }) => {
 		};
 	}
 
-	const apiUri = env.PUBLIC_API_URL_SSR;
+	const apiUri = env.API_URL;
 
 	const apiUrl = `${apiUri}/search?${url.searchParams}`;
 	const results = fetchResultsJSON(fetch, setHeaders, apiUrl);
