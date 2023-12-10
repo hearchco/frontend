@@ -4,14 +4,19 @@
 </script>
 
 <article id="result-{result.Rank}">
-	<a id="link" href={result.URL} class="dark:text-white" rel="noreferrer">{result.URL}</a>
-	<h1 id="title" class="hearchco-text-primary text-xl hover:underline">
+	<a id="link-{result.Rank}" href={result.URL} class="dark:text-white" rel="noreferrer"
+		>{result.URL}</a
+	>
+	<h1 id="title-{result.Rank}" class="hearchco-text-primary text-xl hover:underline">
 		<a href={result.URL} rel="noreferrer">{result.Title}</a>
 	</h1>
-	<p id="description" class="my-1 text-justify text-sm text-gray-600 dark:text-gray-200">
+	<p
+		id="description-{result.Rank}"
+		class="my-1 text-justify text-sm text-gray-600 dark:text-gray-200"
+	>
 		{result.Description}
 	</p>
-	<div id="engines" class="my-2 text-right text-xs text-gray-800 dark:text-gray-400">
+	<div id="engines-{result.Rank}" class="my-2 text-right text-xs text-gray-800 dark:text-gray-400">
 		{#each result.EngineRanks as engineRank (engineRank.SearchEngine)}
 			<span class="mx-0.5">{engineRank.SearchEngine}</span>
 		{/each}
