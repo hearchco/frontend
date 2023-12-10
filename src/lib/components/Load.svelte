@@ -2,14 +2,18 @@
 	import logo from '$lib/assets/logo.svg';
 </script>
 
-<!-- this is hard fixed top space -->
-<div class="mx-auto mb-4 mt-20 max-w-screen-sm">
-	<div class="text-center w-full">
-		<p
-			class="mb-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white"
-		>
-			Loading...
-		</p>
-		<img class="h-40 w-40 mx-auto" src={logo} alt="logo" />
+<div class="sm:mx-auto mb-4 max-w-screen-sm">
+	<div class="mx-2 my-4 overflow-clip pointer-events-none">
+		{#each { length: 10 } as _}
+			<div class="w-full animate-pulse">
+				<div class="w-max-content min-[292px]:w-[292px] h-[20px] bg-gray-800 dark:bg-gray-400 rounded-full"></div>
+				<div class="my-0.5 w-max-content min-[230px]:w-[218px] h-[28px] hearchco-bg-primary rounded-lg"></div>
+				<div class="my-0.5 w-max-content sm:w-[620px] h-10 text-sm bg-gray-600 dark:bg-gray-200 rounded-lg"></div>
+				<div class="my-2 flex justify-end rounded-lg">
+					<div class="w-[115px] h-[15px] bg-gray-800 dark:bg-gray-400 rounded-lg"></div>
+				</div>
+			</div>
+			<hr class="my-2 border border-gray-200 dark:border-gray-600" />
+		{/each}	
 	</div>
 </div>

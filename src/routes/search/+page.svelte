@@ -13,7 +13,7 @@
 <Header query={data.query} />
 
 {#await data.streamed.results}
-	<!-- todo: lazy loading animation -->
+	<!-- todo: will change animation if not up to standard -->
 	<Load />
 {:then results}
 	<div class="sm:mx-auto mb-4 max-w-screen-sm">
