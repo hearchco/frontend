@@ -31,8 +31,5 @@
 		"typescript": "^5.3.2",
 		"vite": "^4.4.2"
 	},
-	"type": "module",
-	"dependencies": {
-		"upgrade": "^1.1.0"
-	}
+	"type": "module"
 }
