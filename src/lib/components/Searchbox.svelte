@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let query = '';
+	export let query: string;
 </script>
 
 <form

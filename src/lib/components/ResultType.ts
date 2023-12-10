@@ -13,5 +13,4 @@ export type Result = {
 	Description: string;
 	EngineRanks: EngineRank[];
 	TimesReturned: number;
-	Response: any;
 };

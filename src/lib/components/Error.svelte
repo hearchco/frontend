@@ -1,7 +1,11 @@
 <script lang="ts">
 	import logo from '$lib/assets/logo.svg';
-	export let statusCode = '';
-	export let message = '';
+	export let statusCode: string;
+	export let message: string;
+	export let error: any = undefined;
+	if (error) {
+		console.log(error);
+	}
 </script>
 
 <!-- this is hard fixed top space -->

@@ -2,43 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-.body {
-    @apply custom-bg dark:custom-bg flex min-h-screen flex-col
-}
-
-.footer {
-    @apply custom-bg-headfoot dark:custom-bg-headfoot mt-auto flex h-20 w-full place-content-center items-center border border-gray-100 dark:border-0;
-}
-
-
-.custom-bg, .custom-bg-button, .custom-bg-headfoot {
-    background-color: #fff;
+.custom-bg,
+.custom-bg-button,
+.custom-bg-headfoot {
+	background-color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
-    .dark\:custom-bg {
-        background-color: #222428;
-    }
-    .dark\:custom-bg-button {
-        background-color: #2b2e36;
-    }
-    .dark\:custom-bg-headfoot {
-        background-color: #1e1e22;
-    }
+	.dark\:custom-bg {
+		background-color: #222428;
+	}
+	.dark\:custom-bg-button {
+		background-color: #2b2e36;
+	}
+	.dark\:custom-bg-headfoot {
+		background-color: #1e1e22;
+	}
 }
 
-.hearchco-bg-primary, .hover\:hearchco-bg-primary:hover {
-    background-color: #ffb280;
+.hearchco-bg-primary,
+.hover\:hearchco-bg-primary:hover {
+	background-color: #ffb280;
 }
 
-.hearchco-bg-secondary, .hover\:hearchco-bg-secondary:hover {
-    background-color: #2b1100;
+.hearchco-bg-secondary,
+.hover\:hearchco-bg-secondary:hover {
+	background-color: #2b1100;
 }
 
-.hearchco-text-primary, .hover\:hearchco-text-primary:hover {
-    color: #ffb280;
+.hearchco-text-primary,
+.hover\:hearchco-text-primary:hover {
+	color: #ffb280;
 }
 
-.hearchco-text-secondary, .hover\:hearchco-text-secondary:hover {
-    color: #2b1100;
+.hearchco-text-secondary,
+.hover\:hearchco-text-secondary:hover {
+	color: #2b1100;
 }
