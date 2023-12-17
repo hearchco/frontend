@@ -5,7 +5,7 @@
 </script>
 
 <header
-	class="custom-bg-headfoot dark:custom-bg-headfoot flex h-36 items-center border border-gray-100 dark:border-0"
+	class="flex h-36 items-center border-b-2 border-gray-100 dark:border-zinc-700"
 >
 	<div class="mx-4 w-full min-w-fit">
 		<div class="md:mx-auto flex max-w-screen-md items-center">
