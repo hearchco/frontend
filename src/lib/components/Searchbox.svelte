@@ -18,6 +18,7 @@
 		spellcheck="false"
 		autocorrect="off"
 		dir="auto"
+		autofocus
 		bind:value={query}
 	/>
 	<!-- <button
