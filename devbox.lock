@@ -2,36 +2,36 @@
   "lockfile_version": "1",
   "packages": {
     "nodePackages.pnpm@latest": {
-      "last_modified": "2023-11-02T13:29:18Z",
-      "resolved": "github:NixOS/nixpkgs/b644d97bda6dae837d577e28383c10aa51e5e2d2#nodePackages.pnpm",
+      "last_modified": "2023-11-23T16:10:41Z",
+      "resolved": "github:NixOS/nixpkgs/e8b0430bc4c4235607ae102010dec2ba32e8c0ca#nodePackages.pnpm",
       "source": "devbox-search",
-      "version": "8.10.2",
+      "version": "8.10.5",
       "systems": {
         "aarch64-linux": {
-          "store_path": "/nix/store/n7ml2bssqq1rdlzbz8bgp4bgc2a8z2wd-pnpm-8.10.2"
+          "store_path": "/nix/store/16r331i5imngs5kfzkdnxa28n3ny14j0-pnpm-8.10.5"
         },
         "x86_64-linux": {
-          "store_path": "/nix/store/fxgnndi9lyb8py91mg0hdq9wy0giqbfk-pnpm-8.10.2"
+          "store_path": "/nix/store/idw48sa6db5dfxz6mnakwbz9k9fjkppm-pnpm-8.10.5"
         }
       }
     },
     "nodejs@latest": {
-      "last_modified": "2023-10-25T20:49:13Z",
-      "resolved": "github:NixOS/nixpkgs/75a52265bda7fd25e06e3a67dee3f0354e73243c#nodejs_21",
+      "last_modified": "2023-12-01T12:14:05Z",
+      "resolved": "github:NixOS/nixpkgs/77da99a144cd341408308e0a37622f5edcc6c5ba#nodejs_21",
       "source": "devbox-search",
-      "version": "21.1.0",
+      "version": "21.3.0",
       "systems": {
         "aarch64-darwin": {
-          "store_path": "/nix/store/b8yb6gs0dhi0zlxcg5dkp0d2xrn80nhh-nodejs-21.1.0"
+          "store_path": "/nix/store/14v3za8nwj0pzyslxgk91ivrwli4r5d7-nodejs-21.3.0"
         },
         "aarch64-linux": {
-          "store_path": "/nix/store/c20ngwkh3xzpzvmxkffccaxygyiqw3n2-nodejs-21.1.0"
+          "store_path": "/nix/store/zs16ndz5d90ybi31b0my5q63ym12jmjx-nodejs-21.3.0"
         },
         "x86_64-darwin": {
-          "store_path": "/nix/store/6wyanl2ba86pc2jb6nvg212xpq7j7kij-nodejs-21.1.0"
+          "store_path": "/nix/store/s5f7nr4g0mp3x7p2c5lskdwqb8rd8nwh-nodejs-21.3.0"
         },
         "x86_64-linux": {
-          "store_path": "/nix/store/wl7yqxb1mhghpp6b8icykcm5wysfqarz-nodejs-21.1.0"
+          "store_path": "/nix/store/5gx81a63z7mklr8kmjxybc3ysjn4gmf2-nodejs-21.3.0"
         }
       }
     }
