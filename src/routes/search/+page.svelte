@@ -6,16 +6,24 @@
 
 	import type { PageData } from './$types';
 	export let data: PageData;
+	let query = data.query;
+
+	import type { Snapshot } from './$types';
+	export const snapshot: Snapshot = {
+		capture: () => query,
+		restore: (value) => (query = value)
+	};
 </script>
 
 <svelte:head><title>Search | Hearchco</title></svelte:head>
 
-<Header query={data.query} />
+<Header bind:query />
 
 {#await data.streamed.results}
 	<!-- todo: will change animation if not up to standard -->
 	<Load />
 {:then results}
+	<!-- todo: await deep results and offer button to switch to them -->
 	<div class="sm:mx-auto mb-4 max-w-screen-sm">
 		<div id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
 			{#each results as result (result.URL)}

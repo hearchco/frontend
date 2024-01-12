@@ -2,6 +2,12 @@
 	import logo from '$lib/assets/logo.svg';
 	import Searchbox from '$lib/components/Searchbox.svelte';
 	let query = '';
+
+	import type { Snapshot } from './$types';
+	export const snapshot: Snapshot = {
+		capture: () => query,
+		restore: (value) => (query = value)
+	};
 </script>
 
 <svelte:head><title>Hearchco</title></svelte:head>
