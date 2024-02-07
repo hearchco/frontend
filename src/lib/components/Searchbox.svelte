@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let query: string;
+	export let autofocus: boolean = false;
 </script>
 
 <form
@@ -8,6 +9,7 @@
 	action="/search"
 	on:submit
 >
+	<!-- svelte-ignore a11y-autofocus -->
 	<input
 		name="q"
 		class="mx-4 h-full w-full bg-transparent focus:outline-none"
@@ -18,7 +20,7 @@
 		spellcheck="false"
 		autocorrect="off"
 		dir="auto"
-		autofocus
+		autofocus={autofocus}
 		bind:value={query}
 	/>
 	<!-- <button
