@@ -4,7 +4,7 @@
 </script>
 
 <form
-	class="custom-bg-button dark:custom-bg-button flex h-12 w-full rounded-full border border-gray-100 shadow-2xl dark:border-0 dark:text-white"
+	class="dark:bg-zinc-800 flex h-12 w-full rounded-full shadow-2xl border border-gray-100 dark:border-0 dark:text-white"
 	method="get"
 	action="/search"
 	on:submit

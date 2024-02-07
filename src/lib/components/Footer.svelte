@@ -1,5 +1,5 @@
 <footer
-	class="custom-bg-headfoot dark:custom-bg-headfoot mt-auto flex h-20 w-full place-content-center items-center border border-gray-100 dark:border-0"
+	class="mt-auto flex h-20 w-full place-content-center items-center border-t-2 border-gray-100 dark:border-zinc-700"
 >
 	<div>
 		<a class="hearchco-text-primary hover:underline" href="https://github.com/hearchco"

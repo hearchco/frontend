@@ -2,24 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.custom-bg,
-.custom-bg-button,
-.custom-bg-headfoot {
-	background-color: #fff;
-}
-
-@media (prefers-color-scheme: dark) {
-	.dark\:custom-bg {
-		background-color: #222428;
-	}
-	.dark\:custom-bg-button {
-		background-color: #2b2e36;
-	}
-	.dark\:custom-bg-headfoot {
-		background-color: #1e1e22;
-	}
-}
-
 .hearchco-bg-primary,
 .hover\:hearchco-bg-primary:hover {
 	background-color: #ffb280;
