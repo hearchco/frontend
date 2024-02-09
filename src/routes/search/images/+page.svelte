@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
 	import Load from '$lib/components/Load.svelte';
-	import Result from '$lib/components/Result.svelte';
+	import ResultImage from '$lib/components/ResultImage.svelte';
 	import Error from '$lib/components/Error.svelte';
 
 	import type { PageData } from './$types';
@@ -15,23 +15,21 @@
 	};
 </script>
 
-<svelte:head><title>Search | Hearchco</title></svelte:head>
+<svelte:head><title>Search images | Hearchco</title></svelte:head>
 
 <Header bind:query />
 
 {#await data.streamed.results}
-	<!-- todo: will change animation if not up to standard -->
 	<Load />
 {:then results}
-	<!-- todo: await deep results and offer button to switch to them -->
-	<div class="sm:mx-auto mb-4 max-w-screen-sm">
-		<section id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
-			{#each results as result (result.URL)}
-				<Result {result} />
-				<hr class="my-2 border border-gray-200 dark:border-gray-600" />
-			{/each}
-		</section>
-	</div>
+	<section
+		id="images"
+		class="gap-0 columns-2 sm:columns-3 md:columns-4 lg:columns-5 xl:columns-6 2xl:columns-8"
+	>
+		{#each results as result (result.URL)}
+			<ResultImage {result} />
+		{/each}
+	</section>
 {:catch error}
 	<Error statusCode={'500'} message={'Hearchco API failed.'} {error} />
 {/await}

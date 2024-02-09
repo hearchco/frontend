@@ -5,6 +5,18 @@ type EngineRank = {
 	OnPageRank: number;
 };
 
+type Image = {
+	URL: string;
+	Height: number;
+	Width: number;
+};
+
+type ImageResult = {
+	Source: string;
+	Original: Image;
+	Thumbnail: Image;
+};
+
 export type Result = {
 	URL: string;
 	Rank: number;
@@ -13,4 +25,5 @@ export type Result = {
 	Description: string;
 	EngineRanks: EngineRank[];
 	TimesReturned: number;
+	ImageResult: ImageResult;
 };
