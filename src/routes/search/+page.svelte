@@ -15,7 +15,7 @@
 	};
 </script>
 
-<svelte:head><title>Search | Hearchco</title></svelte:head>
+<svelte:head><title>{query} | Hearchco Search</title></svelte:head>
 
 <Header bind:query />
 
