@@ -1,5 +1,8 @@
 <script lang="ts">
+	// assets
 	import logo from '$lib/assets/logo.svg';
+
+	// parameters
 	export let statusCode: string;
 	export let message: string;
 	export let error: any = undefined;

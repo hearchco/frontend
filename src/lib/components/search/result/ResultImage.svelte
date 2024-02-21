@@ -1,6 +1,12 @@
 <script lang="ts">
-	import type { Result } from './ResultType';
-	export let result: Result;
+	// types
+	import type { ResultType } from '$lib/types/result';
+
+	// parameters
+	export let result: ResultType;
+
+	// variables
+	const loading = result.Rank > 10 ? 'lazy' : 'eager';
 </script>
 
 <article id="result-{result.Rank}">
@@ -12,7 +18,7 @@
 			height={result.ImageResult.Thumbnail.Height}
 			width={result.ImageResult.Thumbnail.Width}
 			alt={result.Title}
-			loading="lazy"
+			{loading}
 		/>
 	</a>
 </article>

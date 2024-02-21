@@ -1,5 +1,6 @@
 import { env } from '$env/dynamic/private';
-import type { Result } from '$lib/components/ResultType';
+
+import type { ResultType } from '$lib/types/result';
 
 export async function fetchResultsJSON(
 	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>,
@@ -18,6 +19,6 @@ export async function fetchResultsJSON(
 		});
 	}
 
-	const results: Result[] = await response.json();
+	const results: ResultType[] = await response.json();
 	return results;
 }

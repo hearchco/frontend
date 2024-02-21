@@ -1,9 +1,17 @@
 <script lang="ts">
+	// assets
 	import logo from '$lib/assets/logo.svg';
+
+	// components
 	import Searchbox from '$lib/components/Searchbox.svelte';
+
+	// types
+	import type { Snapshot } from './$types';
+
+	// variables
 	let query = '';
 
-	import type { Snapshot } from './$types';
+	// snapshots
 	export const snapshot: Snapshot = {
 		capture: () => query,
 		restore: (value) => (query = value)

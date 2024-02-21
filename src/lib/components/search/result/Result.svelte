@@ -1,6 +1,9 @@
 <script lang="ts">
-	import type { Result } from './ResultType';
-	export let result: Result;
+	// types
+	import type { ResultType } from '$lib/types/result';
+
+	// parameters
+	export let result: ResultType;
 </script>
 
 <article id="result-{result.Rank}">

@@ -1,37 +1,37 @@
 <script lang="ts">
+	// components
 	import Header from '$lib/components/Header.svelte';
-	import Load from '$lib/components/Load.svelte';
-	import Result from '$lib/components/Result.svelte';
+	import Loads from '$lib/components/search/load/Loads.svelte';
+	import Results from '$lib/components/search/result/Results.svelte';
 	import Error from '$lib/components/Error.svelte';
 
+	// types
 	import type { PageData } from './$types';
+	import type { Snapshot } from './$types';
+
+	// parameters
 	export let data: PageData;
 	let query = data.query;
 
-	import type { Snapshot } from './$types';
+	// variables
+	$: title = query === '' ? 'Hearchco Search' : `${query} | Hearchco Search`;
+
+	// snapshots
 	export const snapshot: Snapshot = {
 		capture: () => query,
 		restore: (value) => (query = value)
 	};
 </script>
 
-<svelte:head><title>{query} | Hearchco Search</title></svelte:head>
+<svelte:head><title>{title}</title></svelte:head>
 
 <Header bind:query />
 
 {#await data.streamed.results}
 	<!-- todo: will change animation if not up to standard -->
-	<Load />
+	<Loads {query} />
 {:then results}
-	<!-- todo: await deep results and offer button to switch to them -->
-	<div class="sm:mx-auto mb-4 max-w-screen-sm">
-		<section id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
-			{#each results as result (result.URL)}
-				<Result {result} />
-				<hr class="my-2 border border-gray-200 dark:border-gray-600" />
-			{/each}
-		</section>
-	</div>
+	<Results {query} {results} />
 {:catch error}
 	<Error statusCode={'500'} message={'Hearchco API failed.'} {error} />
 {/await}

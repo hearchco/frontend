@@ -17,7 +17,7 @@ type ImageResult = {
 	Thumbnail: Image;
 };
 
-export type Result = {
+export type ResultType = {
 	URL: string;
 	Rank: number;
 	Score: number;

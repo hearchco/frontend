@@ -1,4 +1,5 @@
 <script lang="ts">
+	// parameters
 	export let query: string;
 	export let autofocus: boolean = false;
 </script>
@@ -20,7 +21,7 @@
 		spellcheck="false"
 		autocorrect="off"
 		dir="auto"
-		autofocus={autofocus}
+		{autofocus}
 		bind:value={query}
 	/>
 	<!-- <button

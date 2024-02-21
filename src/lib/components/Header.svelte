@@ -1,6 +1,11 @@
 <script lang="ts">
+	// assets
 	import logo from '$lib/assets/logo.svg';
+
+	// components
 	import Searchbox from '$lib/components/Searchbox.svelte';
+
+	// parameters
 	export let query: string;
 </script>
 
