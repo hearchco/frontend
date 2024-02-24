@@ -10,11 +10,11 @@
 </script>
 
 <article id="result-{result.Rank}">
-	<a href={result.URL}>
+	<a href={result.ImageResult.SourceURL}>
 		<img
 			id="img-{result.Rank}"
 			class="h-auto w-full border dark:border-black"
-			src={result.ImageResult.Thumbnail.URL}
+			src={result.ImageResult.ThumbnailURL}
 			height={result.ImageResult.Thumbnail.Height}
 			width={result.ImageResult.Thumbnail.Width}
 			alt={result.Title}

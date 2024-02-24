@@ -6,15 +6,16 @@ type EngineRank = {
 };
 
 type Image = {
-	URL: string;
 	Height: number;
 	Width: number;
 };
 
 type ImageResult = {
-	Source: string;
 	Original: Image;
 	Thumbnail: Image;
+	ThumbnailURL: string;
+	Source: string;
+	SourceURL: string;
 };
 
 export type ResultType = {
