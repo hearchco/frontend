@@ -9,6 +9,7 @@
 
 	// types
 	import type { ResultType } from '$lib/types/result';
+	import { CategoryEnum } from '$lib/types/category';
 
 	// parameters
 	export let query;
@@ -21,16 +22,7 @@
 </script>
 
 <!-- todo: await deep results and offer button to switch to them -->
-{#if category === 'GENERAL'}
-	<div class="sm:mx-auto mb-4 max-w-screen-sm">
-		<section id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
-			{#each results as result (result.URL)}
-				<Result {result} />
-				<hr class="my-2 border border-gray-200 dark:border-gray-600" />
-			{/each}
-		</section>
-	</div>
-{:else if category === 'IMAGE'}
+{#if category === CategoryEnum.IMAGE}
 	{#if imgResultPreview}
 		<p>{imgResultPreview.Title}</p>
 	{/if}
@@ -40,6 +32,15 @@
 				<div class="flex-none">
 					<ResultImage {result} bind:imgResultPreview />
 				</div>
+			{/each}
+		</section>
+	</div>
+{:else if category != undefined}
+	<div class="sm:mx-auto mb-4 max-w-screen-sm">
+		<section id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
+			{#each results as result (result.URL)}
+				<Result {result} />
+				<hr class="my-2 border border-gray-200 dark:border-gray-600" />
 			{/each}
 		</section>
 	</div>

@@ -1,9 +1,14 @@
-import type { CategoryType } from '$lib/types/category';
+import { CategoryEnum } from '$lib/types/category';
 
-export function categoryFrom(query: string): CategoryType {
-	if (query.startsWith('!image')) {
-		return 'IMAGE';
-	} else {
-		return 'GENERAL';
+export function categoryFrom(query: string): string | undefined {
+	for (const category in CategoryEnum) {
+		if (query.startsWith(`!${category}`)) {
+			return category;
+		}
 	}
+	return undefined;
+}
+
+export function categoryEquals(query: string, category: string): boolean {
+	return category == categoryFrom(query);
 }

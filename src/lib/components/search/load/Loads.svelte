@@ -7,6 +7,9 @@
 	// functions
 	import { categoryFrom } from '$lib/functions/categoryFrom';
 
+	// types
+	import { CategoryEnum } from '$lib/types/category';
+
 	// parameters
 	export let query;
 
@@ -16,22 +19,22 @@
 	const numberOfImages = 32;
 </script>
 
-{#if category === 'GENERAL'}
-	<div class="sm:mx-auto mb-4 max-w-screen-sm">
-		<section id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
-			{#each { length: numberOfResults } as _}
-				<Load />
-				<hr class="my-2 border border-gray-200 dark:border-gray-600" />
-			{/each}
-		</section>
-	</div>
-{:else if category === 'IMAGE'}
+{#if category === CategoryEnum.IMAGE}
 	<div class="px-4 py-8">
 		<section id="images" class="flex flex-wrap justify-center gap-2">
 			{#each { length: numberOfImages } as _}
 				<div class="flex-none">
 					<LoadImage />
 				</div>
+			{/each}
+		</section>
+	</div>
+{:else if category != undefined}
+	<div class="sm:mx-auto mb-4 max-w-screen-sm">
+		<section id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
+			{#each { length: numberOfResults } as _}
+				<Load />
+				<hr class="my-2 border border-gray-200 dark:border-gray-600" />
 			{/each}
 		</section>
 	</div>

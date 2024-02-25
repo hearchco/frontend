@@ -1,6 +1,4 @@
-export type CategoryType = Categories.GENERAL | Categories.IMAGE;
-
-export enum Categories {
-    GENERAL = "general",
-    IMAGE = "image"
+export enum CategoryEnum {
+	GENERAL = 'general',
+	IMAGE = 'image'
 }

@@ -5,14 +5,19 @@
 	// components
 	import Searchbox from '$lib/components/Searchbox.svelte';
 
+	// functions
+	import { categoryEquals } from '$lib/functions/categoryFrom';
+
 	// parameters
 	export let query: string;
 
 	// types
-	import { Categories } from '$lib/types/category';
+	import { CategoryEnum } from '$lib/types/category';
 </script>
 
-<header class="flex flex-col justify-end h-36 items-center border-b-2 border-gray-100 dark:border-zinc-700">
+<header
+	class="flex flex-col justify-end h-36 items-center border-b-2 border-gray-100 dark:border-zinc-700"
+>
 	<div class="mx-4 w-full min-w-fit">
 		<div class="md:mx-auto flex max-w-screen-md items-center">
 			<div class="grid">
@@ -30,12 +35,13 @@
 	</div>
 
 	<div class="mx-4 w-full max-w-screen-md min-w-fit mt-2 mb-2 h-5 flex gap-1">
-		{#each Object.values(Categories) as category}
+		{#each Object.values(CategoryEnum) as category}
 			<!-- todo: merge into searchbox & fix layout -->
 			<button
-				class:border-b-[hearchco-primary]={query.includes(`!`.concat(category))}
+				class:border-b-[hearchco-primary]={categoryEquals(query, category)}
 				class="capitalize flex items-center shadow-2xl dark:text-white border-b-2 p-3 pb-4"
-				>{category}
+			>
+				{category}
 			</button>
 		{/each}
 	</div>
