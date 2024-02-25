@@ -12,14 +12,32 @@
 
 	// variables
 	const category = categoryFrom(query);
-	const numberOfResults = 10;
-	const numberOfImages = 30;
+	const numberOfResults = 30;
+	const numberOfImages = 32;
 </script>
 
 {#if category === 'GENERAL'}
-	<Load number={numberOfResults} />
+	<div class="sm:mx-auto mb-4 max-w-screen-sm">
+		<section id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
+			{#each { length: numberOfResults } as _}
+				<Load />
+				<hr class="my-2 border border-gray-200 dark:border-gray-600" />
+			{/each}
+		</section>
+	</div>
 {:else if category === 'IMAGE'}
-	<LoadImage number={numberOfImages} />
+	<div class="px-4 py-8">
+		<section
+			id="images"
+			class="gap-0 columns-2 sm:columns-3 md:columns-4 lg:columns-5 xl:columns-6 2xl:columns-8"
+		>
+			{#each { length: numberOfImages } as _}
+				<div class="px-2 py-2">
+					<LoadImage />
+				</div>
+			{/each}
+		</section>
+	</div>
 {:else}
 	<Error statusCode={'500'} message={'Unknown category requested.'} />
 {/if}
