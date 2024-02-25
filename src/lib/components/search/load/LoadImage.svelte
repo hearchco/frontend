@@ -9,7 +9,7 @@
 			<!-- Source text loading skeleton -->
 		</div>
 		<div class="pt-1">
-			<div class="h-5 w-4/5 hearchco-bg-primary rounded"></div>
+			<div class="h-5 w-4/5 bg-hearchco-primary rounded"></div>
 			<!-- Title text loading skeleton -->
 		</div>
 	</div>

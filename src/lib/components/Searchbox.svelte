@@ -25,7 +25,7 @@
 		bind:value={query}
 	/>
 	<!-- <button
-            class="hearchco-text-primary hover:hearchco-text-primary h-full w-8 rounded-full bg-transparent"
+            class="text-hearchco-primary hover:text-hearchco-primary h-full w-8 rounded-full bg-transparent"
           >
             <svg
               class="h-1/2 w-full bg-transparent"
@@ -44,7 +44,7 @@
           </button> -->
 	<button
 		type="submit"
-		class="hearchco-text-primary hover:hearchco-bg-secondary h-full w-20 rounded-full bg-transparent"
+		class="text-hearchco-primary hover:bg-hearchco-secondary h-full w-20 rounded-full bg-transparent"
 	>
 		<svg class="mx-auto h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
 			<path

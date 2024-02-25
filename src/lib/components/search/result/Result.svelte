@@ -10,7 +10,7 @@
 	<a id="link-{result.Rank}" href={result.URL} class="dark:text-white" rel="noreferrer"
 		>{result.URL}</a
 	>
-	<h1 id="title-{result.Rank}" class="hearchco-text-primary text-xl hover:underline">
+	<h1 id="title-{result.Rank}" class="text-hearchco-primary text-xl hover:underline">
 		<a href={result.URL} rel="noreferrer">{result.Title}</a>
 	</h1>
 	<p

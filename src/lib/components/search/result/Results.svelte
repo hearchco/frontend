@@ -14,6 +14,8 @@
 	export let query;
 	export let results: ResultType[];
 
+	let imgResultPreview: ResultType;
+
 	// variables
 	const category = categoryFrom(query);
 </script>
@@ -29,6 +31,9 @@
 		</section>
 	</div>
 {:else if category === 'IMAGE'}
+	{#if imgResultPreview}
+		<p>{imgResultPreview.Title}</p>
+	{/if}
 	<div class="px-4 py-8">
 		<section
 			id="images"
@@ -36,7 +41,7 @@
 		>
 			{#each results as result (result.URL)}
 				<div class="px-2 py-2">
-					<ResultImage {result} />
+					<ResultImage {result} bind:imgResultPreview />
 				</div>
 			{/each}
 		</section>
