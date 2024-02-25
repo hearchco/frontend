@@ -29,14 +29,18 @@
 		</section>
 	</div>
 {:else if category === 'IMAGE'}
-	<section
-		id="images"
-		class="gap-0 columns-2 sm:columns-3 md:columns-4 lg:columns-5 xl:columns-6 2xl:columns-8"
-	>
-		{#each results as result (result.URL)}
-			<ResultImage {result} />
-		{/each}
-	</section>
+	<div class="px-4 py-8">
+		<section
+			id="images"
+			class="gap-0 columns-2 sm:columns-3 md:columns-4 lg:columns-5 xl:columns-6 2xl:columns-8"
+		>
+			{#each results as result (result.URL)}
+				<div class="px-2 py-2">
+					<ResultImage {result} />
+				</div>
+			{/each}
+		</section>
+	</div>
 {:else}
 	<Error statusCode={'500'} message={'Unknown category requested.'} />
 {/if}
