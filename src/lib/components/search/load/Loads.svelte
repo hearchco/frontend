@@ -27,12 +27,9 @@
 	</div>
 {:else if category === 'IMAGE'}
 	<div class="px-4 py-8">
-		<section
-			id="images"
-			class="gap-0 columns-2 sm:columns-3 md:columns-4 lg:columns-5 xl:columns-6 2xl:columns-8"
-		>
+		<section id="images" class="flex flex-wrap justify-center gap-2">
 			{#each { length: numberOfImages } as _}
-				<div class="px-2 py-2">
+				<div class="flex-none">
 					<LoadImage />
 				</div>
 			{/each}
