@@ -5,14 +5,14 @@ type EngineRank = {
 	OnPageRank: number;
 };
 
-type Image = {
+type ImageFormat = {
 	Height: number;
 	Width: number;
 };
 
 type ImageResult = {
-	Original: Image;
-	Thumbnail: Image;
+	Original: ImageFormat;
+	Thumbnail: ImageFormat;
 	ThumbnailURL: string;
 	Source: string;
 	SourceURL: string;
