@@ -1,30 +1,58 @@
 <script lang="ts">
+	// assets
+	import logo from '$lib/assets/logo.svg';
+
 	// parameters
 	export let query: string;
 	export let autofocus: boolean = false;
+	export let categories: boolean = false;
+
+	// functions
+	import { categoryEquals, categoryFrom, hasCategory } from '$lib/functions/categoryFrom';
+
+	// types
+	import { CategoryEnum } from '$lib/types/category';
+	import { quadIn } from 'svelte/easing';
 </script>
 
 <form
-	class="dark:bg-zinc-800 flex h-12 w-full rounded-full shadow-2xl border border-gray-100 dark:border-0 dark:text-white"
+	class="flex flex-col w-full justify-center items-center"
 	method="get"
 	action="/search"
 	on:submit
 >
-	<!-- svelte-ignore a11y-autofocus -->
-	<input
-		name="q"
-		class="mx-4 h-full w-full bg-transparent focus:outline-none"
-		type="text"
-		placeholder="Hearch..."
-		autocomplete="off"
-		autocapitalize="none"
-		spellcheck="false"
-		autocorrect="off"
-		dir="auto"
-		{autofocus}
-		bind:value={query}
-	/>
-	<!-- <button
+	<div class="flex w-full justify-center items-center">
+		{#if categories == true}
+			<div>
+				<div class="grid">
+					<a class="col-start-1 row-start-1" draggable="false" href="/">
+						<img
+							class="col-start-1 row-start-1 h-16 w-16 mr-6 md:mr-8 pointer-events-none"
+							src={logo}
+							alt="logo"
+						/>
+					</a>
+				</div>
+			</div>
+		{/if}
+		<div
+			class="dark:bg-zinc-800 flex h-12 w-full rounded-full shadow-2xl border border-gray-100 dark:border-0 dark:text-white"
+		>
+			<!-- svelte-ignore a11y-autofocus -->
+			<input
+				name="q"
+				class="mx-4 h-full w-full bg-transparent focus:outline-none"
+				type="text"
+				placeholder="Hearch..."
+				autocomplete="off"
+				autocapitalize="none"
+				spellcheck="false"
+				autocorrect="off"
+				dir="auto"
+				{autofocus}
+				bind:value={query}
+			/>
+			<!-- <button
             class="text-hearchco-primary hover:text-hearchco-primary h-full w-8 rounded-full bg-transparent"
           >
             <svg
@@ -42,26 +70,48 @@
               ></path>
             </svg>
           </button> -->
-	<button
-		type="submit"
-		class="text-hearchco-primary hover:bg-hearchco-secondary h-full w-20 rounded-full bg-transparent"
-	>
-		<svg class="mx-auto h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
-			<path
-				d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
-				fill="none"
-				stroke="currentColor"
-				stroke-miterlimit="10"
-				stroke-width="32"
-			/>
-			<path
-				fill="none"
-				stroke="currentColor"
-				stroke-linecap="round"
-				stroke-miterlimit="10"
-				stroke-width="32"
-				d="M338.29 338.29L448 448"
-			/>
-		</svg>
-	</button>
+			<button
+				type="submit"
+				class="text-hearchco-primary hover:bg-hearchco-secondary h-full w-20 rounded-full bg-transparent"
+			>
+				<svg class="mx-auto h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
+					<path
+						d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
+						fill="none"
+						stroke="currentColor"
+						stroke-miterlimit="10"
+						stroke-width="32"
+					/>
+					<path
+						fill="none"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-miterlimit="10"
+						stroke-width="32"
+						d="M338.29 338.29L448 448"
+					/>
+				</svg>
+			</button>
+		</div>
+	</div>
+	{#if categories == true}
+		<div class="mx-4 w-full max-w-screen-md min-w-fit mt-2 mb-2 h-5 flex gap-1">
+			{#each Object.values(CategoryEnum) as category}
+				<button
+					on:click={() => {
+						if (!hasCategory(query)) {
+							query = '!' + category + ' ' + query;
+						} else {
+							query = '!' + category + ' ' + query.substring(query.indexOf(' ') + 1);
+						}
+					}}
+					type="submit"
+					class:border-hearchco-primary={categoryFrom(query) == category}
+					class="capitalize flex items-center shadow-2xl dark:text-white border-b-2 p-3 pb-4"
+				>
+					{category}
+				</button>
+			{/each}
+		</div>
+	{/if}
 </form>
