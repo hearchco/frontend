@@ -8,11 +8,10 @@
 	export let categories: boolean = false;
 
 	// functions
-	import { categoryEquals, categoryFrom, hasCategory } from '$lib/functions/categoryFrom';
+	import { categoryFrom, hasCategory } from '$lib/functions/categoryFrom';
 
 	// types
 	import { CategoryEnum } from '$lib/types/category';
-	import { quadIn } from 'svelte/easing';
 </script>
 
 <form
@@ -22,7 +21,7 @@
 	on:submit
 >
 	<div class="flex w-full justify-center items-center">
-		{#if categories == true}
+		{#if categories}
 			<div>
 				<div class="grid">
 					<a class="col-start-1 row-start-1" draggable="false" href="/">
@@ -93,8 +92,11 @@
 				</svg>
 			</button>
 		</div>
+		{#if categories}
+			<div class="w-0 md:w-16 md:ml-8" />
+		{/if}
 	</div>
-	{#if categories == true}
+	{#if categories}
 		<div class="mx-4 w-full max-w-screen-md min-w-fit mt-2 mb-2 h-5 flex gap-1">
 			{#each Object.values(CategoryEnum) as category}
 				<button

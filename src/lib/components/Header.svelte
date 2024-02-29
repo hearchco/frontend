@@ -12,7 +12,6 @@
 	<div class="mx-4 w-full min-w-fit">
 		<div class="md:mx-auto flex max-w-screen-md items-center">
 			<Searchbox categories={true} bind:query />
-			<div class="w-0 md:w-16 md:ml-8" />
 		</div>
 	</div>
 </header>

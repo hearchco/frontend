@@ -1,15 +1,15 @@
 import { CategoryEnum } from '$lib/types/category';
 
-export function categoryFrom(query: string): string | undefined {
-	let gottenCategory: string = 'general';
+export function categoryFrom(query: string): string {
+	let cat = 'general';
 
 	Object.values(CategoryEnum).some((category) => {
 		if (query.startsWith('!' + category)) {
-			gottenCategory = category;
+			cat = category;
 		}
 	});
 
-	return gottenCategory;
+	return cat;
 }
 
 export function hasCategory(query: string): boolean {
