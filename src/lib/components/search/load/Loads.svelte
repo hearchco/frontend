@@ -16,13 +16,12 @@
 	// variables
 	const category = categoryFrom(query);
 	const numberOfResults = 32;
-	const numberOfImages = 64;
 </script>
 
 {#if category === CategoryEnum.IMAGES}
 	<div class="px-4 py-8">
 		<section id="images" class="flex flex-wrap justify-center gap-2">
-			{#each { length: numberOfImages } as _}
+			{#each { length: numberOfResults } as _}
 				<div class="flex-none">
 					<LoadImage />
 				</div>
