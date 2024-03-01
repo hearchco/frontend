@@ -1,4 +1,10 @@
 export enum CategoryEnum {
 	GENERAL = 'general',
-	IMAGE = 'image'
+	IMAGES = 'images',
+	INFO = 'info',
+	SCIENCE = 'science',
+	NEWS = 'news',
+	BLOG = 'blog',
+	SURF = 'surf',
+	NEWNEWS = 'newnews'
 }

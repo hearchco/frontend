@@ -22,8 +22,9 @@
 </script>
 
 <!-- todo: await deep results and offer button to switch to them -->
-{#if category === CategoryEnum.IMAGE}
+{#if category === CategoryEnum.IMAGES}
 	{#if imgResultPreview}
+		<!-- todo: actual preview of image -->
 		<p>{imgResultPreview.Title}</p>
 	{/if}
 	<div class="px-4 py-8">
@@ -35,7 +36,7 @@
 			{/each}
 		</section>
 	</div>
-{:else if category != undefined}
+{:else if category !== undefined}
 	<div class="sm:mx-auto mb-4 max-w-screen-sm">
 		<section id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
 			{#each results as result (result.URL)}

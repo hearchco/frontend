@@ -15,11 +15,11 @@
 
 	// variables
 	const category = categoryFrom(query);
-	const numberOfResults = 30;
-	const numberOfImages = 32;
+	const numberOfResults = 32;
+	const numberOfImages = 64;
 </script>
 
-{#if category === CategoryEnum.IMAGE}
+{#if category === CategoryEnum.IMAGES}
 	<div class="px-4 py-8">
 		<section id="images" class="flex flex-wrap justify-center gap-2">
 			{#each { length: numberOfImages } as _}
@@ -29,7 +29,7 @@
 			{/each}
 		</section>
 	</div>
-{:else if category != undefined}
+{:else if category !== undefined}
 	<div class="sm:mx-auto mb-4 max-w-screen-sm">
 		<section id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
 			{#each { length: numberOfResults } as _}
