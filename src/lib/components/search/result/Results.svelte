@@ -38,7 +38,7 @@
 	</div>
 {:else if category !== undefined}
 	<div class="sm:mx-auto mb-4 max-w-screen-sm">
-		<section id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
+		<section id="results" class="mx-2 my-4 max-w-fit overflow-clip">
 			{#each results as result, i (result.URL)}
 				<Result {result} />
 				{#if i !== results.length - 1}
