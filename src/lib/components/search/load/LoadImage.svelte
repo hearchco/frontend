@@ -11,6 +11,5 @@
 		class="h-full w-full overflow-hidden rounded-lg"
 	>
 		<div class="h-48 w-64 object-cover"></div>
-		<!-- Image loading skeleton -->
 	</div>
 </div>

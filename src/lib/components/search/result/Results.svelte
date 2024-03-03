@@ -2,6 +2,7 @@
 	// components
 	import Result from '$lib/components/search/result/Result.svelte';
 	import ResultImage from '$lib/components/search/result/ResultImage.svelte';
+	import ResultImagePreview from '$lib/components/search/result/ResultImagePreview.svelte';
 	import Error from '$lib/components/Error.svelte';
 
 	// functions
@@ -15,7 +16,7 @@
 	export let query;
 	export let results: ResultType[];
 
-	let imgResultPreview: ResultType;
+	let imgResultPreview: ResultType | undefined;
 
 	// variables
 	const category = categoryFrom(query);
@@ -23,18 +24,28 @@
 
 <!-- todo: await deep results and offer button to switch to them -->
 {#if category === CategoryEnum.IMAGES}
-	{#if imgResultPreview}
-		<!-- todo: actual preview of image -->
-		<p>{imgResultPreview.Title}</p>
-	{/if}
-	<div class="px-4 py-8">
-		<section id="images" class="flex flex-wrap justify-center gap-2">
+	<div class="w-full lg:flex px-4 py-8">
+		{#if imgResultPreview !== undefined}
+			<div id="image-preview" class="lg:hidden">
+				<ResultImagePreview result={imgResultPreview} />
+			</div>
+		{/if}
+		<section
+			id="images"
+			class:tw-w-2-3={imgResultPreview !== undefined}
+			class="flex flex-wrap justify-center gap-2"
+		>
 			{#each results as result (result.URL)}
 				<div class="flex-none">
 					<ResultImage {result} bind:imgResultPreview />
 				</div>
 			{/each}
 		</section>
+		{#if imgResultPreview !== undefined}
+			<div id="image-preview" class="hidden lg:block w-1/3">
+				<ResultImagePreview result={imgResultPreview} />
+			</div>
+		{/if}
 	</div>
 {:else if category !== undefined}
 	<div class="sm:mx-auto mb-4 max-w-screen-sm">
@@ -50,3 +61,13 @@
 {:else}
 	<Error statusCode={'500'} message={'Unknown category requested.'} />
 {/if}
+
+<style>
+	/* equivalent to tailwindcss lg:w-2/3 */
+	/* needed for class:<class>=<boolean> */
+	@media (min-width: 1024px) {
+		.tw-w-2-3 {
+			@apply w-2/3;
+		}
+	}
+</style>
