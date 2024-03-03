@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
 	// components
 	import Error from '$lib/components/Error.svelte';
 	import Load from '$lib/components/search/load/Load.svelte';
@@ -14,45 +12,35 @@
 
 	// parameters
 	export let query;
-	export let hidden = true;
-	export let delay = 100; // test value and change accordingly
 
 	// variables
 	const category = categoryFrom(query);
 	const numberOfResults = 32;
-
-	onMount(() => {
-		setTimeout(() => {
-			hidden = false;
-		}, delay);
-	});
 </script>
 
-<div class:hidden>
-	{#if category === CategoryEnum.IMAGES}
-		<div class="px-4 py-8">
-			<section id="images" class="flex flex-wrap justify-center gap-2">
-				{#each { length: numberOfResults } as _, i}
-					<div class="flex-none">
-						{#if i % 3 == 0 && i % Math.floor(2 * Math.random()) != 0}
-							<LoadImage colored={true} />
-						{:else}
-							<LoadImage />
-						{/if}
-					</div>
-				{/each}
-			</section>
-		</div>
-	{:else if category !== undefined}
-		<div class="sm:mx-auto mb-4 max-w-screen-sm">
-			<section id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
-				{#each { length: numberOfResults } as _}
-					<Load />
-					<hr class="my-2 border border-gray-200 dark:border-gray-600" />
-				{/each}
-			</section>
-		</div>
-	{:else}
-		<Error statusCode={'500'} message={'Unknown category requested.'} />
-	{/if}
-</div>
+{#if category === CategoryEnum.IMAGES}
+	<div class="px-4 py-8">
+		<section id="images" class="flex flex-wrap justify-center gap-2">
+			{#each { length: numberOfResults } as _, i}
+				<div class="flex-none">
+					{#if i % 3 == 0 && i % Math.floor(2 * Math.random()) != 0}
+						<LoadImage colored={true} />
+					{:else}
+						<LoadImage />
+					{/if}
+				</div>
+			{/each}
+		</section>
+	</div>
+{:else if category !== undefined}
+	<div class="sm:mx-auto mb-4 max-w-screen-sm">
+		<section id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
+			{#each { length: numberOfResults } as _}
+				<Load />
+				<hr class="my-2 border border-gray-200 dark:border-gray-600" />
+			{/each}
+		</section>
+	</div>
+{:else}
+	<Error statusCode={'500'} message={'Unknown category requested.'} />
+{/if}
