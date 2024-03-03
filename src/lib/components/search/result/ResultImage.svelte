@@ -4,16 +4,28 @@
 
 	// parameters
 	export let result: ResultType;
-	export let imgResultPreview: ResultType;
+	export let imgResultPreview: ResultType | undefined;
 
 	// variables
 	const loading = result.Rank > 10 ? 'lazy' : 'eager';
+	$: selected = imgResultPreview === result;
+
+	// functions
+	function openImage() {
+		if (selected) {
+			imgResultPreview = undefined;
+		} else {
+			imgResultPreview = result;
+		}
+	}
 </script>
 
-<article id="result-{result.Rank}">
+<article id="image-{result.Rank}">
 	<button
+		class:ring-4={selected}
+		class:ring-hearchco-primary={selected}
 		class="h-full w-full overflow-hidden rounded-lg"
-		on:click={() => (imgResultPreview = result)}
+		on:click={() => openImage()}
 	>
 		<img
 			id="img-{result.Rank}"
