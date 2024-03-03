@@ -12,7 +12,7 @@
 			id="link-{result.Rank}"
 			src={result.ImageResult.ThumbnailURL}
 			alt={result.Title}
-			class="w-full h-auto hover:ring-2 hover:ring-hearchco-primary object-cover transform transition duration-200 ease-in-out"
+			class="mx-auto h-[50vh] w-auto hover:ring-2 hover:ring-hearchco-primary object-cover transform transition duration-200 ease-in-out"
 		/>
 	</a>
 	<a href={result.ImageResult.SourceURL}>

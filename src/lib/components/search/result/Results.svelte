@@ -16,7 +16,7 @@
 	export let query;
 	export let results: ResultType[];
 
-	let imgResultPreview: ResultType | undefined = results[0];
+	let imgResultPreview: ResultType | undefined;
 
 	// variables
 	const category = categoryFrom(query);
@@ -63,6 +63,8 @@
 {/if}
 
 <style>
+	/* equivalent to tailwindcss lg:w-2/3 */
+	/* needed for class:<class>=<boolean> */
 	@media (min-width: 1024px) {
 		.tw-w-2-3 {
 			@apply w-2/3;
