@@ -3,6 +3,14 @@ import { fetchResultsJSON } from '$lib/functions/fetchResults';
 import type { PageServerLoad } from './$types';
 import type { ResultType } from '$lib/types/result';
 
+async function resultsWithDelay(
+	delay: number,
+	results: Promise<ResultType[]>
+): Promise<ResultType[]> {
+	await new Promise((resolve) => setTimeout(resolve, delay));
+	return results;
+}
+
 export const load: PageServerLoad = async ({ fetch, setHeaders, url }) => {
 	const q = url.searchParams.get('q');
 	if (q === null || q === '') {
@@ -19,7 +27,7 @@ export const load: PageServerLoad = async ({ fetch, setHeaders, url }) => {
 	return {
 		query: q,
 		streamed: {
-			results: results
+			results: resultsWithDelay(500, results)
 		}
 	};
 };
