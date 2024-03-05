@@ -1,16 +1,14 @@
-import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
+import { createApiUrl } from '$lib/functions/createApiUrl';
 
-import type { NumericRange } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ fetch }) => {
-	const apiUrl = `${env.API_URL}/healthz`;
+	const apiUrl = createApiUrl('healthz');
 	const response = await fetch(apiUrl);
+
 	if (response.status >= 400 && response.status <= 599) {
-		// todo: convert number to NumericRange
-		const status: NumericRange<400, 599> = 500;
-		throw error(status, 'ERROR');
+		throw error(response.status, response.statusText);
 	}
-	return new Response('OK');
+	return new Response(response.statusText);
 };

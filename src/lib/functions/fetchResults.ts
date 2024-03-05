@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private';
+import { createApiUrl } from './createApiUrl';
 
 import type { ResultType } from '$lib/types/result';
 
@@ -7,14 +7,7 @@ export async function fetchResultsJSON(
 	setHeaders: (headers: Record<string, string>) => void,
 	params: string
 ) {
-	const apiUri = env.API_URI;
-	if (apiUri === undefined) {
-		throw new Error('API_URI env is not defined');
-	}
-
-	const path = apiUri.endsWith('/') ? 'search?' : '/search?';
-	const apiUrl = apiUri + path + params;
-
+	const apiUrl = createApiUrl('search', params);
 	const response = await fetch(apiUrl);
 
 	const age = response.headers.get('age');
