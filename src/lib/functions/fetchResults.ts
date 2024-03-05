@@ -9,6 +9,10 @@ export async function fetchResultsJSON(
 ) {
 	const apiUrl = createApiUrl('search', params);
 	const response = await fetch(apiUrl);
+	if (!response.ok) {
+		console.error('Failed to fetch results:', response.status, response.statusText);
+		return [];
+	}
 
 	const age = response.headers.get('age');
 	const cacheControl = response.headers.get('cache-control');
