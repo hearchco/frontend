@@ -7,7 +7,7 @@
 	import { onMount } from 'svelte';
 
 	// variables
-	let darkMode = true;
+	let darkMode: boolean;
 
 	onMount(() => {
 		const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -19,12 +19,6 @@
 			darkMode = false;
 		} else {
 			darkMode = prefersDarkMode;
-		}
-
-		if (darkMode) {
-			document.documentElement.classList.add('dark');
-		} else {
-			document.documentElement.classList.remove('dark');
 		}
 	});
 
