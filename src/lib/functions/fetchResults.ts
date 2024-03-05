@@ -7,7 +7,14 @@ export async function fetchResultsJSON(
 	setHeaders: (headers: Record<string, string>) => void,
 	params: string
 ) {
-	const apiUrl = `${env.API_URL}/search?${params}`;
+	const apiUri = env.API_URI;
+	if (apiUri === undefined) {
+		throw new Error('API_URI env is not defined');
+	}
+
+	const path = apiUri.endsWith('/') ? 'search?' : '/search?';
+	const apiUrl = apiUri + path + params;
+
 	const response = await fetch(apiUrl);
 
 	const age = response.headers.get('age');
