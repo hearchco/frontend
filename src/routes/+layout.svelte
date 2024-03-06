@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<script>
+	<script type="text/javascript">
 		if (
 			localStorage.theme === 'dark' ||
 			(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)

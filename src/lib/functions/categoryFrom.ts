@@ -1,7 +1,7 @@
 import { CategoryEnum } from '$lib/types/category';
 
 export function categoryFrom(query: string): string {
-	let cat = 'general';
+	let cat: string = 'general';
 
 	Object.values(CategoryEnum).some((category) => {
 		if (query.startsWith('!' + category)) {
@@ -17,5 +17,5 @@ export function hasCategory(query: string): boolean {
 }
 
 export function categoryEquals(query: string, category: string): boolean {
-	return category == categoryFrom(query);
+	return category === categoryFrom(query);
 }

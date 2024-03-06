@@ -10,8 +10,8 @@
 	let darkMode: boolean;
 
 	onMount(() => {
-		const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-		const theme = localStorage.getItem('theme');
+		const prefersDarkMode: boolean = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		const theme: string | null = localStorage.getItem('theme');
 
 		if (theme === 'dark') {
 			darkMode = true;

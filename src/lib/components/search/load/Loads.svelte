@@ -11,11 +11,11 @@
 	import { CategoryEnum } from '$lib/types/category';
 
 	// parameters
-	export let query;
+	export let query: string;
 
 	// variables
-	const category = categoryFrom(query);
-	const numberOfResults = 32;
+	const category: string = categoryFrom(query);
+	const numberOfResults: number = 32;
 </script>
 
 {#if category === CategoryEnum.IMAGES}

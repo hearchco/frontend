@@ -9,7 +9,7 @@
 	import type { Snapshot } from './$types';
 
 	// variables
-	let query = '';
+	let query: string = '';
 
 	// snapshots
 	export const snapshot: Snapshot = {
