@@ -13,13 +13,13 @@
 	import { CategoryEnum } from '$lib/types/category';
 
 	// parameters
-	export let query;
+	export let query: string;
 	export let results: ResultType[];
 
 	let imgResultPreview: ResultType | undefined;
 
 	// variables
-	const category = categoryFrom(query);
+	const category: string = categoryFrom(query);
 </script>
 
 <!-- todo: await deep results and offer button to switch to them -->
@@ -67,7 +67,7 @@
 	/* needed for class:<class>=<boolean> */
 	@media (min-width: 1024px) {
 		.tw-w-2-3 {
-			@apply w-2/3;
+			width: 66.666667%;
 		}
 	}
 </style>

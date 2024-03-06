@@ -108,7 +108,7 @@
 						}
 					}}
 					type="submit"
-					class:border-hearchco-primary={categoryFrom(query) == category}
+					class:border-hearchco-primary={categoryFrom(query) === category}
 					class="capitalize flex items-center shadow-2xl dark:text-white border-b-2 p-3 pb-4"
 				>
 					{category}

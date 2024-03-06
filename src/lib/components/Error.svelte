@@ -5,9 +5,9 @@
 	// parameters
 	export let statusCode: string;
 	export let message: string;
-	export let error: any = undefined;
-	if (error) {
-		console.log(error);
+	export let err: Error | undefined = undefined;
+	if (err !== undefined) {
+		console.error(err);
 	}
 </script>
 

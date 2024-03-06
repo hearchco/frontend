@@ -7,7 +7,7 @@
 	export let imgResultPreview: ResultType | undefined;
 
 	// variables
-	const loading = result.Rank > 10 ? 'lazy' : 'eager';
+	const loading: 'eager' | 'lazy' | null | undefined = result.Rank > 10 ? 'lazy' : 'eager';
 	$: selected = imgResultPreview === result;
 
 	// functions

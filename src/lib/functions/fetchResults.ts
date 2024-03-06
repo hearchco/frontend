@@ -6,23 +6,41 @@ export async function fetchResultsJSON(
 	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>,
 	setHeaders: (headers: Record<string, string>) => void,
 	params: string
-) {
-	const apiUrl = createApiUrl('search', params);
-	const response = await fetch(apiUrl);
-	if (!response.ok) {
-		console.error('Failed to fetch results:', response.status, response.statusText);
+): Promise<ResultType[]> {
+	let apiUrl: string;
+	try {
+		apiUrl = createApiUrl('search', params);
+	} catch (err) {
+		// crash the server if we can't create the API URL
+		throw new Error('Failed to create API URL: ' + err);
+	}
+
+	let response: Response;
+	try {
+		response = await fetch(apiUrl);
+	} catch (err) {
+		// don't crash the server if we can't fetch the results
+		console.error('Failed to fetch results:', err);
 		return [];
 	}
 
-	const age = response.headers.get('age');
-	const cacheControl = response.headers.get('cache-control');
-	if (age != null && cacheControl != null) {
+	const age: string | null = response.headers.get('age');
+	const cacheControl: string | null = response.headers.get('cache-control');
+	if (age !== null && cacheControl !== null) {
 		setHeaders({
 			age: age,
 			'cache-control': cacheControl
 		});
 	}
 
-	const results: ResultType[] = await response.json();
+	let results: ResultType[];
+	try {
+		results = await response.json();
+	} catch (err) {
+		// don't crash the server if we can't parse the results
+		console.error('Failed to parse results:', err);
+		return [];
+	}
+
 	return results;
 }
