@@ -16,19 +16,18 @@ export async function fetchResultsJSON(
 	try {
 		apiUrl = createApiUrl('search', params);
 	} catch (err: any) {
-		throw error(500, `Failed to create API URL: ${err.message}`);
-	} finally {
 		await delayed;
+		// Internal Server Error
+		throw error(500, `Failed to create API URL: ${err.message}`);
 	}
 
 	let response: Response;
 	try {
 		response = await fetch(apiUrl);
 	} catch (err: any) {
+		await delayed;
 		// Service Unavailable
 		throw error(503, `Failed to fetch results: ${err.message}`);
-	} finally {
-		await delayed;
 	}
 
 	const age: string | null = response.headers.get('age');
@@ -42,9 +41,9 @@ export async function fetchResultsJSON(
 	try {
 		results = await response.json();
 	} catch (err: any) {
-		throw error(500, `Failed to parse results: ${err.message}`);
-	} finally {
 		await delayed;
+		// Internal Server Error
+		throw error(500, `Failed to parse results: ${err.message}`);
 	}
 
 	await delayed;
