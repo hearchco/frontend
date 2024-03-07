@@ -25,6 +25,5 @@ export type ResultType = {
 	Title: string;
 	Description: string;
 	EngineRanks: EngineRank[];
-	TimesReturned: number;
 	ImageResult: ImageResult;
 };
