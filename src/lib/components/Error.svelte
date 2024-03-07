@@ -6,9 +6,6 @@
 	export let statusCode: string;
 	export let message: string;
 	export let err: Error | undefined = undefined;
-	if (err !== undefined) {
-		console.error(err);
-	}
 </script>
 
 <!-- this is hard fixed top space -->
@@ -23,7 +20,7 @@
 		<p
 			class="mb-4 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-white"
 		>
-			{message}
+			{err !== undefined ? err.message : message}
 		</p>
 
 		<a href="/" class="mx-auto w-fit flex items-center">

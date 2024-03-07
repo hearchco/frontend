@@ -28,7 +28,6 @@
 <Header bind:query />
 
 {#await data.streamed.results}
-	<!-- todo: will change animation if not up to standard -->
 	<Loads {query} />
 {:then results}
 	<Results {query} {results} />
