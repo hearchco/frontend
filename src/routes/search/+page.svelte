@@ -6,8 +6,7 @@
 	import Error from '$lib/components/Error.svelte';
 
 	// types
-	import type { PageData } from './$types';
-	import type { Snapshot } from './$types';
+	import type { PageData, Snapshot } from './$types';
 
 	// parameters
 	export let data: PageData;

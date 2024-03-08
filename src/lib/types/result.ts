@@ -27,3 +27,8 @@ export type ResultType = {
 	EngineRanks: EngineRank[];
 	ImageResult: ImageResult;
 };
+
+export type ErrorResponseType = {
+	message: string;
+	value: string;
+};

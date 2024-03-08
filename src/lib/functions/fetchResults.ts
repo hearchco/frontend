@@ -2,7 +2,7 @@ import { error } from '@sveltejs/kit';
 import { createApiUrl } from './createApiUrl';
 import { sleep } from './sleep';
 
-import type { ResultType } from '$lib/types/result';
+import type { ResultType, ErrorResponseType } from '$lib/types/result';
 
 export async function fetchResultsJSON(
 	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>,
@@ -10,7 +10,7 @@ export async function fetchResultsJSON(
 	params: string,
 	delay: number
 ): Promise<ResultType[]> {
-	const delayed = sleep(delay);
+	const delayed: Promise<void> = sleep(delay);
 
 	let apiUrl: string;
 	try {
@@ -30,6 +30,21 @@ export async function fetchResultsJSON(
 		throw error(503, `Failed to fetch results: ${err.message}`);
 	}
 
+	let jsonResponse: ResultType[] | ErrorResponseType;
+	try {
+		jsonResponse = await response.json();
+	} catch (err: any) {
+		await delayed;
+		// Internal Server Error
+		throw error(500, `Failed to parse results: ${err.message}`);
+	}
+
+	if ('message' in jsonResponse && 'value' in jsonResponse) {
+		await delayed;
+		// same as backend
+		throw error(response.status, `${jsonResponse.message}: ${jsonResponse.value}`);
+	}
+
 	const age: string | null = response.headers.get('age');
 	const cacheControl: string | null = response.headers.get('cache-control');
 	setHeaders({
@@ -37,15 +52,7 @@ export async function fetchResultsJSON(
 		'cache-control': cacheControl !== null ? cacheControl : 'no-cache'
 	});
 
-	let results: ResultType[];
-	try {
-		results = await response.json();
-	} catch (err: any) {
-		await delayed;
-		// Internal Server Error
-		throw error(500, `Failed to parse results: ${err.message}`);
-	}
-
+	const results: ResultType[] = jsonResponse;
 	await delayed;
 	return results;
 }

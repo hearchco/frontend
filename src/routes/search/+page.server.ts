@@ -5,14 +5,17 @@ import type { PageServerLoad } from './$types';
 import type { ResultType } from '$lib/types/result';
 
 export const load: PageServerLoad = async ({ fetch, setHeaders, url }) => {
-	let query: string = '';
-	let results: Promise<ResultType[]> = delayFakeFetch(200);
+	let query: string;
+	let results: Promise<ResultType[]>;
 
 	const q: string | null = url.searchParams.get('q');
 	if (q !== null && q !== '' && q !== `!${categoryFrom(q)}`) {
 		query = q;
 		const params: string = `${url.searchParams}`;
 		results = fetchResultsJSON(fetch, setHeaders, params, 500);
+	} else {
+		query = '';
+		results = delayFakeFetch(200);
 	}
 
 	return {
