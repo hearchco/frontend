@@ -1,6 +1,6 @@
 <script lang="ts">
 	// assets
-	import logo from '$lib/assets/logo.svg';
+	import Logo from '$lib/assets/logo.svg';
 
 	// parameters
 	export let query: string;
@@ -27,8 +27,8 @@
 					<a class="col-start-1 row-start-1" draggable="false" href="/">
 						<img
 							class="col-start-1 row-start-1 h-16 w-16 mr-6 md:mr-8 pointer-events-none"
-							src={logo}
-							alt="logo"
+							src={Logo}
+							alt="hearchco-logo"
 						/>
 					</a>
 				</div>

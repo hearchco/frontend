@@ -5,7 +5,7 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				'hearchco-primary': '#ffb280',
+				'hearchco-primary': '#ffb380',
 				'hearchco-secondary': '#2b1100'
 			}
 		}

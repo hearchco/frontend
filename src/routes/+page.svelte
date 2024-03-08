@@ -1,6 +1,6 @@
 <script lang="ts">
 	// assets
-	import logo from '$lib/assets/logo.svg';
+	import Logo from '$lib/assets/logo.svg';
 
 	// components
 	import Searchbox from '$lib/components/Searchbox.svelte';
@@ -26,8 +26,8 @@
 		on:dblclick={() => (easteregg = !easteregg)}
 		class:animate-bounce={easteregg}
 		class="mx-auto h-40 w-40 mb-8"
-		src={logo}
-		alt="logo"
+		src={Logo}
+		alt="hearchco-logo"
 	/>
 	<div class="mx-auto max-w-screen-sm"><Searchbox bind:query homepage={true} /></div>
 </div>
