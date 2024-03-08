@@ -3,6 +3,7 @@
 	import Result from '$lib/components/search/result/Result.svelte';
 	import ResultImage from '$lib/components/search/result/ResultImage.svelte';
 	import ResultImagePreview from '$lib/components/search/result/ResultImagePreview.svelte';
+	import Pages from '$lib/components/search/result/Pages.svelte';
 	import Error from '$lib/components/Error.svelte';
 
 	// functions
@@ -14,6 +15,7 @@
 
 	// parameters
 	export let query: string;
+	export let currentPage: number | undefined;
 	export let results: ResultType[];
 
 	let imgResultPreview: ResultType | undefined;
@@ -58,6 +60,7 @@
 			{/each}
 		</section>
 	</div>
+	<Pages bind:query bind:currentPage />
 {:else}
 	<Error statusCode={'500'} message={'Unknown category requested.'} />
 {/if}

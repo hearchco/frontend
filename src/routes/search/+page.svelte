@@ -11,6 +11,7 @@
 	// parameters
 	export let data: PageData;
 	let query: string = data.query;
+	let currentPage: number | undefined;
 
 	// variables
 	$: title = query === '' ? 'Hearchco Search' : `${query} | Hearchco Search`;
@@ -29,7 +30,7 @@
 {#await data.streamed.results}
 	<Loads {query} />
 {:then results}
-	<Results {query} {results} />
+	<Results bind:query bind:currentPage {results} />
 {:catch err}
 	<Error statusCode={'500'} message={'Hearchco API failed.'} {err} />
 {/await}
