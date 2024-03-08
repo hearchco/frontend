@@ -24,7 +24,7 @@
 	<button
 		class:ring-4={selected}
 		class:ring-hearchco-primary={selected}
-		class="h-full w-full overflow-hidden rounded-lg"
+		class="h-full w-full overflow-hidden rounded-lg shadow-sm dark:shadow-none"
 		on:click={() => openImage()}
 	>
 		<img

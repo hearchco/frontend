@@ -1,3 +1,5 @@
+<!-- used for general results -->
+
 <script lang="ts">
 	// parameters
 	export let query: string;
@@ -27,11 +29,14 @@
 	<input type="hidden" name="q" bind:value={query} />
 	{#each { length: numberOfPages } as _, i}
 		<div
+			class:dark:bg-zinc-700={selected(i)}
 			class:ring-2={selected(i)}
 			class:ring-hearchco-primary={selected(i)}
-			class:dark:bg-zinc-700={selected(i)}
 			class:dark:bg-zinc-800={!selected(i)}
-			class="mx-1 rounded-lg overflow-hidden text-zinc-500 dark:text-zinc-200 hover:text-hearchco-primary shadow-2xl border border-gray-100 dark:border-0 hover:ring-1 hover:ring-hearchco-primary"
+			class:hover:dark:bg-zinc-700={!selected(i)}
+			class:hover:ring-2={!selected(i)}
+			class:hover:ring-hearchco-primary={!selected(i)}
+			class="mx-1 rounded-lg overflow-hidden text-zinc-500 dark:text-zinc-200 hover:text-hearchco-primary shadow-2xl border border-gray-100 dark:border-0 duration-200 ease-in-out"
 		>
 			<!-- TODO: on:focus={() => preloadData(`/search?q=${query}&start=${calcPageNum(i)}`)}
 				on:mouseover={() => preloadData(`/search?q=${query}&start=${calcPageNum(i)}`)} -->

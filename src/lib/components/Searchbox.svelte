@@ -4,7 +4,7 @@
 
 	// parameters
 	export let query: string;
-	export let autofocus: boolean = false;
+	export let homepage: boolean = false;
 	export let categories: boolean = false;
 
 	// functions
@@ -35,7 +35,9 @@
 			</div>
 		{/if}
 		<div
-			class="dark:bg-zinc-800 flex h-12 w-full rounded-full shadow-2xl border border-gray-100 dark:border-0 dark:text-white"
+			class:shadow-2xl={homepage}
+			class:shadow-lg={!homepage}
+			class="dark:bg-zinc-800 flex h-12 w-full rounded-full dark:shadow-none border border-gray-100 dark:border-0 dark:text-white"
 		>
 			<!-- svelte-ignore a11y-autofocus -->
 			<input
@@ -48,13 +50,13 @@
 				spellcheck="false"
 				autocorrect="off"
 				dir="auto"
-				{autofocus}
+				autofocus={homepage}
 				bind:value={query}
 			/>
 			{#if query !== ''}
 				<button
 					type="button"
-					class="text-zinc-500 hover:text-hearchco-primary h-full w-8 rounded-full bg-transparent"
+					class="text-zinc-500 hover:text-hearchco-primary h-full w-8 rounded-full bg-transparent duration-200 ease-in-out"
 					on:click={() => (query = '')}
 				>
 					<svg class="h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
@@ -71,7 +73,7 @@
 			{/if}
 			<button
 				type="submit"
-				class="text-hearchco-primary hover:bg-hearchco-secondary h-full w-20 rounded-full bg-transparent"
+				class="text-hearchco-primary hover:text-zinc-900 hover:bg-hearchco-primary h-full w-20 rounded-full bg-transparent duration-200 ease-in-out"
 			>
 				<svg class="mx-auto h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
 					<path
@@ -109,7 +111,8 @@
 					}}
 					type="submit"
 					class:border-hearchco-primary={categoryFrom(query) === category}
-					class="capitalize flex items-center shadow-2xl dark:text-white border-b-2 p-3 pb-4"
+					class:hover:border-hearchco-primary={categoryFrom(query) !== category}
+					class="capitalize flex items-center dark:text-white hover:text-hearchco-primary border-b-2 p-3 pb-4 duration-200 ease-in-out"
 				>
 					{category}
 				</button>
