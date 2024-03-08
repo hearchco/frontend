@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
-import { createApiUrl } from './createApiUrl';
-import { sleep } from './sleep';
+import { sleep } from '$lib/functions/sleep';
+import { createApiUrl } from '$lib/functions/createApiUrl';
 
 import type { ResultType, ErrorResponseType } from '$lib/types/result';
 
