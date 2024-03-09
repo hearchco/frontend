@@ -112,7 +112,7 @@
 					type="submit"
 					class:border-hearchco-primary={categoryFrom(query) === category}
 					class:hover:border-hearchco-primary={categoryFrom(query) !== category}
-					class="capitalize flex items-center dark:text-white hover:text-hearchco-primary border-b-2 p-3 pb-4 duration-200 ease-in-out"
+					class="capitalize flex items-center dark:text-white hover:border-hearchco-primary border-b-2 p-3 pb-4 duration-200 ease-in-out"
 				>
 					{category}
 				</button>
