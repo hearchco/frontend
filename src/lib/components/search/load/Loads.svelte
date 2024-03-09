@@ -34,7 +34,7 @@
 	</div>
 {:else if category !== undefined}
 	<div class="sm:mx-auto mb-4 max-w-screen-sm">
-		<section id="results" class="mx-2 my-4 max-w-fit overflow-clip">
+		<section id="results" class="mx-2 my-4">
 			{#each { length: numberOfResults } as _, i}
 				<Load />
 				{#if i !== numberOfResults - 1}
