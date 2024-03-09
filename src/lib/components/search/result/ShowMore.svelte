@@ -11,7 +11,7 @@
 	<button
 		on:click={() => (maxPages += 1)}
 		type="submit"
-		class="mx-auto mb-5 h-12 w-1/5 rounded-lg overflow-hidden dark:bg-zinc-800 hover:dark:bg-zinc-700 hover:ring-2 hover:ring-hearchco-primary text-zinc-500 dark:text-zinc-200 hover:text-hearchco-primary shadow-sm dark:shadow-none border border-gray-100 dark:border-0 duration-200 ease-in-out"
+		class="mx-auto mb-5 h-12 w-1/5 rounded-lg overflow-hidden dark:bg-zinc-800 hover:dark:bg-zinc-700 hover:ring-2 hover:ring-hearchco-primary hover:dark:ring-hearchco-secondary text-zinc-500 dark:text-zinc-200 hover:text-hearchco-primary hover:dark:text-hearchco-secondary shadow-sm dark:shadow-none border border-gray-100 dark:border-0 duration-200 ease-in-out"
 		name="pages"
 		value={maxPages}
 	>

@@ -12,11 +12,14 @@
 			id="link-{result.Rank}"
 			src={result.ImageResult.ThumbnailURL}
 			alt={result.Title}
-			class="mx-auto h-[50vh] w-auto hover:ring-2 hover:ring-hearchco-primary object-cover transform transition duration-200 ease-in-out"
+			class="mx-auto h-[50vh] w-auto hover:ring-2 hover:ring-hearchco-primary hover:dark:ring-hearchco-secondary object-cover transform transition duration-200 ease-in-out"
 		/>
 	</a>
 	<a href={result.ImageResult.SourceURL}>
-		<h1 id="title-{result.Rank}" class="pt-5 text-hearchco-primary text-xl hover:underline">
+		<h1
+			id="title-{result.Rank}"
+			class="pt-5 text-hearchco-primary dark:text-hearchco-secondary text-xl hover:underline"
+		>
 			{result.Title}
 		</h1>
 	</a>
