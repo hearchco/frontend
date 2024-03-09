@@ -40,7 +40,7 @@
 			<!-- svelte-ignore a11y-autofocus -->
 			<input
 				name="q"
-				class="mx-4 h-full w-full bg-transparent focus:outline-none"
+				class="ml-4 h-full w-full bg-transparent focus:outline-none"
 				type="text"
 				placeholder="Hearch..."
 				autocomplete="off"
@@ -54,7 +54,7 @@
 			{#if query !== ''}
 				<button
 					type="button"
-					class="text-zinc-500 hover:text-hearchco-primary h-full w-8 rounded-full bg-transparent"
+					class="text-zinc-500 hover:text-hearchco-primary h-full w-8 ml-0.5 mr-1.5 rounded-full bg-transparent max-[200px]:hidden"
 					on:click={() => (query = '')}
 				>
 					<svg class="h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
@@ -71,7 +71,7 @@
 			{/if}
 			<button
 				type="submit"
-				class="text-hearchco-primary hover:bg-hearchco-secondary h-full w-20 rounded-full bg-transparent"
+				class="shrink-0 text-hearchco-primary hover:bg-hearchco-secondary h-full w-10 min-[320px]:w-16 sm:w-20 rounded-full bg-transparent"
 			>
 				<svg class="mx-auto h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
 					<path
