@@ -56,7 +56,7 @@
 			{#if query !== ''}
 				<button
 					type="button"
-					class="text-zinc-500 hover:text-hearchco-primary h-full w-8 ml-0.5 mr-1.5 rounded-full bg-transparent max-[200px]:hidden duration-200 ease-in-out"
+					class="text-zinc-500 hover:text-hearchco-primary h-full w-8 ml-0.5 mr-1.5 rounded-full bg-transparent max-[200px]:hidden duration-100 ease-in-out"
 					on:click={() => (query = '')}
 				>
 					<svg class="h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
@@ -73,7 +73,7 @@
 			{/if}
 			<button
 				type="submit"
-				class="shrink-0 text-hearchco-primary hover:text-zinc-900 hover:bg-hearchco-primary h-full w-10 min-[320px]:w-16 sm:w-20 rounded-full bg-transparent duration-200 ease-in-out"
+				class="shrink-0 text-hearchco-primary hover:text-zinc-900 hover:bg-hearchco-primary h-full w-10 min-[320px]:w-16 sm:w-20 rounded-full bg-transparent duration-100 ease-in-out"
 			>
 				<svg class="mx-auto h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
 					<path
@@ -112,7 +112,7 @@
 					type="submit"
 					class:border-hearchco-primary={categoryFrom(query) === category}
 					class:hover:border-hearchco-primary={categoryFrom(query) !== category}
-					class="capitalize flex items-center dark:text-white hover:border-hearchco-primary border-b-2 p-3 pb-4 duration-200 ease-in-out"
+					class="capitalize flex items-center dark:text-white hover:border-hearchco-primary border-b-2 p-3 pb-4 duration-100 ease-in-out"
 				>
 					{category}
 				</button>
