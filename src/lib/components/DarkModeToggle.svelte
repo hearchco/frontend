@@ -34,10 +34,18 @@
 	}
 </script>
 
-<button class="absolute top-4 right-4" on:click={toggleDarkMode}>
+<button class="absolute top-0 right-0 md:px-4 md:py-4" on:click={toggleDarkMode}>
 	{#if darkMode}
-		<img class="h-12 w-12" src={LightThemeLogo} alt="Light theme" />
+		<img
+			class="h-12 w-12 object-cover hover:scale-110 duration-300 ease-in-out"
+			src={LightThemeLogo}
+			alt="Light theme"
+		/>
 	{:else}
-		<img class="h-12 w-12" src={DarkThemeLogo} alt="Dark theme" />
+		<img
+			class="h-12 w-12 object-cover hover:scale-110 duration-300 ease-in-out"
+			src={DarkThemeLogo}
+			alt="Dark theme"
+		/>
 	{/if}
 </button>

@@ -6,12 +6,13 @@
 	import Error from '$lib/components/Error.svelte';
 
 	// types
-	import type { PageData } from './$types';
-	import type { Snapshot } from './$types';
+	import type { PageData, Snapshot } from './$types';
 
 	// parameters
 	export let data: PageData;
 	let query: string = data.query;
+	let currentPage: number | undefined;
+	let maxPages: number | undefined;
 
 	// variables
 	$: title = query === '' ? 'Hearchco Search' : `${query} | Hearchco Search`;
@@ -28,10 +29,9 @@
 <Header bind:query />
 
 {#await data.streamed.results}
-	<!-- todo: will change animation if not up to standard -->
 	<Loads {query} />
 {:then results}
-	<Results {query} {results} />
+	<Results bind:query bind:currentPage bind:maxPages {results} />
 {:catch err}
 	<Error statusCode={'500'} message={'Hearchco API failed.'} {err} />
 {/await}
