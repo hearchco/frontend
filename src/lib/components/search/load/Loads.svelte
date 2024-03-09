@@ -23,7 +23,7 @@
 		<section id="images" class="flex flex-wrap justify-center gap-2">
 			{#each { length: numberOfResults } as _, i}
 				<div class="flex-none">
-					{#if i % 3 == 0 && i % Math.floor(2 * Math.random()) != 0}
+					{#if i % 3 === 0 && i % Math.floor(2 * Math.random()) !== 0}
 						<LoadImage colored={true} />
 					{:else}
 						<LoadImage />

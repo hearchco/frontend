@@ -1,6 +1,6 @@
 <script lang="ts">
 	// parameters
-	export let colored = false;
+	export let colored: boolean = false;
 </script>
 
 <div class="animate-pulse">
