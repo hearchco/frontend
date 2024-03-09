@@ -5,7 +5,7 @@
 	// parameters
 	export let statusCode: string;
 	export let message: string;
-	export let err: Error | undefined;
+	export let err: Error | undefined = undefined;
 </script>
 
 <!-- this is hard fixed top space -->
