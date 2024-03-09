@@ -21,16 +21,20 @@
 {#if category === CategoryEnum.IMAGES}
 	<div class="px-4 py-8">
 		<section id="images" class="flex flex-wrap justify-center gap-2">
-			{#each { length: numberOfResults } as _}
+			{#each { length: numberOfResults } as _, i}
 				<div class="flex-none">
-					<LoadImage />
+					{#if i % 3 === 0 && i % Math.floor(2 * Math.random()) !== 0}
+						<LoadImage colored={true} />
+					{:else}
+						<LoadImage />
+					{/if}
 				</div>
 			{/each}
 		</section>
 	</div>
 {:else if category !== undefined}
 	<div class="sm:mx-auto mb-4 max-w-screen-sm">
-		<section id="results" class="mx-2 my-4 max-w-fit overflow-clip">
+		<section id="results" class="mx-2 my-4">
 			{#each { length: numberOfResults } as _, i}
 				<Load />
 				{#if i !== numberOfResults - 1}
