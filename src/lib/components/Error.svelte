@@ -1,6 +1,6 @@
 <script lang="ts">
-	// assets
-	import Logo from '$lib/assets/logo.svg';
+	// components
+	import Logo from '$lib/components/Logo.svelte';
 
 	// parameters
 	export let statusCode: string;
@@ -24,9 +24,13 @@
 		</p>
 
 		<a href="/" class="mx-auto w-fit flex items-center">
-			<img class="mr-2 h-20 w-20 animate-spin" src={Logo} alt="logo" />
-			<p class="hover:text-hearchco-primary italic dark:text-white">Go back to homepage</p>
-			<img class="ml-2 h-20 w-20 animate-spin" src={Logo} alt="logo" />
+			<Logo classes="mr-2 h-20 w-20 animate-spin" />
+			<p
+				class="hover:text-hearchco-primary hover:dark:text-hearchco-secondary italic dark:text-white"
+			>
+				Go back to homepage
+			</p>
+			<Logo classes="ml-2 h-20 w-20 animate-spin" />
 		</a>
 	</div>
 </div>
