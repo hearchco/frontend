@@ -25,6 +25,10 @@ export type ResultType = {
 	Title: string;
 	Description: string;
 	EngineRanks: EngineRank[];
-	TimesReturned: number;
 	ImageResult: ImageResult;
+};
+
+export type ErrorResponseType = {
+	message: string;
+	value: string;
 };

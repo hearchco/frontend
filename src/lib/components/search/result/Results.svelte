@@ -3,6 +3,8 @@
 	import Result from '$lib/components/search/result/Result.svelte';
 	import ResultImage from '$lib/components/search/result/ResultImage.svelte';
 	import ResultImagePreview from '$lib/components/search/result/ResultImagePreview.svelte';
+	import ShowMore from '$lib/components/search/result/ShowMore.svelte';
+	import Pages from '$lib/components/search/result/Pages.svelte';
 	import Error from '$lib/components/Error.svelte';
 
 	// functions
@@ -14,6 +16,8 @@
 
 	// parameters
 	export let query: string;
+	export let currentPage: number | undefined;
+	export let maxPages: number | undefined;
 	export let results: ResultType[];
 
 	let imgResultPreview: ResultType | undefined;
@@ -47,6 +51,7 @@
 			</div>
 		{/if}
 	</div>
+	<ShowMore bind:query bind:maxPages />
 {:else if category !== undefined}
 	<div class="sm:mx-auto mb-4 max-w-screen-sm">
 		<section id="results" class="mx-2 my-4 max-w-fit overflow-clip">
@@ -58,6 +63,7 @@
 			{/each}
 		</section>
 	</div>
+	<Pages bind:query bind:currentPage />
 {:else}
 	<Error statusCode={'500'} message={'Unknown category requested.'} />
 {/if}
