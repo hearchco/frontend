@@ -8,7 +8,7 @@
 
 <svg
 	on:dblclick={() => (easteregg = !easteregg)}
-	class:animate-bounce={easteregg}
+	class:animate-swing={easteregg}
 	class={classes}
 	viewBox="0 0 108.57889 105.43192"
 	version="1.1"
