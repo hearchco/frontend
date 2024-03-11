@@ -9,7 +9,7 @@ export default {
 				'hearchco-secondary': '#ffb380'
 			},
 			animation: {
-				'swing': 'swing 3s'
+				'swing': 'swing 1.5s'
 			},
 			keyframes: {
 				swing: {
