@@ -42,7 +42,7 @@
 			id="path1"
 		/>
 		<path
-			class="fill-hearchco-primary dark:fill-hearchco-secondary"
+			class="fill-hearchco-primary"
 			id="path5-2"
 			style="display:inline;stroke-width:0.264583"
 			transform="rotate(-13.567529)"
