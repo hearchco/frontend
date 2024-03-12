@@ -18,7 +18,7 @@
 	</h1>
 	<p
 		id="description-{result.Rank}"
-		class="my-1 text-justify text-sm text-gray-600 dark:text-gray-200"
+		class="my-1 text-justify text-sm text-gray-600 dark:text-gray-200 line-clamp-6 hover:line-clamp-none"
 	>
 		{result.Description}
 	</p>

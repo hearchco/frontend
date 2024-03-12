@@ -1,5 +1,3 @@
-<!-- used for general results -->
-
 <script lang="ts">
 	// parameters
 	export let query: string;
