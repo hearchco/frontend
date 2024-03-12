@@ -69,7 +69,7 @@
 			{/if}
 			<button
 				type="submit"
-				class="shrink-0 text-hearchco-primary dark:text-hearchco-secondary hover:text-zinc-900 hover:bg-hearchco-primary hover:dark:bg-hearchco-secondary h-full w-10 min-[320px]:w-16 sm:w-20 rounded-full bg-transparent duration-100 ease-in-out"
+				class="shrink-0 text-hearchco-primary dark:text-hearchco-secondary hover:text-hearchco-secondary hover:dark:text-hearchco-primary hover:bg-hearchco-primary hover:dark:bg-hearchco-secondary h-full w-10 min-[320px]:w-16 sm:w-20 rounded-full bg-transparent duration-100 ease-in-out"
 			>
 				<svg class="mx-auto h-1/2 w-full bg-transparent" viewBox="0 0 512 512" aria-hidden="true">
 					<path
