@@ -38,7 +38,7 @@
 			class:hover:ring-2={!selected(i)}
 			class:hover:ring-hearchco-primary={!selected(i)}
 			class:hover:dark:ring-hearchco-secondary={!selected(i)}
-			class="mx-1 rounded-lg overflow-hidden text-zinc-500 dark:text-zinc-200 hover:text-hearchco-primary hover:dark:text-hearchco-secondary shadow-2xl border border-gray-100 dark:border-0 duration-200 ease-in-out"
+			class="mx-1 rounded-lg overflow-hidden text-zinc-500 dark:text-zinc-200 hover:text-hearchco-primary hover:dark:text-hearchco-secondary shadow-lg border border-gray-100 dark:border-0 duration-200 ease-in-out"
 		>
 			<!-- TODO: on:focus={() => preloadData(`/search?q=${query}&start=${calcPageNum(i)}`)}
 				on:mouseover={() => preloadData(`/search?q=${query}&start=${calcPageNum(i)}`)} -->
