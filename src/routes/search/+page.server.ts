@@ -1,5 +1,6 @@
 import { categoryFrom } from '$lib/functions/categoryFrom';
-import { delayFakeFetch, fetchResultsJSON } from '$lib/functions/fetchResults';
+import { fetchResultsJSON, delayFakeFetch } from '$lib/functions/fetchResults';
+import { parseIntParam } from '$lib/functions/parseIntParam';
 
 import type { PageServerLoad } from './$types';
 import type { ResultType } from '$lib/types/result';
@@ -18,13 +19,13 @@ export const load: PageServerLoad = async ({ fetch, setHeaders, url }) => {
 		results = delayFakeFetch(200);
 	}
 
-	const currentPage: string | null = url.searchParams.get('start');
-	const maxPages: string | null = url.searchParams.get('pages');
+	const currentPage: number = parseIntParam(url, 'start', 1);
+	const maxPages: number = parseIntParam(url, 'pages', 1);
 
 	return {
 		query: query,
-		currentPage: currentPage === null ? 1 : parseInt(currentPage, 10),
-		maxPages: maxPages === null ? 1 : parseInt(maxPages, 10),
+		currentPage: currentPage,
+		maxPages: maxPages,
 		streamed: {
 			results: results
 		}
