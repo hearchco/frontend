@@ -1,8 +1,8 @@
 <script lang="ts">
 	// components
 	import Header from '$lib/components/Header.svelte';
-	import Loads from '$lib/components/search/load/Loads.svelte';
-	import Results from '$lib/components/search/result/Results.svelte';
+	import Load from '$lib/components/search/load/Load.svelte';
+	import Display from '$lib/components/search/display/Display.svelte';
 	import Error from '$lib/components/Error.svelte';
 
 	// types
@@ -29,9 +29,9 @@
 <Header bind:query />
 
 {#await data.streamed.results}
-	<Loads {query} />
+	<Load {query} />
 {:then results}
-	<Results bind:query bind:currentPage bind:maxPages {results} />
+	<Display bind:query bind:currentPage bind:maxPages {results} />
 {:catch err}
 	<Error statusCode={'500'} message={'Hearchco API failed.'} {err} />
 {/await}

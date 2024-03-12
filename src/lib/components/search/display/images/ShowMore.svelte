@@ -1,5 +1,3 @@
-<!-- used for image results -->
-
 <script lang="ts">
 	// parameters
 	export let query: string;
