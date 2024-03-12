@@ -4,6 +4,10 @@
 
 	// parameters
 	export let result: ResultType;
+
+	// variables
+	const shortDesc: string =
+		result.Description.length > 400 ? result.Description.slice(0, 397) + '...' : result.Description;
 </script>
 
 <article id="result-{result.Rank}">
@@ -20,7 +24,7 @@
 		id="description-{result.Rank}"
 		class="my-1 text-justify text-sm text-gray-600 dark:text-gray-200"
 	>
-		{result.Description}
+		{shortDesc}
 	</p>
 	<div id="engines-{result.Rank}" class="my-2 text-right text-xs text-gray-800 dark:text-gray-400">
 		{#each result.EngineRanks as engineRank (engineRank.SearchEngine)}
