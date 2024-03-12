@@ -18,8 +18,13 @@ export const load: PageServerLoad = async ({ fetch, setHeaders, url }) => {
 		results = delayFakeFetch(200);
 	}
 
+	const currentPage: string | null = url.searchParams.get('start');
+	const maxPages: string | null = url.searchParams.get('pages');
+
 	return {
 		query: query,
+		currentPage: currentPage === null ? 1 : parseInt(currentPage, 10),
+		maxPages: maxPages === null ? 1 : parseInt(maxPages, 10),
 		streamed: {
 			results: results
 		}

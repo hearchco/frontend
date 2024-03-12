@@ -11,8 +11,8 @@
 	// parameters
 	export let data: PageData;
 	let query: string = data.query;
-	let currentPage: number | undefined;
-	let maxPages: number | undefined;
+	let currentPage: number = data.currentPage;
+	let maxPages: number = data.maxPages;
 
 	// variables
 	$: title = query === '' ? 'Hearchco Search' : `${query} | Hearchco Search`;

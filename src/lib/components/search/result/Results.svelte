@@ -16,8 +16,8 @@
 
 	// parameters
 	export let query: string;
-	export let currentPage: number | undefined;
-	export let maxPages: number | undefined;
+	export let currentPage: number;
+	export let maxPages: number;
 	export let results: ResultType[];
 
 	let imgResultPreview: ResultType | undefined;

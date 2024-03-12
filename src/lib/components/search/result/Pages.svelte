@@ -3,22 +3,18 @@
 <script lang="ts">
 	// parameters
 	export let query: string;
-	export let currentPage: number | undefined;
+	export let currentPage: number;
 
 	// variables
 	let numberOfPages: number = 5;
 	let offset: number = 0;
 
-	if (currentPage !== undefined && currentPage > 3) {
+	if (currentPage > 3) {
 		offset = currentPage - 3;
 	}
 
 	function selected(index: number) {
-		if (currentPage === undefined && index === 0) {
-			return 1;
-		} else {
-			return currentPage === index + offset + 1;
-		}
+		return currentPage === calcPageNum(index);
 	}
 	function calcPageNum(index: number) {
 		return index + offset + 1;
