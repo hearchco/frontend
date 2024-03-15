@@ -1,10 +1,10 @@
 <script lang="ts">
 	// types
 	import type { Width } from '$lib/types/width';
+	import { randomWidth } from '$lib/types/width';
 
 	// parameters
 	export let colored: boolean = false;
-	export let width: Width = 64;
 </script>
 
 <div class="animate-pulse">
@@ -15,6 +15,6 @@
 		class:dark:bg-gray-700={!colored}
 		class="h-full w-full overflow-hidden rounded-lg"
 	>
-		<div class="h-48 w-{width} object-cover"></div>
+		<div class="h-48 object-cover"></div>
 	</div>
 </div>
