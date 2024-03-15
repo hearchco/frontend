@@ -1,24 +1,18 @@
-<!-- used for general results -->
-
 <script lang="ts">
 	// parameters
 	export let query: string;
-	export let currentPage: number | undefined;
+	export let currentPage: number;
 
 	// variables
 	let numberOfPages: number = 5;
 	let offset: number = 0;
 
-	if (currentPage !== undefined && currentPage > 3) {
+	if (currentPage > 3) {
 		offset = currentPage - 3;
 	}
 
 	function selected(index: number) {
-		if (currentPage === undefined && index === 0) {
-			return 1;
-		} else {
-			return currentPage === index + offset + 1;
-		}
+		return currentPage === calcPageNum(index);
 	}
 	function calcPageNum(index: number) {
 		return index + offset + 1;
@@ -38,7 +32,7 @@
 			class:hover:ring-2={!selected(i)}
 			class:hover:ring-hearchco-primary={!selected(i)}
 			class:hover:dark:ring-hearchco-secondary={!selected(i)}
-			class="mx-1 rounded-lg overflow-hidden text-zinc-500 dark:text-zinc-200 hover:text-hearchco-primary hover:dark:text-hearchco-secondary shadow-2xl border border-gray-100 dark:border-0 duration-200 ease-in-out"
+			class="mx-1 rounded-lg overflow-hidden text-zinc-500 dark:text-zinc-200 hover:text-hearchco-primary hover:dark:text-hearchco-secondary shadow-lg border border-gray-100 dark:border-0 duration-200 ease-in-out"
 		>
 			<!-- TODO: on:focus={() => preloadData(`/search?q=${query}&start=${calcPageNum(i)}`)}
 				on:mouseover={() => preloadData(`/search?q=${query}&start=${calcPageNum(i)}`)} -->

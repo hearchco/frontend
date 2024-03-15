@@ -1,14 +1,25 @@
 <script lang="ts">
+	// functions
+	import { sleep } from '$lib/functions/sleep';
+
 	// parameters
 	export let classes: string = '';
 
 	// variables
 	let easteregg: boolean = false;
+
+	async function doADance() {
+		if (!easteregg) {
+			easteregg = true;
+			await sleep(1500); // tailwindcss has this set for animation duration
+			easteregg = false;
+		}
+	}
 </script>
 
 <svg
-	on:dblclick={() => (easteregg = !easteregg)}
-	class:animate-bounce={easteregg}
+	on:dblclick={doADance}
+	class:animate-swing={easteregg}
 	class={classes}
 	viewBox="0 0 108.57889 105.43192"
 	version="1.1"
@@ -31,8 +42,9 @@
 			id="path1"
 		/>
 		<path
+			class="fill-hearchco-primary"
 			id="path5-2"
-			style="display:inline;fill:#2b1100;stroke-width:0.264583"
+			style="display:inline;stroke-width:0.264583"
 			transform="rotate(-13.567529)"
 			d="m 103.95945,137.47395 a 3.7776463,5.344523 0 0 1 -3.77765,5.34453 3.7776463,5.344523 0 0 1 -3.777645,-5.34453 3.7776463,5.344523 0 0 1 3.777645,-5.34452 3.7776463,5.344523 0 0 1 3.77765,5.34452 z m -27.764822,-10.4656 a 3.7776463,5.344523 55.255394 0 1 -6.544554,-0.0581 3.7776463,5.344523 55.255394 0 1 2.238642,-6.15005 3.7776463,5.344523 55.255394 0 1 6.544554,0.0581 3.7776463,5.344523 55.255394 0 1 -2.238642,6.15005 z"
 		/>

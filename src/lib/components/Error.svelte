@@ -24,13 +24,13 @@
 		</p>
 
 		<a href="/" class="mx-auto w-fit flex items-center">
-			<Logo classes="mr-2 h-20 w-20 animate-spin" />
+			<Logo classes="mr-2 h-20 w-20 rotate-180" />
 			<p
 				class="hover:text-hearchco-primary hover:dark:text-hearchco-secondary italic dark:text-white"
 			>
 				Go back to homepage
 			</p>
-			<Logo classes="ml-2 h-20 w-20 animate-spin" />
+			<Logo classes="ml-2 h-20 w-20" />
 		</a>
 	</div>
 </div>
