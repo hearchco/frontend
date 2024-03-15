@@ -34,19 +34,23 @@
 				<ResultImagePreview result={imgResultPreview} />
 			</div>
 		{/if}
-		<section
-			id="images"
-			class:tw-w-2-3={imgResultPreview !== undefined}
-			class="flex flex-wrap justify-center gap-2"
-		>
-			{#each results as result (result.URL)}
-				<div class="flex-none">
-					<ResultImage {result} bind:imgResultPreview />
-				</div>
-			{/each}
-		</section>
+		<div class="w-full">
+			<section id="images" class="grid grid-cols-fit auto-rows-[200px] grid-flow-dense gap-2">
+				{#each results as result (result.URL)}
+					<div
+						class:row-span-2={result.ImageResult.Original.Height * 1.5 <
+							result.ImageResult.Original.Width}
+						class:sm:col-span-2={result.ImageResult.Original.Width * 1.5 <
+							result.ImageResult.Original.Height}
+						class="flex-none"
+					>
+						<ResultImage {result} bind:imgResultPreview />
+					</div>
+				{/each}
+			</section>
+		</div>
 		{#if imgResultPreview !== undefined}
-			<div id="image-preview" class="hidden lg:block w-1/3">
+			<div id="image-preview" class="hidden lg:block w-1/2">
 				<ResultImagePreview result={imgResultPreview} />
 			</div>
 		{/if}
@@ -67,13 +71,3 @@
 {:else}
 	<Error statusCode={'500'} message={'Unknown category requested.'} />
 {/if}
-
-<style>
-	/* equivalent to tailwindcss lg:w-2/3 */
-	/* needed for class:<class>=<boolean> */
-	@media (min-width: 1024px) {
-		.tw-w-2-3 {
-			width: 66.666667%;
-		}
-	}
-</style>
