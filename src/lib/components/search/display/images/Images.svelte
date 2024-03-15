@@ -26,10 +26,12 @@
 		<section id="images" class="grid grid-cols-fit auto-rows-[200px] grid-flow-dense gap-2">
 			{#each results as result (result.URL)}
 				<div
-					class:row-span-2={result.ImageResult.Original.Height * 1.5 <
-						result.ImageResult.Original.Width}
-					class:sm:col-span-2={result.ImageResult.Original.Width * 1.5 <
-						result.ImageResult.Original.Height}
+					class:row-span-2={(result.ImageResult.Original.Width * 0.8) /
+						result.ImageResult.Original.Height >
+						1}
+					class:sm:col-span-2={result.ImageResult.Original.Width /
+						(result.ImageResult.Original.Height * 0.64) <
+						1}
 					class="flex-none"
 				>
 					<Image {result} bind:imgResultPreview />
