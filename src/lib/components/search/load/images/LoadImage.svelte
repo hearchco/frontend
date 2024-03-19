@@ -1,8 +1,4 @@
 <script lang="ts">
-	// types
-	import type { Width } from '$lib/types/width';
-	import { randomWidth } from '$lib/types/width';
-
 	// parameters
 	export let colored: boolean = false;
 </script>
