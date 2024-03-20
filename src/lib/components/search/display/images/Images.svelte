@@ -25,7 +25,6 @@
 	<div class="w-full">
 		<section id="images" class="grid grid-cols-fit auto-rows-[200px] grid-flow-dense gap-2">
 			{#each results as result (result.URL)}
-				<!-- weird behaviour - needs more investigating -->
 				<div
 					class:row-span-2={(result.ImageResult.Thumbnail.Height * 0.8) /
 						result.ImageResult.Thumbnail.Width >
