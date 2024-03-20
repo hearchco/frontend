@@ -1,6 +1,8 @@
 <script lang="ts">
 	// components
 	import LoadImage from '$lib/components/search/load/images/LoadImage.svelte';
+
+	// types
 	import type { ImageFormat } from '$lib/types/result';
 
 	// variables
