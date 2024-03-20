@@ -20,17 +20,17 @@
 	}
 </script>
 
-<article id="image-{result.Rank}">
+<article class="w-full h-full" id="image-{result.Rank}">
 	<button
 		class:ring-4={selected}
 		class:ring-hearchco-primary={selected}
 		class:dark:ring-hearchco-secondary={selected}
-		class="h-full w-full overflow-hidden rounded-lg shadow-sm dark:shadow-none"
+		class="w-full h-full overflow-hidden rounded-lg shadow-sm dark:shadow-none"
 		on:click={() => openImage()}
 	>
 		<img
 			id="img-{result.Rank}"
-			class="h-48 w-auto object-cover transform hover:scale-110 transition duration-300 ease-in-out"
+			class="w-full h-full object-cover object-center transform hover:scale-110 transition duration-300 ease-in-out"
 			src={result.ImageResult.ThumbnailURL}
 			alt={result.Title}
 			{loading}

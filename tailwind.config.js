@@ -19,6 +19,9 @@ export default {
 					'80%': { transform: 'rotate3d(0, 0, 1, -5deg)' },
 					to: { transform: 'rotate3d(0, 0, 1, 0deg)' }
 				}
+			},
+			gridTemplateColumns: {
+				'fit': 'repeat(auto-fit, minmax(200px, 1fr))'
 			}
 		}
 	},

@@ -8,12 +8,16 @@
 
 <div id="image-preview-{result.Rank}" class="px-4 pt-4 pb-10 w-full lg:sticky lg:top-0">
 	<a href={result.URL}>
-		<img
-			id="link-{result.Rank}"
-			src={result.ImageResult.ThumbnailURL}
-			alt={result.Title}
-			class="mx-auto h-[50vh] w-auto hover:ring-2 hover:ring-hearchco-primary hover:dark:ring-hearchco-secondary object-cover transform transition duration-200 ease-in-out"
-		/>
+		<div
+			class="h-[50dvh] flex justify-center mx-auto hover:ring-2 hover:ring-hearchco-primary hover:dark:ring-hearchco-secondary overflow-hidden rounded-lg duration-200 ease-in-out"
+		>
+			<img
+				id="link-{result.Rank}"
+				src={result.ImageResult.ThumbnailURL}
+				alt={result.Title}
+				class="h-full w-full object-contain transform transition"
+			/>
+		</div>
 	</a>
 	<a href={result.ImageResult.SourceURL}>
 		<h1
