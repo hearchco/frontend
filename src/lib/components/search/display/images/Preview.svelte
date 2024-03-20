@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { proxyImageLink } from '$lib/functions/proxyImageLink';
+
 	// types
 	import type { ResultType } from '$lib/types/result';
 
@@ -13,7 +15,7 @@
 		>
 			<img
 				id="link-{result.Rank}"
-				src={result.ImageResult.ThumbnailURL}
+				src={proxyImageLink(result.URL, result.URLHash)}
 				alt={result.Title}
 				class="h-full w-full object-contain transform transition"
 			/>

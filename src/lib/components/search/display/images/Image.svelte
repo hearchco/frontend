@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { proxyImageLink } from '$lib/functions/proxyImageLink';
+
 	// types
 	import type { ResultType } from '$lib/types/result';
 
@@ -31,7 +33,7 @@
 		<img
 			id="img-{result.Rank}"
 			class="w-full h-full object-cover object-center transform hover:scale-110 transition duration-300 ease-in-out"
-			src={result.ImageResult.ThumbnailURL}
+			src={proxyImageLink(result.ImageResult.ThumbnailURL, result.ImageResult.ThumbnailURLHash)}
 			alt={result.Title}
 			{loading}
 		/>
