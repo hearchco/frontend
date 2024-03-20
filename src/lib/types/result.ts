@@ -5,7 +5,7 @@ type EngineRank = {
 	OnPageRank: number;
 };
 
-type ImageFormat = {
+export type ImageFormat = {
 	Height: number;
 	Width: number;
 };
