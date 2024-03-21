@@ -14,12 +14,14 @@ type ImageResult = {
 	Original: ImageFormat;
 	Thumbnail: ImageFormat;
 	ThumbnailURL: string;
+	ThumbnailURLHash: string;
 	Source: string;
 	SourceURL: string;
 };
 
 export type ResultType = {
 	URL: string;
+	URLHash: string;
 	Rank: number;
 	Score: number;
 	Title: string;
