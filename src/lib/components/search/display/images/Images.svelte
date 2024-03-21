@@ -14,18 +14,12 @@
 
 	// variables
 	let imgResultPreview: ResultType | undefined;
-	let imgResultPreviewLoaded: boolean = false;
-	let imgResultPreviewLoading: Promise<void>;
 </script>
 
 <div class="w-full lg:flex px-4 py-8">
 	{#if imgResultPreview !== undefined}
 		<div id="image-preview" class="lg:hidden">
-			<Preview
-				bind:result={imgResultPreview}
-				bind:loaded={imgResultPreviewLoaded}
-				bind:loading={imgResultPreviewLoading}
-			/>
+			<Preview result={imgResultPreview} />
 		</div>
 	{/if}
 	<div class="w-full">
@@ -40,23 +34,14 @@
 						1}
 					class="flex-none"
 				>
-					<Image
-						{result}
-						bind:imgResultPreview
-						bind:imgResultPreviewLoaded
-						bind:imgResultPreviewLoading
-					/>
+					<Image {result} bind:imgResultPreview />
 				</div>
 			{/each}
 		</section>
 	</div>
 	{#if imgResultPreview !== undefined}
 		<div id="image-preview" class="hidden lg:block w-1/2">
-			<Preview
-				bind:result={imgResultPreview}
-				bind:loaded={imgResultPreviewLoaded}
-				bind:loading={imgResultPreviewLoading}
-			/>
+			<Preview result={imgResultPreview} />
 		</div>
 	{/if}
 </div>

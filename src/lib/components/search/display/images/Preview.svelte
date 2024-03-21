@@ -6,13 +6,6 @@
 
 	// parameters
 	export let result: ResultType;
-	export let loaded: boolean;
-	export let loading: Promise<void>;
-
-	async function showImage() {
-		await loading;
-		loaded = true;
-	}
 </script>
 
 <div id="image-preview-{result.Rank}" class="px-4 pt-4 pb-10 w-full lg:sticky lg:top-0">
@@ -21,13 +14,10 @@
 			class="h-[50dvh] flex justify-center mx-auto hover:ring-2 hover:ring-hearchco-primary hover:dark:ring-hearchco-secondary overflow-hidden rounded-lg duration-200 ease-in-out"
 		>
 			<img
-				on:load={showImage}
 				id="link-{result.Rank}"
-				class:opacity-1={loaded}
-				class:opacity-0={!loaded}
-				class="h-full w-full object-contain transition-opacity duration-700 ease-in-out"
 				src={proxyImageLink(result.URL, result.URLHash)}
 				alt={result.Title}
+				class="h-full w-full object-contain transform transition"
 			/>
 		</div>
 	</a>
