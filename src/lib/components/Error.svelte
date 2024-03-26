@@ -1,11 +1,11 @@
 <script lang="ts">
-	import logo from '$lib/assets/logo.svg';
+	// components
+	import Logo from '$lib/components/Logo.svelte';
+
+	// parameters
 	export let statusCode: string;
 	export let message: string;
-	export let error: any = undefined;
-	if (error) {
-		console.log(error);
-	}
+	export let err: Error | undefined = undefined;
 </script>
 
 <!-- this is hard fixed top space -->
@@ -20,13 +20,17 @@
 		<p
 			class="mb-4 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-white"
 		>
-			{message}
+			{err !== undefined ? err.message : message}
 		</p>
 
 		<a href="/" class="mx-auto w-fit flex items-center">
-			<img class="mr-2 h-20 w-20 rotate-180" src={logo} alt="logo" />
-			<p class="hover:hearchco-text-primary italic dark:text-white">Go back to homepage</p>
-			<img class="ml-2 h-20 w-20" src={logo} alt="logo" />
+			<Logo classes="mr-2 h-20 w-20 rotate-180" />
+			<p
+				class="hover:text-hearchco-primary hover:dark:text-hearchco-secondary italic dark:text-white"
+			>
+				Go back to homepage
+			</p>
+			<Logo classes="ml-2 h-20 w-20" />
 		</a>
 	</div>
 </div>

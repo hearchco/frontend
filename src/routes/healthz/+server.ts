@@ -1,5 +1,5 @@
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
-	return new Response('App is healthy');
+	return new Response('OK');
 };

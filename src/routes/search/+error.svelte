@@ -1,4 +1,5 @@
 <script lang="ts">
+	// components
 	import Error from '$lib/components/Error.svelte';
 </script>
 
