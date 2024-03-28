@@ -21,6 +21,6 @@ jobs:
         with:
           node-version: lts/*
           cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
+      - run: make install
 
-      - run: pnpm run build
+      - run: make build
