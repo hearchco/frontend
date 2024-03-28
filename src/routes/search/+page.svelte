@@ -1,37 +1,39 @@
 <script lang="ts">
+	// components
 	import Header from '$lib/components/Header.svelte';
-	import Load from '$lib/components/Load.svelte';
-	import Result from '$lib/components/Result.svelte';
+	import Load from '$lib/components/search/load/Load.svelte';
+	import Display from '$lib/components/search/display/Display.svelte';
 	import Error from '$lib/components/Error.svelte';
 
-	import type { PageData } from './$types';
-	export let data: PageData;
-	let query = data.query;
+	// types
+	import type { PageData, Snapshot } from './$types';
 
-	import type { Snapshot } from './$types';
+	// parameters
+	export let data: PageData;
+	let query: string = data.query;
+	let currentPage: number = data.currentPage;
+	let paramsString: string = data.params;
+	// TODO: implement a option for setting maxPages, allowing user to choose how much results to show
+	// let maxPages: number = data.maxPages;
+
+	// variables
+	$: title = query === '' ? 'Hearchco Search' : `${query} | Hearchco Search`;
+
+	// snapshots
 	export const snapshot: Snapshot = {
 		capture: () => query,
 		restore: (value) => (query = value)
 	};
 </script>
 
-<svelte:head><title>{query} | Hearchco Search</title></svelte:head>
+<svelte:head><title>{title}</title></svelte:head>
 
 <Header bind:query />
 
 {#await data.streamed.results}
-	<!-- todo: will change animation if not up to standard -->
-	<Load />
+	<Load {query} />
 {:then results}
-	<!-- todo: await deep results and offer button to switch to them -->
-	<div class="sm:mx-auto mb-4 max-w-screen-sm">
-		<div id="result-list" class="mx-2 my-4 max-w-fit overflow-clip">
-			{#each results as result (result.URL)}
-				<Result {result} />
-				<hr class="my-2 border border-gray-200 dark:border-gray-600" />
-			{/each}
-		</div>
-	</div>
-{:catch error}
-	<Error statusCode={'500'} message={'Hearchco API failed.'} {error} />
+	<Display bind:query bind:currentPage bind:paramsString {results} />
+{:catch err}
+	<Error statusCode={'500'} message={'Hearchco API failed.'} {err} />
 {/await}

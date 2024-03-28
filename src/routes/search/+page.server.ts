@@ -1,47 +1,31 @@
-import { env } from '$env/dynamic/private';
+import { categoryFrom } from '$lib/functions/categoryFrom';
+import { fetchResultsJSON, delayFakeFetch } from '$lib/functions/fetchResultsJSON';
+import { parseIntParam } from '$lib/functions/parseIntParam';
 
 import type { PageServerLoad } from './$types';
-import type { Result } from '$lib/components/ResultType';
-
-async function fetchResultsJSON(
-	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>,
-	setHeaders: (headers: Record<string, string>) => void,
-	apiUrl: string
-) {
-	const response = await fetch(apiUrl);
-
-	const age = response.headers.get('age');
-	const cacheControl = response.headers.get('cache-control');
-	if (age != null && cacheControl != null) {
-		setHeaders({
-			age: age,
-			'cache-control': cacheControl
-		});
-	}
-
-	const results: Result[] = await response.json();
-	return results;
-}
+import type { ResultType } from '$lib/types/result';
 
 export const load: PageServerLoad = async ({ fetch, setHeaders, url }) => {
-	const q = url.searchParams.get('q');
-	if (q === null || q === '') {
-		const results: Result[] = [];
-		return {
-			query: '',
-			streamed: {
-				results: results
-			}
-		};
+	let query: string;
+	let results: Promise<ResultType[]>;
+
+	const q: string | null = url.searchParams.get('q');
+	if (q !== null && q !== '' && q !== `!${categoryFrom(q)}`) {
+		query = q;
+		results = fetchResultsJSON(fetch, setHeaders, url.searchParams, 500);
+	} else {
+		query = '';
+		results = delayFakeFetch(200);
 	}
 
-	const apiUri = env.API_URL;
-
-	const apiUrl = `${apiUri}/search?${url.searchParams}`;
-	const results = fetchResultsJSON(fetch, setHeaders, apiUrl);
+	const currentPage: number = parseIntParam(url, 'start', 1);
+	const maxPages: number = parseIntParam(url, 'pages', 1);
 
 	return {
-		query: q,
+		query: query,
+		currentPage: currentPage,
+		maxPages: maxPages,
+		params: url.searchParams.toString(),
 		streamed: {
 			results: results
 		}
