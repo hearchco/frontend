@@ -23,7 +23,7 @@
 
 <!-- todo: await deep results and offer button to switch to them -->
 {#if category === CategoryEnum.IMAGES}
-	<Images bind:currentPage bind:results bind:paramsString />
+	<Images bind:query bind:currentPage bind:results bind:paramsString />
 {:else if category !== undefined}
 	<Results bind:query bind:currentPage bind:results />
 {:else}

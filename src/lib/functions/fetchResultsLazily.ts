@@ -1,13 +1,12 @@
 import { fetchPublicResultsJSON } from "$lib/functions/fetchPublicResultsJSON";
 import type { ResultType } from "$lib/types/result";
 
-export async function fetchResultsLazily(start: number, offset: number, offsetIncrement: number, results: ResultType[], paramsString: string): Promise<[number, ResultType[]]> {
-    // increment offset by offsetIncrement so we get more results
-    const newOffset: number = offset + offsetIncrement;
-
+export async function fetchResultsLazily(query: string, start: number, offset: number, pages: number, results: ResultType[], paramsString: string): Promise<[number, ResultType[]]> {
     // create URLParams object from string and set start parameter
     const params: URLSearchParams = new URLSearchParams(paramsString);
-    params.set("start", (start + newOffset).toString());
+    params.set("q", query);
+    params.set("start", (start + offset).toString());
+    params.set("pages", pages.toString());
 
     // get additional results
     let additionalResults: ResultType[];
@@ -25,5 +24,5 @@ export async function fetchResultsLazily(start: number, offset: number, offsetIn
         combinedResults[i].Rank = i + 1;
     }
 
-    return [newOffset, combinedResults];
+    return [offset+pages, combinedResults];
 }

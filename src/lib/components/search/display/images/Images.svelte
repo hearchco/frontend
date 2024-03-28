@@ -8,6 +8,7 @@
 	import type { ResultType } from '$lib/types/result';
 
 	// parameters
+	export let query: string;
 	export let currentPage: number;
 	export let results: ResultType[];
 	export let paramsString: string;
@@ -47,4 +48,4 @@
 		</div>
 	{/if}
 </div>
-<ShowMore bind:start={currentPage} bind:results bind:paramsString />
+<ShowMore bind:query bind:start={currentPage} bind:results bind:paramsString />
