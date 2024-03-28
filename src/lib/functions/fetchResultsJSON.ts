@@ -7,7 +7,7 @@ import type { ResultType, ErrorResponseType } from '$lib/types/result';
 export async function fetchResultsJSON(
 	fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>,
 	setHeaders: (headers: Record<string, string>) => void,
-	params: string,
+	params: URLSearchParams,
 	delay: number
 ): Promise<ResultType[]> {
 	const delayed: Promise<void> = sleep(delay);

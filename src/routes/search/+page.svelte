@@ -12,7 +12,9 @@
 	export let data: PageData;
 	let query: string = data.query;
 	let currentPage: number = data.currentPage;
-	let maxPages: number = data.maxPages;
+	let paramsString: string = data.params;
+	// TODO: implement a option for setting maxPages, allowing user to choose how much results to show
+	// let maxPages: number = data.maxPages;
 
 	// variables
 	$: title = query === '' ? 'Hearchco Search' : `${query} | Hearchco Search`;
@@ -31,7 +33,7 @@
 {#await data.streamed.results}
 	<Load {query} />
 {:then results}
-	<Display bind:query bind:currentPage bind:maxPages {results} />
+	<Display bind:query bind:currentPage bind:paramsString {results} />
 {:catch err}
 	<Error statusCode={'500'} message={'Hearchco API failed.'} {err} />
 {/await}

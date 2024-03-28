@@ -14,8 +14,8 @@
 	// parameters
 	export let query: string;
 	export let currentPage: number;
-	export let maxPages: number;
 	export let results: ResultType[];
+	export let paramsString: string;
 
 	// variables
 	const category: string = categoryFrom(query);
@@ -23,7 +23,7 @@
 
 <!-- todo: await deep results and offer button to switch to them -->
 {#if category === CategoryEnum.IMAGES}
-	<Images bind:query bind:maxPages bind:results />
+	<Images bind:currentPage bind:results bind:paramsString />
 {:else if category !== undefined}
 	<Results bind:query bind:currentPage bind:results />
 {:else}
