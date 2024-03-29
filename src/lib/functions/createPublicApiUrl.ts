@@ -10,9 +10,9 @@ export function createPublicApiUrl(path: string, params?: URLSearchParams): URL 
 	const urll: URL = new URL(apiUrl);
 
 	if (params) {
-		params.forEach((value, key) => {
+		for (const [key, value] of params) {
 			urll.searchParams.set(key, value);
-		});
+		}
 	}
 
 	return urll;
