@@ -1,5 +1,5 @@
 import { env } from '$env/dynamic/private';
-import { createArbitraryUrl, encodeUrlParams } from '$lib/functions/urlutils';
+import { createArbitraryUrl } from '$lib/functions/urlutils';
 
 export function createApiUrl(path: string, params?: URLSearchParams): URL {
 	const apiUri: string | undefined = env.API_URI;
@@ -8,5 +8,5 @@ export function createApiUrl(path: string, params?: URLSearchParams): URL {
 	}
 
 	// encoding when creating API URLs since they run on the server
-	return encodeUrlParams(createArbitraryUrl(apiUri, path, params));
+	return createArbitraryUrl(apiUri, path, true, params);
 }

@@ -1,22 +1,17 @@
-export function createArbitraryUrl(uri: string, path: string, params?: URLSearchParams): URL {
+export function createArbitraryUrl(
+	uri: string,
+	path: string,
+	encode: boolean = false,
+	params?: URLSearchParams
+): URL {
 	const urlString: string = (uri.endsWith('/') ? uri : uri + '/') + path;
 	const urll: URL = new URL(urlString);
 
 	if (params !== undefined) {
 		for (const [key, value] of params) {
-			urll.searchParams.set(key, value);
+			urll.searchParams.set(key, encode ? encodeURIComponent(value) : value);
 		}
 	}
 
 	return urll;
-}
-
-export function encodeUrlParams(url: URL): URL {
-	const encodedUrl: URL = new URL(url.toString());
-
-	for (const [key, value] of encodedUrl.searchParams) {
-		encodedUrl.searchParams.set(key, encodeURIComponent(value));
-	}
-
-	return encodedUrl;
 }

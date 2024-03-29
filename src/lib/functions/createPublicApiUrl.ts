@@ -8,5 +8,5 @@ export function createPublicApiUrl(path: string, params?: URLSearchParams): URL 
 	}
 
 	// no encoding when creating public API URLs since they run in the browser
-	return createArbitraryUrl(apiUri, path, params);
+	return createArbitraryUrl(apiUri, path, false, params);
 }
