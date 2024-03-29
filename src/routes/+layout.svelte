@@ -8,6 +8,8 @@
 </script>
 
 <svelte:head>
+	<!-- prevent Dark Reader from inverting the page -->
+	<meta name="darkreader-lock" />
 	<script type="text/javascript">
 		if (
 			localStorage.theme === 'dark' ||
