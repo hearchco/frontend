@@ -30,7 +30,7 @@
 </script>
 
 <button class="absolute top-0 right-0 md:px-4 md:py-4" on:click={toggleDarkMode}>
-	<div class="h-12 w-12 object-cover hover:scale-110 duration-300 ease-in-out">
+	<div class="h-10 w-10 object-cover hover:scale-110 duration-300 ease-in-out">
 		<svg
 			class="hidden dark:block fill-hearchco-primary dark:fill-hearchco-secondary stroke-hearchco-primary dark:stroke-hearchco-secondary"
 			viewBox="0 0 80 80"

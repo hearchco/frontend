@@ -5,7 +5,7 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				'hearchco-primary': '#2b1100',
+				'hearchco-primary': '#672900',
 				'hearchco-secondary': '#ffb380'
 			},
 			animation: {
@@ -21,7 +21,7 @@ export default {
 				}
 			},
 			gridTemplateColumns: {
-				'fit': 'repeat(auto-fit, minmax(200px, 1fr))'
+				fit: 'repeat(auto-fit, minmax(200px, 1fr))'
 			}
 		}
 	},
