@@ -10,3 +10,13 @@ export function createArbitraryUrl(uri: string, path: string, params?: URLSearch
 
 	return urll;
 }
+
+export function encodeUrlParams(url: URL): URL {
+	const encodedUrl: URL = new URL(url.toString());
+
+	for (const [key, value] of encodedUrl.searchParams) {
+		encodedUrl.searchParams.set(key, encodeURIComponent(value));
+	}
+
+	return encodedUrl;
+}

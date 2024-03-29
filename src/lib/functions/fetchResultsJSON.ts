@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { sleep } from '$lib/functions/sleep';
 import { createApiUrl } from '$lib/functions/createApiUrl';
+import { encodeUrlParams } from '$lib/functions/urlutils';
 
 import type { ResultType, ErrorResponseType } from '$lib/types/result';
 
@@ -20,6 +21,7 @@ export async function fetchResultsJSON(
 		// Internal Server Error
 		throw error(500, `Failed to create API URL: ${err.message}`);
 	}
+	apiUrl = encodeUrlParams(apiUrl);
 
 	let response: Response;
 	try {

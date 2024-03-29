@@ -1,5 +1,5 @@
 import { env } from '$env/dynamic/private';
-import { createArbitraryUrl } from './createArbitraryUrl';
+import { createArbitraryUrl } from '$lib/functions/urlutils';
 
 export function createApiUrl(path: string, params?: URLSearchParams): URL {
 	const apiUri: string | undefined = env.API_URI;
