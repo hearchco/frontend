@@ -33,10 +33,7 @@
 		<img
 			id="img-{result.Rank}"
 			class="w-full h-full object-cover object-center transform hover:scale-110 transition duration-300 ease-in-out"
-			src={proxyImageLink(
-				result.ImageResult.ThumbnailURL,
-				result.ImageResult.ThumbnailURLHash
-			).toString()}
+			src={proxyImageLink(result.ImageResult.ThumbnailURL, result.ImageResult.ThumbnailURLHash)}
 			alt={result.Title}
 			{loading}
 		/>

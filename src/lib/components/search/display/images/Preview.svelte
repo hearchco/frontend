@@ -15,7 +15,7 @@
 		>
 			<img
 				id="link-{result.Rank}"
-				src={proxyImageLink(result.URL, result.URLHash).toString()}
+				src={proxyImageLink(result.URL, result.URLHash)}
 				alt={result.Title}
 				class="h-full w-full object-contain transform transition"
 			/>
