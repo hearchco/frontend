@@ -6,9 +6,14 @@ export function createPublicApiUrl(path: string, params?: URLSearchParams): URL 
 		throw new Error('PUBLIC_API_URI env is not defined');
 	}
 
-	const paramsString: string | undefined = params ? params.toString() : undefined;
-	const urll: URL = new URL(
-		(apiUri.endsWith('/') ? apiUri : apiUri + '/') + path + (paramsString ? `?${paramsString}` : '')
-	);
+	const apiUrl: string = (apiUri.endsWith('/') ? apiUri : apiUri + '/') + path;
+	const urll: URL = new URL(apiUrl);
+
+	if (params) {
+		params.forEach((value, key) => {
+			urll.searchParams.set(key, value);
+		});
+	}
+
 	return urll;
 }
