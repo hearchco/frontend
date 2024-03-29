@@ -6,7 +6,7 @@ export function proxyImageLink(url: string, hash: string): string {
 	params.set('url', url);
 	params.set('hash', hash);
 
-	let apiUrl: string;
+	let apiUrl: URL;
 	try {
 		apiUrl = createPublicApiUrl('proxy', params);
 	} catch (err: any) {
@@ -14,5 +14,5 @@ export function proxyImageLink(url: string, hash: string): string {
 		throw error(500, `Failed to create API URL: ${err.message}`);
 	}
 
-	return apiUrl;
+	return apiUrl.toString();
 }
