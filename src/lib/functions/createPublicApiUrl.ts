@@ -11,9 +11,8 @@ export function createPublicApiUrl(path: string, params?: URLSearchParams): URL 
 
 	if (params !== undefined) {
 		for (const [key, value] of params) {
-			if (key !== 'hash') {
-				urll.searchParams.set(key, encodeURIComponent(value));
-			}
+			const encodedValue: string = encodeURIComponent(value);
+			urll.searchParams.set(key, key === 'hash' ? value : encodedValue);
 		}
 	}
 
