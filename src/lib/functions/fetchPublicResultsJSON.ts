@@ -3,10 +3,8 @@ import { createPublicApiUrl } from '$lib/functions/createPublicApiUrl';
 
 import type { ResultType, ErrorResponseType } from '$lib/types/result';
 
-export async function fetchPublicResultsJSON(
-	params: URLSearchParams
-): Promise<ResultType[]> {
-	let apiUrl: string;
+export async function fetchPublicResultsJSON(params: URLSearchParams): Promise<ResultType[]> {
+	let apiUrl: URL;
 	try {
 		apiUrl = createPublicApiUrl('search', params);
 	} catch (err: any) {
