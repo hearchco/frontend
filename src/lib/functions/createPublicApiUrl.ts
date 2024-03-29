@@ -7,5 +7,6 @@ export function createPublicApiUrl(path: string, params?: URLSearchParams): URL 
 		throw new Error('PUBLIC_API_URI env is not defined');
 	}
 
+	// no encoding when creating public API URLs since they run in the browser
 	return createArbitraryUrl(apiUri, path, params);
 }
