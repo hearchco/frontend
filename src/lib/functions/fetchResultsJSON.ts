@@ -12,7 +12,7 @@ export async function fetchResultsJSON(
 ): Promise<ResultType[]> {
 	const delayed: Promise<void> = sleep(delay);
 
-	let apiUrl: string;
+	let apiUrl: URL;
 	try {
 		apiUrl = createApiUrl('search', params);
 	} catch (err: any) {
