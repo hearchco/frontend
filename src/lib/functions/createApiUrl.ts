@@ -9,9 +9,9 @@ export function createApiUrl(path: string, params?: URLSearchParams): URL {
 	const apiUrl: string = (apiUri.endsWith('/') ? apiUri : apiUri + '/') + path;
 	const urll: URL = new URL(apiUrl);
 
-	if (params) {
+	if (params !== undefined) {
 		for (const [key, value] of params) {
-			urll.searchParams.set(key, value);
+			urll.searchParams.set(key, encodeURIComponent(value));
 		}
 	}
 
