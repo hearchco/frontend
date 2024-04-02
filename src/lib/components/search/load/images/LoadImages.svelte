@@ -14,8 +14,8 @@
 	}
 	function randomImages(): ImageFormat[] {
 		return Array.from({ length: numberOfResults }, (_) => ({
-			Height: randomNumber(125, 200),
-			Width: randomNumber(100, 300)
+			height: randomNumber(125, 200),
+			width: randomNumber(100, 300)
 		}));
 	}
 </script>
@@ -24,8 +24,8 @@
 	<section id="images" class="grid grid-cols-fit auto-rows-[200px] grid-flow-dense gap-2">
 		{#each fakeImages as result}
 			<div
-				class:row-span-2={(result.Height * 0.8) / result.Width > 1}
-				class:sm:col-span-2={result.Height / (result.Width * 0.64) < 1}
+				class:row-span-2={(result.height * 0.8) / result.width > 1}
+				class:sm:col-span-2={result.height / (result.width * 0.64) < 1}
 				class="flex-none"
 			>
 				<LoadImage colored={Math.random() <= 0.1} />

@@ -8,33 +8,33 @@
 	export let result: ResultType;
 </script>
 
-<div id="image-preview-{result.Rank}" class="px-4 pt-4 pb-10 w-full lg:sticky lg:top-0">
-	<a href={result.URL}>
+<div id="image-preview-{result.rank}" class="px-4 pt-4 pb-10 w-full lg:sticky lg:top-0">
+	<a href={result.url}>
 		<div
 			class="h-[50dvh] flex justify-center mx-auto hover:ring-2 hover:ring-hearchco-primary hover:dark:ring-hearchco-secondary overflow-hidden rounded-lg duration-200 ease-in-out"
 		>
 			<img
-				id="link-{result.Rank}"
-				src={proxyImageLink(result.URL, result.URLHash)}
-				alt={result.Title}
+				id="link-{result.rank}"
+				src={proxyImageLink(result.url, result.url_hash)}
+				alt={result.title}
 				class="h-full w-full object-contain transform transition"
 			/>
 		</div>
 	</a>
-	<a href={result.ImageResult.SourceURL}>
+	<a href={result.image_result.source_url}>
 		<h1
-			id="title-{result.Rank}"
+			id="title-{result.rank}"
 			class="pt-5 text-hearchco-primary dark:text-hearchco-secondary text-xl hover:underline"
 		>
-			{result.Title}
+			{result.title}
 		</h1>
 	</a>
-	<p id="description-{result.Rank}" class="text-justify text-sm text-gray-600 dark:text-gray-200">
-		{result.Description}
+	<p id="description-{result.rank}" class="text-justify text-sm text-gray-600 dark:text-gray-200">
+		{result.description}
 	</p>
-	<div id="engines-{result.Rank}" class="pt-2 text-right text-xs text-gray-800 dark:text-gray-400">
-		{#each result.EngineRanks as engineRank (engineRank.SearchEngine)}
-			<span class="mx-0.5">{engineRank.SearchEngine}</span>
+	<div id="engines-{result.rank}" class="pt-2 text-right text-xs text-gray-800 dark:text-gray-400">
+		{#each result.engine_ranks as engineRank (engineRank.search_engine)}
+			<span class="mx-0.5">{engineRank.search_engine}</span>
 		{/each}
 	</div>
 </div>

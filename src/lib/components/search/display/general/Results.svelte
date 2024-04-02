@@ -14,7 +14,7 @@
 
 <div class="sm:mx-auto mb-4 max-w-screen-sm">
 	<section id="results" class="mx-2 my-4 max-w-fit overflow-clip">
-		{#each results as result, i (result.URL)}
+		{#each results as result, i (result.url)}
 			<Result {result} />
 			{#if i !== results.length - 1}
 				<hr class="my-2 border border-gray-200 dark:border-gray-600" />

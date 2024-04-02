@@ -9,7 +9,7 @@
 	export let imgResultPreview: ResultType | undefined;
 
 	// variables
-	const loading: 'eager' | 'lazy' | null | undefined = result.Rank > 10 ? 'lazy' : 'eager';
+	const loading: 'eager' | 'lazy' | null | undefined = result.rank > 10 ? 'lazy' : 'eager';
 	$: selected = imgResultPreview === result;
 
 	// functions
@@ -22,7 +22,7 @@
 	}
 </script>
 
-<article class="w-full h-full" id="image-{result.Rank}">
+<article class="w-full h-full" id="image-{result.rank}">
 	<button
 		class:ring-4={selected}
 		class:ring-hearchco-primary={selected}
@@ -31,10 +31,13 @@
 		on:click={() => openImage()}
 	>
 		<img
-			id="img-{result.Rank}"
+			id="img-{result.rank}"
 			class="w-full h-full object-cover object-center transform hover:scale-110 transition duration-300 ease-in-out"
-			src={proxyImageLink(result.ImageResult.ThumbnailURL, result.ImageResult.ThumbnailURLHash)}
-			alt={result.Title}
+			src={proxyImageLink(
+				result.image_result.thumbnail_url,
+				result.image_result.thumbnail_url_hash
+			)}
+			alt={result.title}
 			{loading}
 		/>
 	</button>

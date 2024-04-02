@@ -1,33 +1,33 @@
 type EngineRank = {
-	SearchEngine: string;
-	Rank: number;
-	Page: number;
-	OnPageRank: number;
+	search_engine: string;
+	rank: number;
+	page: number;
+	on_page_rank: number;
 };
 
 export type ImageFormat = {
-	Height: number;
-	Width: number;
+	height: number;
+	width: number;
 };
 
 type ImageResult = {
-	Original: ImageFormat;
-	Thumbnail: ImageFormat;
-	ThumbnailURL: string;
-	ThumbnailURLHash: string;
-	Source: string;
-	SourceURL: string;
+	original: ImageFormat;
+	thumbnail: ImageFormat;
+	thumbnail_url: string;
+	thumbnail_url_hash: string;
+	source: string;
+	source_url: string;
 };
 
 export type ResultType = {
-	URL: string;
-	URLHash: string;
-	Rank: number;
-	Score: number;
-	Title: string;
-	Description: string;
-	EngineRanks: EngineRank[];
-	ImageResult: ImageResult;
+	url: string;
+	url_hash: string;
+	rank: number;
+	score: number;
+	title: string;
+	description: string;
+	engine_ranks: EngineRank[];
+	image_result: ImageResult;
 };
 
 export type ErrorResponseType = {
