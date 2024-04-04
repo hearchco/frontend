@@ -23,7 +23,14 @@ export async function fetchResultsJSON(
 
 	let response: Response;
 	try {
-		response = await fetch(apiUrl);
+		response = await fetch(apiUrl, {
+			// must set headers since it runs on the server
+			method: 'GET', // POST doesn't cache on CDN
+			headers: {
+				Accept: 'application/json',
+				'Accept-Encoding': 'gzip, deflate, br'
+			}
+		});
 	} catch (err: any) {
 		await delayed;
 		// Service Unavailable

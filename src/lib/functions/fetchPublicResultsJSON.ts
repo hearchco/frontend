@@ -14,7 +14,10 @@ export async function fetchPublicResultsJSON(params: URLSearchParams): Promise<R
 
 	let response: Response;
 	try {
-		response = await fetch(apiUrl);
+		response = await fetch(apiUrl, {
+			method: 'GET' // POST doesn't cache on CDN
+			// no need for headers since it runs in the browser
+		});
 	} catch (err: any) {
 		// Service Unavailable
 		throw error(503, `Failed to fetch results: ${err.message}`);
