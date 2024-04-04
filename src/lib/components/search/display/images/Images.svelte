@@ -32,13 +32,16 @@
 		</div>
 	{/if}
 	<div class="w-full">
-		<section id="images" class="grid grid-cols-fit auto-rows-[200px] grid-flow-dense gap-2">
+		<section
+			id="images"
+			class="grid sm:grid-cols-fit grid-cols-sm-fit sm:auto-rows-[195px] auto-rows-[28dvw] grid-flow-dense gap-2"
+		>
 			{#each results as result (result.url)}
 				<div
 					class:row-span-2={(result.image_result.thumbnail.height * 0.8) /
 						result.image_result.thumbnail.width >
 						1}
-					class:sm:col-span-2={result.image_result.thumbnail.height /
+					class:col-span-2={result.image_result.thumbnail.height /
 						(result.image_result.thumbnail.width * 0.64) <
 						1}
 					class="flex-none"
