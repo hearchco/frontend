@@ -17,8 +17,8 @@
 	export let imgResultPreview: ResultType | undefined;
 
 	// helper function
-	function closeIt(e: any) {
-		if (e.keyCode == 27) {
+	function closeIt(e: KeyboardEvent) {
+		if (e.key === 'Escape') {
 			imgResultPreview = undefined;
 		}
 	}
