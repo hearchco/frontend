@@ -14,14 +14,21 @@
 	export let paramsString: string;
 
 	// variables
-	let imgResultPreview: ResultType | undefined;
+	export let imgResultPreview: ResultType | undefined;
+
+	// helper function
+	function closeIt(e: KeyboardEvent) {
+		if (e.key === 'Escape') {
+			imgResultPreview = undefined;
+		}
+	}
 </script>
 
 <div class="w-full lg:flex px-4 py-8">
 	<!-- preview on top when screen width < lg -->
 	{#if imgResultPreview !== undefined}
-		<div id="image-preview" class="lg:hidden">
-			<Preview result={imgResultPreview} />
+		<div id="image-preview" class="lg:hidden mb-9 border-b-2 border-gray-100 dark:border-zinc-700">
+			<Preview result={imgResultPreview} bind:imgResultPreview />
 		</div>
 	{/if}
 	<div class="w-full">
@@ -44,8 +51,10 @@
 	<!-- preview on left when screen width >= lg -->
 	{#if imgResultPreview !== undefined}
 		<div id="image-preview" class="hidden lg:block w-1/2">
-			<Preview result={imgResultPreview} />
+			<Preview result={imgResultPreview} bind:imgResultPreview />
 		</div>
 	{/if}
 </div>
 <ShowMore bind:query bind:start={currentPage} bind:results bind:paramsString />
+
+<svelte:window on:keydown={closeIt} />
