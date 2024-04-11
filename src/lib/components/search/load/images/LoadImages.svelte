@@ -28,7 +28,7 @@
 		{#each fakeImages as result}
 			<div
 				class:row-span-2={(result.height * 0.8) / result.width > 1}
-				class:sm:col-span-2={result.height / (result.width * 0.64) < 1}
+				class:col-span-2={result.height / (result.width * 0.64) < 1}
 				class="flex-none"
 			>
 				<LoadImage colored={Math.random() <= 0.1} />
