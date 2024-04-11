@@ -38,9 +38,7 @@
 	</div>
 	<div class="flex justify-center">
 		<a href={result.url}>
-			<div
-				class="sm:max-w-[50dvw] mx-auto hover:ring-2 hover:ring-hearchco-primary hover:dark:ring-hearchco-secondary overflow-hidden rounded-lg duration-200 ease-in-out"
-			>
+			<div class="sm:max-w-[50dvw] mx-auto overflow-hidden rounded-lg">
 				<img
 					id="link-{result.rank}"
 					src={proxyImageLink(result.url, result.url_hash)}

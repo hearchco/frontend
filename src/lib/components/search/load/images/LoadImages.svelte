@@ -21,11 +21,14 @@
 </script>
 
 <div class="w-full px-4 py-8">
-	<section id="images" class="grid grid-cols-fit auto-rows-[200px] grid-flow-dense gap-2">
+	<section
+		id="images"
+		class="grid sm:grid-cols-fit grid-cols-sm-fit sm:auto-rows-[168px] auto-rows-[28dvw] grid-flow-dense gap-2"
+	>
 		{#each fakeImages as result}
 			<div
 				class:row-span-2={(result.height * 0.8) / result.width > 1}
-				class:sm:col-span-2={result.height / (result.width * 0.64) < 1}
+				class:col-span-2={result.height / (result.width * 0.64) < 1}
 				class="flex-none"
 			>
 				<LoadImage colored={Math.random() <= 0.1} />

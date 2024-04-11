@@ -34,7 +34,7 @@
 	<div class="w-full">
 		<section
 			id="images"
-			class="grid sm:grid-cols-fit grid-cols-sm-fit sm:auto-rows-[195px] auto-rows-[28dvw] grid-flow-dense gap-2"
+			class="grid sm:grid-cols-fit grid-cols-sm-fit sm:auto-rows-[168px] auto-rows-[28dvw] grid-flow-dense gap-2"
 		>
 			{#each results as result (result.url)}
 				<div
