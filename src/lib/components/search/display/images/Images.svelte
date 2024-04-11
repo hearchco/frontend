@@ -41,7 +41,7 @@
 					class:row-span-2={(result.image_result.thumbnail.height * 0.8) /
 						result.image_result.thumbnail.width >
 						1}
-					class:sm:col-span-2={result.image_result.thumbnail.height /
+					class:col-span-2={result.image_result.thumbnail.height /
 						(result.image_result.thumbnail.width * 0.64) <
 						1}
 					class="flex-none"
