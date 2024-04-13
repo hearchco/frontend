@@ -1,35 +1,14 @@
 <script lang="ts">
 	// functions
-	import { onMount } from 'svelte';
-
-	// variables
-	let darkMode: boolean;
-
-	onMount(() => {
-		const theme: string | null = localStorage.getItem('theme');
-
-		if (theme === 'dark') {
-			darkMode = true;
-		} else if (theme === 'light') {
-			darkMode = false;
-		} else {
-			darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-		}
-	});
-
-	function toggleDarkMode() {
-		darkMode = !darkMode;
-		localStorage.setItem('theme', darkMode ? 'dark' : 'light');
-
-		if (darkMode) {
-			document.documentElement.classList.add('dark');
-		} else {
-			document.documentElement.classList.remove('dark');
-		}
-	}
+	import { toggleMode } from 'mode-watcher';
 </script>
 
-<button class="absolute top-0 right-0 md:px-4 md:py-4" on:click={toggleDarkMode}>
+<svelte:head>
+	<!-- prevent Dark Reader from inverting the page -->
+	<meta name="darkreader-lock" />
+</svelte:head>
+
+<button class="absolute top-0 right-0 md:px-4 md:py-4" on:click={toggleMode}>
 	<div class="h-10 w-10 object-cover hover:scale-110 duration-300 ease-in-out">
 		<svg
 			class="hidden dark:block fill-hearchco-primary dark:fill-hearchco-secondary stroke-hearchco-primary dark:stroke-hearchco-secondary"
