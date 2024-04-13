@@ -8,7 +8,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 </script>
 
-<ModeWatcher disableTransitions={false} />
+<ModeWatcher />
 <DarkModeToggle />
 <slot />
 <Footer />
