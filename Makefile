@@ -4,14 +4,14 @@ install:
 dev:
 	pnpm run dev
 
-build:
+compile:
 	pnpm run build
 
 preview:
 	pnpm run preview
 
-cf:
-	cp svelte.config.cf.js svelte.config.js
+aws:
+	cp svelte.config.aws.js svelte.config.js
 
 node:
 	cp svelte.config.node.js svelte.config.js
