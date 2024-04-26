@@ -23,4 +23,4 @@ jobs:
           cache: 'pnpm'
       - run: make install
 
-      - run: make build
+      - run: make compile

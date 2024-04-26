@@ -13,8 +13,8 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@hearchco/sveltekit-adapter-aws": "github:hearchco/sveltekit-adapter-aws#v0.1.0",
 		"@sveltejs/adapter-node": "^5.0.1",
-		"@sveltejs/adapter-vercel": "^5.3.0",
 		"@sveltejs/kit": "^2.5.7",
 		"@sveltejs/vite-plugin-svelte": "^3.1.0",
 		"@typescript-eslint/eslint-plugin": "^7.7.1",
