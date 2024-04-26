@@ -35,7 +35,7 @@ jobs:
       - run: make install
 
       # build project
-      - run: make build
+      - run: make compile
 
       # setup docker (arm64)
       - uses: docker/setup-qemu-action@v3
