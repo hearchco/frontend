@@ -16,8 +16,8 @@
 	let pages: number = 2;
 
 	// functions
-	const handleSubmit = async () => {
-		const [newOffset, newResults]: [number, ResultType[]] = await fetchResultsLazily(
+	async function handleSubmit() {
+		const [newOffset, newResults] = await fetchResultsLazily(
 			query,
 			start,
 			offset,
@@ -27,7 +27,7 @@
 		);
 		offset = newOffset;
 		results = newResults;
-	};
+	}
 </script>
 
 <form

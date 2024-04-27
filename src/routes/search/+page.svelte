@@ -14,10 +14,10 @@
 
 	// variables
 	let query = data.query;
-	let currentPage = data.currentPage;
-	let paramsString = data.params;
+	$: currentPage = data.currentPage;
+	$: paramsString = data.params;
 	// TODO: implement a option for setting maxPages, allowing user to choose how much results to show
-	// let maxPages = data.maxPages;
+	// $: maxPages = data.maxPages;
 	$: title = query === '' ? 'Hearchco Search' : `${query} | Hearchco Search`;
 
 	// snapshots
