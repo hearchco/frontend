@@ -31,7 +31,7 @@
 			<Preview result={imgResultPreview} bind:imgResultPreview />
 		</div>
 	{/if}
-	<!-- <div class="w-full">
+	<div class="w-full">
 		<section
 			id="images"
 			class="grid sm:grid-cols-fit grid-cols-sm-fit sm:auto-rows-[168px] auto-rows-[28dvw] grid-flow-dense gap-2"
@@ -50,7 +50,7 @@
 				</div>
 			{/each}
 		</section>
-	</div> -->
+	</div>
 	<!-- preview on left when screen width >= lg -->
 	{#if imgResultPreview !== undefined}
 		<div id="image-preview" class="hidden lg:block w-1/2">
