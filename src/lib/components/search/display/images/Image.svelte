@@ -27,7 +27,7 @@
 		class:ring-4={selected}
 		class:ring-hearchco-primary={selected}
 		class:dark:ring-hearchco-secondary={selected}
-		class="w-full h-full overflow-hidden hover:scale-110 relative z-0 hover:z-50 hover:ring-4 hover:ring-gray-300 hover:dark:ring-gray-100 transform delay-150 duration-300 ease-in-out rounded-lg shadow-sm dark:shadow-none"
+		class="w-full h-full overflow-hidden hover:scale-110 relative z-0 hover:z-50 hover:ring-4 hover:ring-gray-300 hover:dark:ring-gray-100 transform delay-75 duration-300 ease-in-out rounded-lg shadow-sm dark:shadow-none"
 		on:click={() => openImage()}
 	>
 		<img
