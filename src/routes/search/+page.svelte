@@ -7,22 +7,24 @@
 
 	// types
 	import type { PageData, Snapshot } from './$types';
+	import type { ResultType } from '$lib/types/result';
 
 	// parameters
 	export let data: PageData;
-	let query: string = data.query;
-	let currentPage: number = data.currentPage;
-	let paramsString: string = data.params;
-	// TODO: implement a option for setting maxPages, allowing user to choose how much results to show
-	// let maxPages: number = data.maxPages;
 
 	// variables
+	let query = data.query;
+	let currentPage = data.currentPage;
+	let paramsString = data.params;
+	// TODO: implement a option for setting maxPages, allowing user to choose how much results to show
+	// let maxPages = data.maxPages;
 	$: title = query === '' ? 'Hearchco Search' : `${query} | Hearchco Search`;
 
 	// snapshots
-	export const snapshot: Snapshot = {
-		capture: () => query,
-		restore: (value) => (query = value)
+	let imgResultPreview: ResultType | undefined;
+	export const snapshot: Snapshot<ResultType | undefined> = {
+		capture: () => imgResultPreview,
+		restore: (value) => (imgResultPreview = value)
 	};
 </script>
 
@@ -33,7 +35,7 @@
 {#await data.streamed.results}
 	<Load {query} />
 {:then results}
-	<Display bind:query bind:currentPage bind:paramsString {results} />
+	<Display bind:query bind:currentPage bind:paramsString bind:imgResultPreview {results} />
 {:catch err}
 	<Error statusCode={'500'} message={'Hearchco API failed.'} {err} />
 {/await}

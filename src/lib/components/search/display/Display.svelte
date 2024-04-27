@@ -16,6 +16,7 @@
 	export let currentPage: number;
 	export let results: ResultType[];
 	export let paramsString: string;
+	export let imgResultPreview: ResultType | undefined;
 
 	// variables
 	const category: string = categoryFrom(query);
@@ -23,7 +24,7 @@
 
 <!-- todo: await deep results and offer button to switch to them -->
 {#if category === CategoryEnum.IMAGES}
-	<Images bind:query bind:currentPage bind:results bind:paramsString />
+	<Images bind:query bind:currentPage bind:results bind:paramsString bind:imgResultPreview />
 {:else if category !== undefined}
 	<Results bind:query bind:currentPage bind:results />
 {:else}
