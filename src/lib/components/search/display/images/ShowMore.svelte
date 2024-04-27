@@ -41,7 +41,7 @@
 	<input type="hidden" name="pages" value={pages} />
 	<button
 		type="submit"
-		class="mx-auto mb-5 h-12 w-1/5 rounded-lg overflow-hidden dark:bg-zinc-800 hover:dark:bg-zinc-700 hover:ring-2 hover:ring-hearchco-primary hover:dark:ring-hearchco-secondary text-zinc-500 dark:text-zinc-200 hover:text-hearchco-primary hover:dark:text-hearchco-secondary shadow-sm dark:shadow-none border border-gray-100 dark:border-0 duration-200 ease-in-out"
+		class="mx-auto mb-5 h-12 w-1/2 sm:w-1/3 lg:w-1/4 2xl:w-1/5 rounded-lg overflow-hidden dark:bg-zinc-800 hover:dark:bg-zinc-700 hover:ring-2 hover:ring-hearchco-primary hover:dark:ring-hearchco-secondary text-zinc-500 dark:text-zinc-200 hover:text-hearchco-primary hover:dark:text-hearchco-secondary shadow-sm dark:shadow-none border border-gray-100 dark:border-0 duration-200 ease-in-out"
 	>
 		Show more
 	</button>
