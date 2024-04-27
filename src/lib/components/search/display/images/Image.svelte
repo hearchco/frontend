@@ -10,7 +10,7 @@
 
 	// variables
 	const loading: 'eager' | 'lazy' | null | undefined = result.rank > 10 ? 'lazy' : 'eager';
-	$: selected = imgResultPreview === result;
+	$: selected = imgResultPreview?.url === result.url;
 
 	// functions
 	function openImage() {
