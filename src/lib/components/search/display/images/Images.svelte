@@ -24,7 +24,7 @@
 	}
 </script>
 
-<div class="w-full lg:flex px-4 py-8">
+<div class="w-full lg:flex px-4 py-8 overflow-hidden">
 	<!-- preview on top when screen width < lg -->
 	{#if imgResultPreview !== undefined}
 		<div id="image-preview" class="lg:hidden mb-9 border-b-2 border-gray-100 dark:border-zinc-700">
