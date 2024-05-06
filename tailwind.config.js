@@ -21,7 +21,7 @@ export default {
 				}
 			},
 			gridTemplateColumns: {
-				'fit': 'repeat(auto-fit, minmax(168px, 1fr))',
+				fit: 'repeat(auto-fit, minmax(168px, 1fr))',
 				'sm-fit': 'repeat(auto-fit, minmax(28dvw, 1fr))'
 			}
 		}
