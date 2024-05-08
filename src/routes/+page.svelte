@@ -3,7 +3,7 @@
 	import { sleep } from '$lib/functions/sleep/sleep.js';
 	import Searchbox from '$lib/components/searchbox/main.svelte';
 
-	let easteregg = false;
+	let easteregg = $state(false);
 	async function swing() {
 		if (!easteregg) {
 			easteregg = true;
@@ -17,7 +17,7 @@
 
 <div class="pt-36 flex place-content-center">
 	<img
-		on:dblclick={swing}
+		ondblclick={swing}
 		class:animate-swing={easteregg}
 		class="size-40"
 		src={Logo}

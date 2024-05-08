@@ -7,8 +7,11 @@ const config = {
 	kit: {
 		adapter: adapter({
 			edge: true,
-			stream: true
+			stream: false
 		})
+	},
+	compilerOptions: {
+		runes: true
 	}
 };
 
