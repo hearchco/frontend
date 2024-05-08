@@ -23,8 +23,6 @@
 	class:hover:dark:ring-hearchco-secondary={!selected}
 	class="mx-1 rounded-lg shadow-lg overflow-hidden text-neutral-500 dark:text-neutral-200 hover:text-hearchco-primary hover:dark:text-hearchco-secondary border border-neutral-100 dark:border-0 duration-200 ease-in-out"
 >
-	<!-- TODO: on:focus={() => preloadData(`/search?q=${query}&start=${page}`)}
-				on:mouseover={() => preloadData(`/search?q=${query}&start=${page}`)} -->
 	<button type="submit" class="size-8" name="start" value={page}>
 		{page}
 	</button>
