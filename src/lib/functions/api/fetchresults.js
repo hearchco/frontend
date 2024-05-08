@@ -4,6 +4,7 @@ import { createApiUrl } from '$lib/functions/api/createurl.js';
 /**
  * @param {URLSearchParams} params
  * @param {typeof fetch} [fetcher]
+ * @returns {Promise<ResultType[]>}
  */
 export async function fetchResults(params, fetcher = fetch) {
 	/** @type {URL} */
@@ -12,7 +13,7 @@ export async function fetchResults(params, fetcher = fetch) {
 		apiUrl = createApiUrl('search', params);
 	} catch (/** @type {any} */ err) {
 		// Internal Server Error
-		throw new Error(`Failed to create API URL: ${err.message}`);
+		throw error(500, `Failed to create API URL: ${err.message}`);
 	}
 
 	/** @type {Response} */
@@ -26,8 +27,8 @@ export async function fetchResults(params, fetcher = fetch) {
 			}
 		});
 	} catch (/** @type {any} */ err) {
-		// Service Unavailable
-		throw error(503, `Failed to fetch results: ${err.message}`);
+		// Bad Gateway
+		throw error(502, `Failed to fetch results: ${err.message}`);
 	}
 
 	/** @type {ResultType[] | ErrorResponseType} */

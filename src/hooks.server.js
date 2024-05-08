@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit';
 import { env as privateEnv } from '$env/dynamic/private';
 import { env as publicEnv } from '$env/dynamic/public';
 
@@ -5,12 +6,14 @@ import { env as publicEnv } from '$env/dynamic/public';
 export async function handleFetch({ request, fetch }) {
 	const privateApiUri = privateEnv.API_URI;
 	if (!privateApiUri) {
-		throw new Error('API_URI env is not defined');
+		// Internal Server Error
+		throw error(500, 'API_URI env is not defined');
 	}
 
 	const publicApiUri = publicEnv.PUBLIC_API_URI;
 	if (!publicApiUri) {
-		throw new Error('PUBLIC_API_URI env is not defined');
+		// Internal Server Error
+		throw error(500, 'PUBLIC_API_URI env is not defined');
 	}
 
 	if (request.url.startsWith(publicApiUri)) {

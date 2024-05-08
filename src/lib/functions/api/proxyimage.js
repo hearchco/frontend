@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit';
 import { createApiUrl } from '$lib/functions/api/createurl';
 
 /**
@@ -17,7 +18,7 @@ export function proxyImageLink(url, hash) {
 		apiUrl = createApiUrl('proxy', params);
 	} catch (/** @type {any} */ err) {
 		// Internal Server Error
-		throw new Error(`Failed to create API URL: ${err.message}`);
+		throw error(500, `Failed to create API URL: ${err.message}`);
 	}
 
 	return apiUrl.toString();

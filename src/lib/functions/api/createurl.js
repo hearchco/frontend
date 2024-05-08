@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/public';
 
 /**
@@ -9,7 +10,8 @@ import { env } from '$env/dynamic/public';
 export function createApiUrl(path, params) {
 	const apiUri = env.PUBLIC_API_URI;
 	if (!apiUri) {
-		throw new Error('PUBLIC_API_URI env is not defined');
+		// Internal Server Error
+		throw error(500, 'PUBLIC_API_URI env is not defined');
 	}
 
 	const apiUrl = (apiUri.endsWith('/') ? apiUri : apiUri + '/') + path;

@@ -23,6 +23,7 @@ function getCategory(query, params) {
 
 	// Check if category is valid
 	if (!Object.values(CategoryEnum).includes(category)) {
+		// Bad Request
 		throw error(400, "Invalid 'category' parameter in URL or query");
 	}
 
@@ -52,12 +53,15 @@ export async function load({ url, fetch }) {
 
 	// Validate query, current page, and max pages
 	if (query === '') {
+		// Bad Request
 		throw error(400, "Missing 'q' parameter");
 	}
 	if (isNaN(currentPage) || currentPage < 0) {
+		// Bad Request
 		throw error(400, "Invalid 'start' parameter");
 	}
 	if (isNaN(maxPages) || maxPages <= 0) {
+		// Bad Request
 		throw error(400, "Invalid 'pages' parameter");
 	}
 
@@ -67,6 +71,7 @@ export async function load({ url, fetch }) {
 	// Remove category from query if it exists
 	const queryWithoutCategory = removeCatFromQuery(query);
 	if (queryWithoutCategory === '') {
+		// Bad Request
 		throw error(400, "Only category specified in 'q' parameter");
 	}
 
