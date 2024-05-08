@@ -1,5 +1,4 @@
 <script>
-	import { preloadData } from '$app/navigation';
 	import { fetchAdditionalResults } from '$lib/functions/api/additionalresults';
 	import { URLSearchParams } from 'svelte/reactivity';
 
