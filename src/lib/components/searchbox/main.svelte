@@ -52,6 +52,8 @@
 		</button>
 		<button
 			type="submit"
+			name="category"
+			value={category}
 			class="shrink-0 h-full w-10 min-[320px]:w-16 sm:w-20 rounded-full text-hearchco-primary dark:text-hearchco-secondary hover:text-hearchco-secondary hover:dark:text-hearchco-primary hover:bg-hearchco-primary hover:dark:bg-hearchco-secondary duration-100 ease-in-out"
 		>
 			<svg class="mx-auto h-1/2 w-auto" viewBox="0 0 512 512" aria-hidden="true">
@@ -78,9 +80,9 @@
 			{#each Object.values(VisibleCategoryEnum) as cat}
 				<button
 					onclick={() => (query = removeCatFromQuery(query))}
+					type="submit"
 					name="category"
 					value={cat}
-					type="submit"
 					class:border-hearchco-primary={cat === convertCategoryToVisible(category)}
 					class:dark:border-hearchco-secondary={cat === convertCategoryToVisible(category)}
 					class="px-3 pt-7 pb-6 capitalize border-b-2 hover:border-hearchco-primary hover:dark:border-hearchco-secondary duration-100 ease-in-out"
