@@ -1,6 +1,7 @@
 <script>
 	import Header from '$lib/components/header/main.svelte';
 	import Stats from '$lib/components/header/stats.svelte';
+	import Zero from '$lib/components/results/zero/main.svelte';
 	import General from '$lib/components/results/general/main.svelte';
 	import Images from '$lib/components/results/images/main.svelte';
 	import { CategoryEnum } from '$lib/types/search/category.js';
@@ -37,10 +38,12 @@
 <svelte:head><title>{title}</title></svelte:head>
 
 <Header bind:query {category} />
-<Stats numOfResults={results.length} {timing} />
+{#if results.length !== 0}
+	<Stats numOfResults={results.length} {timing} />
+{/if}
 
 {#if results.length === 0}
-	<p>No results found.</p>
+	<Zero />
 {:else if category === CategoryEnum.IMAGES}
 	<Images {javascript} bind:query {category} {currentPage} {results} bind:imagePreview />
 {:else}
