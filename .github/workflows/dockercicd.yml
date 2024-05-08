@@ -25,7 +25,7 @@ jobs:
       - run: make node
 
       # install deps (using pnpm until bun fixes bug for static assets)
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
         with:
           version: 8
       - uses: actions/setup-node@v4
