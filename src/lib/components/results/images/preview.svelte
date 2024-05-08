@@ -1,0 +1,74 @@
+<script>
+	import { proxyImageLink } from '$lib/functions/api/proxyimage';
+
+	/**
+	 * @typedef {object} Props
+	 * @property {ResultType} result
+	 * @property {ResultType | undefined} imagePreview
+	 */
+
+	/** @type {Props} */
+	let { result, imagePreview = $bindable() } = $props();
+</script>
+
+<svelte:window
+	on:keydown={() => {
+		imagePreview = undefined;
+	}}
+/>
+
+<div id="image-preview-{result.rank}" class="px-4 pb-4 w-full lg:top-0 lg:sticky">
+	<div class="py-4 w-full flex justify-between items-start">
+		<a href={result.image_result.source_url}>
+			<h1
+				id="title-{result.rank}"
+				class="text-xl text-hearchco-primary dark:text-hearchco-secondary hover:underline"
+			>
+				{result.title}
+			</h1>
+		</a>
+		<button
+			type="button"
+			class="ml-1 max-[200px]:hidden text-neutral-500 hover:text-hearchco-primary hover:dark:text-hearchco-secondary duration-100 ease-in-out"
+			onclick={() => (imagePreview = undefined)}
+		>
+			<svg class="size-8" viewBox="0 0 512 512" aria-hidden="true">
+				<path
+					fill="none"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="32"
+					d="M368 368L144 144M368 144L144 368"
+				></path>
+			</svg>
+		</button>
+	</div>
+	<a href={result.url}>
+		<img
+			id="link-{result.rank}"
+			src={proxyImageLink(
+				result.image_result.thumbnail_url,
+				result.image_result.thumbnail_url_hash
+			)}
+			alt={result.title}
+			class="max-h-[40dvh] w-full object-contain bg-neutral-100 rounded-lg"
+		/>
+	</a>
+	<p
+		id="description-{result.rank}"
+		class="pt-4 text-justify text-sm text-gray-600 dark:text-gray-200"
+	>
+		{#if result.description === ''}
+			no description found
+		{:else}
+			{result.description}
+		{/if}
+	</p>
+
+	<div id="engines-{result.rank}" class="pt-2 text-right text-xs text-gray-800 dark:text-gray-400">
+		{#each result.engine_ranks as engineRank (engineRank.search_engine)}
+			<span class="mx-0.5">{engineRank.search_engine}</span>
+		{/each}
+	</div>
+</div>

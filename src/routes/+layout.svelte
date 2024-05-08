@@ -1,5 +1,10 @@
 <script>
 	import '../app.css';
+
+	import Footer from '$lib/components/footer/main.svelte';
 </script>
 
-<slot />
+<main class="min-h-[90dvh]">
+	<slot />
+</main>
+<Footer />
