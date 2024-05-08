@@ -1,5 +1,9 @@
 <script>
-	import { VisibleCategoryEnum, convertCategoryToVisible } from '$lib/types/search/category';
+	import {
+		CategoryEnum,
+		VisibleCategoryEnum,
+		convertCategoryToVisible
+	} from '$lib/types/search/category';
 	import { removeCatFromQuery } from '$lib/functions/query/removecat';
 
 	/**
@@ -10,7 +14,7 @@
 	 */
 
 	/** @type {Props} */
-	let { homepage = false, query = $bindable(''), category } = $props();
+	let { homepage = false, query = $bindable(''), category = CategoryEnum.GENERAL } = $props();
 </script>
 
 <form class:pt-5={category} class="mx-2 size-full" method="get" action="/search">
@@ -75,7 +79,7 @@
 			</svg>
 		</button>
 	</div>
-	{#if category}
+	{#if !homepage}
 		<div class="w-full h-5 flex gap-1">
 			{#each Object.values(VisibleCategoryEnum) as cat}
 				<button
