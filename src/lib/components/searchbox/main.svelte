@@ -39,7 +39,7 @@
 			class="mx-1.5 max-[200px]:hidden text-neutral-500 hover:text-hearchco-primary hover:dark:text-hearchco-secondary duration-100 ease-in-out"
 			onclick={() => (query = '')}
 		>
-			<svg class="h-1/2 w-auto" viewBox="0 0 512 512" aria-hidden="true">
+			<svg class="size-6" viewBox="0 0 512 512" aria-hidden="true">
 				<path
 					fill="none"
 					stroke="currentColor"
