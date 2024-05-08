@@ -21,7 +21,7 @@
 	<div
 		class:shadow-2xl={homepage}
 		class:shadow-lg={!homepage}
-		class="h-12 w-full flex rounded-full dark:bg-neutral-800 dark:shadow-none border border-gray-100 dark:border-0"
+		class="h-12 w-full flex rounded-full dark:bg-neutral-800 dark:shadow-none border border-neutral-100 dark:border-0"
 	>
 		<!-- svelte-ignore a11y_autofocus -->
 		<input

@@ -59,7 +59,7 @@
 	</a>
 	<p
 		id="description-{result.rank}"
-		class="pt-4 text-justify text-sm text-gray-600 dark:text-gray-200"
+		class="pt-4 text-justify text-sm text-neutral-600 dark:text-neutral-200"
 	>
 		{#if result.description === ''}
 			no description found
@@ -68,7 +68,10 @@
 		{/if}
 	</p>
 
-	<div id="engines-{result.rank}" class="pt-2 text-right text-xs text-gray-800 dark:text-gray-400">
+	<div
+		id="engines-{result.rank}"
+		class="pt-2 text-right text-xs text-neutral-800 dark:text-neutral-400"
+	>
 		{#each result.engine_ranks as engineRank (engineRank.search_engine)}
 			<span class="mx-0.5">{engineRank.search_engine}</span>
 		{/each}
