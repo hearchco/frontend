@@ -8,9 +8,11 @@ import { createApiUrl } from '$lib/functions/api/createurl';
  * @returns {string}
  */
 export function proxyImageLink(url, hash) {
+	// must be done like this instead of concatSearchParams because URL musn't be encoded
 	const params = new URLSearchParams();
-	params.set('url', url);
+	// ordered alphabetically to increase cache hits
 	params.set('hash', hash);
+	params.set('url', url);
 
 	/** @type {URL} */
 	let apiUrl;

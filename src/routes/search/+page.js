@@ -1,13 +1,16 @@
 import { browser } from '$app/environment';
 import { error } from '@sveltejs/kit';
-import { fetchResults } from '$lib/functions/api/fetchresults';
-import { CategoryEnum } from '$lib/types/search/category';
+
 import { removeCatFromQuery } from '$lib/functions/query/removecat';
+import { concatSearchParams } from '$lib/functions/api/concatparams';
+import { fetchResults } from '$lib/functions/api/fetchresults';
+
+import { CategoryEnum } from '$lib/types/search/category';
 
 /**
  * Get category from URL or query
  * @param {string} query - Query from URL
- * @param {URLSearchParams} params - URLSearchParams object
+ * @param {URLSearchParams} params - Parameters
  * @returns {string} - Category
  * @throws {Error} - If category is invalid
  */
@@ -28,20 +31,6 @@ function getCategory(query, params) {
 	}
 
 	return category;
-}
-
-/**
- * Concatenate search params
- * @param {string[]} searchParamsArray - Array of search params
- * @returns {URLSearchParams} - Concatenated search params
- */
-function concatSearchParams(searchParamsArray) {
-	return new URLSearchParams(
-		`?${searchParamsArray
-			.filter((param) => param !== '')
-			.sort()
-			.join('&')}`
-	);
 }
 
 /** @type {import('./$types').PageLoad} */
@@ -75,20 +64,13 @@ export async function load({ url, fetch }) {
 		throw error(400, "Only category specified in 'q' parameter");
 	}
 
-	// Create new search params
-	const newQueryParam = queryWithoutCategory !== '' ? `q=${queryWithoutCategory}` : '';
-	const newCategoryParam =
-		category !== '' && category !== CategoryEnum.GENERAL ? `&category=${category}` : '';
-	const newStartParam = currentPage !== 1 ? `&start=${currentPage}` : '';
-	const newPagesParam = maxPages !== 1 ? `&pages=${maxPages}` : '';
-
 	// Concatenate search params
-	const newSearchParams = concatSearchParams([
-		newQueryParam,
-		newCategoryParam,
-		newStartParam,
-		newPagesParam
-	]);
+	const newSearchParams = concatSearchParams({
+		q: queryWithoutCategory,
+		category: category !== CategoryEnum.GENERAL ? category : '',
+		start: currentPage !== 1 ? currentPage.toString() : '',
+		pages: maxPages !== 1 ? maxPages.toString() : ''
+	});
 
 	// Fetch results
 	const timerStart = Date.now();

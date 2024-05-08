@@ -1,6 +1,6 @@
 <script>
+	import { concatSearchParams } from '$lib/functions/api/concatparams';
 	import { fetchAdditionalResults } from '$lib/functions/api/additionalresults';
-	import { URLSearchParams } from 'svelte/reactivity';
 
 	/**
 	 * @typedef {object} Props
@@ -17,14 +17,14 @@
 	/** @param {SubmitEvent} event */
 	async function handleSubmit(event) {
 		event.preventDefault();
-		const params = new URLSearchParams({ q: query, category, start: nextPage.toString() });
+		const params = concatSearchParams({ q: query, category, start: nextPage.toString() });
 		const newResults = await fetchAdditionalResults(results, params);
 		results = newResults;
 		nextPage = nextPage + 1;
 	}
 
 	async function preloadResults() {
-		const params = new URLSearchParams({ q: query, category, start: nextPage.toString() });
+		const params = concatSearchParams({ q: query, category, start: nextPage.toString() });
 		await fetchAdditionalResults(results, params);
 	}
 </script>
