@@ -86,7 +86,9 @@ export async function load({ url, fetch }) {
 	]);
 
 	// Fetch results
+	const timerStart = Date.now();
 	const results = await fetchResults(newSearchParams, fetch);
+	const timerEnd = Date.now();
 
 	return {
 		browser: browser,
@@ -94,6 +96,7 @@ export async function load({ url, fetch }) {
 		currentPage: currentPage,
 		maxPages: maxPages,
 		category: category,
-		results: results
+		results: results,
+		timing: timerEnd - timerStart
 	};
 }

@@ -22,7 +22,7 @@
 	const maxPages = $derived(data.maxPages);
 	const category = $derived(data.category);
 	const results = $derived(data.results);
-	// const timing = $derived(data.timing);
+	const timing = $derived(data.timing);
 
 	/** @type {ResultType | undefined} */
 	let imagePreview = $state(undefined);
@@ -37,7 +37,7 @@
 <svelte:head><title>{title}</title></svelte:head>
 
 <Header bind:query {category} />
-<!-- <Stats numOfResults={results.length} {timing} /> -->
+<Stats numOfResults={results.length} {timing} />
 
 {#if results.length === 0}
 	<p>No results found.</p>
