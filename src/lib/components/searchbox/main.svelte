@@ -9,7 +9,7 @@
 	/**
 	 * @typedef {object} Props
 	 * @property {boolean} [homepage]
-	 * @property {string} query
+	 * @property {string} [query]
 	 * @property {string} [category]
 	 * @property {boolean} [loading]
 	 */
@@ -17,7 +17,7 @@
 	/** @type {Props} */
 	let {
 		homepage = false,
-		query = $bindable(),
+		query = $bindable(''),
 		category = CategoryEnum.GENERAL,
 		// eslint-disable-next-line no-unused-vars
 		loading = $bindable(false)
