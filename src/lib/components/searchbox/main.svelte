@@ -22,17 +22,27 @@
 		loading = $bindable(false)
 	} = $props();
 
-	function handleSubmit() {
-		loading = true;
+	/** @param {SubmitEvent} e */
+	function handleSubmit(e) {
+		if (query === '') {
+			e.preventDefault();
+		} else {
+			loading = true;
+		}
 	}
 
-	function handleCategorySubmit() {
-		loading = true;
+	function handleCategory() {
 		query = removeCatFromQuery(query);
 	}
 </script>
 
-<form class:pt-5={category} class="mx-2 size-full" method="get" action="/search">
+<form
+	class:pt-5={category}
+	class="mx-2 size-full"
+	method="get"
+	action="/search"
+	onsubmit={handleSubmit}
+>
 	<div
 		class:shadow-2xl={homepage}
 		class:shadow-lg={!homepage}
@@ -70,7 +80,6 @@
 			</svg>
 		</button>
 		<button
-			onclick={handleSubmit}
 			type="submit"
 			name="category"
 			value={category}
@@ -99,7 +108,7 @@
 		<div class="w-full h-5 flex gap-1">
 			{#each Object.values(VisibleCategoryEnum) as cat}
 				<button
-					onclick={handleCategorySubmit}
+					onclick={handleCategory}
 					type="submit"
 					name="category"
 					value={cat}
