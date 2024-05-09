@@ -1,9 +1,9 @@
 ---
 name: Feature request
 about: Ask for adding a new feature
-title: "[FEAT]"
-labels: "enhancement"
-assignees: ""
+title: '[FEAT]'
+labels: 'enhancement'
+assignees: ''
 ---
 
 **Describe your feature request**

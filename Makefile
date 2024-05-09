@@ -10,6 +10,18 @@ compile:
 preview:
 	pnpm run preview
 
+check:
+	pnpm run check
+
+test:
+	pnpm run test
+
+lint:
+	pnpm run lint
+
+format:
+	pnpm run format
+
 aws:
 	cp svelte.config.aws.js svelte.config.js
 
