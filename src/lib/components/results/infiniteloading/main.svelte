@@ -11,7 +11,7 @@
 	 */
 
 	/** @type {Props} */
-	let { query = $bindable(), category, currentPage, results = $bindable() } = $props();
+	let { query, category, currentPage, results = $bindable() } = $props();
 
 	let nextPage = $state(currentPage + 1);
 	/** @param {SubmitEvent} event */
@@ -35,7 +35,7 @@
 	action="/search"
 	onsubmit={handleSubmit}
 >
-	<input type="hidden" name="q" bind:value={query} />
+	<input type="hidden" name="q" value={query} />
 	<input type="hidden" name="category" value={category} />
 	<input type="hidden" name="start" value={nextPage} />
 	<button

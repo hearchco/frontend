@@ -9,7 +9,7 @@
 	 */
 
 	/** @type {Props} */
-	let { query = $bindable(''), category } = $props();
+	let { query = $bindable(), category } = $props();
 </script>
 
 <header class="border-b-2 border-neutral-100 dark:border-neutral-700">

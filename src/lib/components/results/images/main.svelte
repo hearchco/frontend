@@ -15,14 +15,7 @@
 	 */
 
 	/** @type {Props} */
-	let {
-		javascript,
-		query = $bindable(),
-		category,
-		currentPage,
-		results,
-		imagePreview = $bindable()
-	} = $props();
+	let { javascript, query, category, currentPage, results, imagePreview = $bindable() } = $props();
 </script>
 
 <div class="px-4 py-8 w-full lg:flex">
@@ -64,7 +57,7 @@
 </div>
 
 {#if !javascript}
-	<Paginator bind:query {category} {currentPage} />
+	<Paginator {query} {category} {currentPage} />
 {:else}
-	<InfiniteLoading bind:query {category} {currentPage} bind:results />
+	<InfiniteLoading {query} {category} {currentPage} bind:results />
 {/if}

@@ -10,6 +10,7 @@
 
 	const javascript = $derived(data.browser);
 
+	const originalQuery = $state(data.query);
 	let query = $state(data.query);
 	const title = $derived(
 		query === ''
@@ -45,7 +46,7 @@
 {#if results.length === 0}
 	<Zero />
 {:else if category === CategoryEnum.IMAGES}
-	<Images {javascript} bind:query {category} {currentPage} {results} bind:imagePreview />
+	<Images {javascript} query={originalQuery} {category} {currentPage} {results} bind:imagePreview />
 {:else}
-	<General {javascript} bind:query {category} {currentPage} {results} />
+	<General {javascript} query={originalQuery} {category} {currentPage} {results} />
 {/if}

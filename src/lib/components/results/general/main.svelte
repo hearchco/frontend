@@ -13,7 +13,7 @@
 	 */
 
 	/** @type {Props} */
-	let { javascript, query = $bindable(), category, currentPage, results } = $props();
+	let { javascript, query, category, currentPage, results } = $props();
 </script>
 
 <div class="mx-auto pb-4 max-w-screen-sm">
@@ -28,7 +28,7 @@
 </div>
 
 {#if !javascript}
-	<Paginator bind:query {category} {currentPage} />
+	<Paginator {query} {category} {currentPage} />
 {:else}
-	<InfiniteLoading bind:query {category} {currentPage} bind:results />
+	<InfiniteLoading {query} {category} {currentPage} bind:results />
 {/if}

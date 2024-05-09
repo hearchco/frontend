@@ -9,7 +9,7 @@
 	 */
 
 	/** @type {Props} */
-	let { query = $bindable(), category, currentPage } = $props();
+	let { query, category, currentPage } = $props();
 
 	const numberOfPages = 5;
 	const offset = $derived(currentPage > 3 ? currentPage - 3 : 0);
@@ -32,7 +32,7 @@
 </script>
 
 <form class="pb-5 flex flex-row justify-center" method="get" action="/search">
-	<input type="hidden" name="q" bind:value={query} />
+	<input type="hidden" name="q" value={query} />
 	<input type="hidden" name="category" value={category} />
 	<!-- eslint-disable-next-line no-unused-vars -->
 	{#each { length: numberOfPages } as _, i}
