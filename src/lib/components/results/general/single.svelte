@@ -6,9 +6,19 @@
 
 	/** @type {Props} */
 	let { result } = $props();
+
+	const shortDesc =
+		result.description.length > 500 ? result.description.slice(0, 497) + '...' : result.description;
+
+	let fullDesc = $state(false);
+	function toggleDesc() {
+		fullDesc = !fullDesc;
+	}
+
+	let currentDesc = $derived(fullDesc ? result.description : shortDesc);
 </script>
 
-<article id="result-{result.rank}">
+<article id="result-{result.rank}" class="overflow-hidden">
 	<a id="link-{result.rank}" href={result.url} rel="noreferrer">
 		{result.url}
 	</a>
@@ -18,11 +28,30 @@
 	>
 		<a href={result.url} rel="noreferrer">{result.title}</a>
 	</h1>
+	{#if shortDesc !== result.description}
+		<div class="flex place-content-end">
+			<button onclick={toggleDesc}>
+				<svg
+					class="h-auto w-6"
+					width="100"
+					height="40"
+					viewBox="0 0 100 40"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<rect width="100" height="40" rx="8" ry="8" fill="#4D4D4D" />
+					<circle cx="20" cy="20" r="4" fill="#D3D3D3" />
+					<circle cx="50" cy="20" r="4" fill="#D3D3D3" />
+					<circle cx="80" cy="20" r="4" fill="#D3D3D3" />
+				</svg>
+			</button>
+		</div>
+	{/if}
 	<p
 		id="description-{result.rank}"
-		class="my-1 text-justify text-sm text-neutral-600 dark:text-neutral-200 line-clamp-6 hover:line-clamp-none"
+		class="my-1 text-justify text-sm text-neutral-600 dark:text-neutral-200"
 	>
-		{result.description}
+		{currentDesc}
 	</p>
 	<div
 		id="engines-{result.rank}"

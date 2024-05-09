@@ -17,7 +17,7 @@
 </script>
 
 <div class="mx-auto pb-4 max-w-screen-sm">
-	<section id="results" class="px-2 py-4 max-w-fit overflow-clip">
+	<section id="results" class="px-2 py-4 max-w-fit">
 		{#each results as result, i (result.url)}
 			<Single {result} />
 			{#if i !== results.length - 1}
