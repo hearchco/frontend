@@ -11,10 +11,25 @@
 	 * @property {boolean} [homepage]
 	 * @property {string} [query]
 	 * @property {string} [category]
+	 * @property {boolean} [loading]
 	 */
 
 	/** @type {Props} */
-	let { homepage = false, query = $bindable(''), category = CategoryEnum.GENERAL } = $props();
+	let {
+		homepage = false,
+		query = $bindable(''),
+		category = CategoryEnum.GENERAL,
+		loading = $bindable(false)
+	} = $props();
+
+	function handleSubmit() {
+		loading = true;
+	}
+
+	function handleCategorySubmit() {
+		loading = true;
+		query = removeCatFromQuery(query);
+	}
 </script>
 
 <form class:pt-5={category} class="mx-2 size-full" method="get" action="/search">
@@ -55,6 +70,7 @@
 			</svg>
 		</button>
 		<button
+			onclick={handleSubmit}
 			type="submit"
 			name="category"
 			value={category}
@@ -83,7 +99,7 @@
 		<div class="w-full h-5 flex gap-1">
 			{#each Object.values(VisibleCategoryEnum) as cat}
 				<button
-					onclick={() => (query = removeCatFromQuery(query))}
+					onclick={handleCategorySubmit}
 					type="submit"
 					name="category"
 					value={cat}
