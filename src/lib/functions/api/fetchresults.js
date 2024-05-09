@@ -3,10 +3,10 @@ import { createApiUrl } from '$lib/functions/api/createurl.js';
 
 /**
  * @param {URLSearchParams} params
- * @param {typeof fetch} [fetcher]
+ * @param {typeof fetch} fetcher
  * @returns {Promise<ResultType[]>}
  */
-export async function fetchResults(params, fetcher = fetch) {
+export async function fetchResults(params, fetcher) {
 	/** @type {URL} */
 	let apiUrl;
 	try {
