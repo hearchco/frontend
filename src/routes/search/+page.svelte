@@ -10,7 +10,7 @@
 
 	const javascript = $derived(data.browser);
 
-	const originalQuery = $state(data.query);
+	const originalQuery = $derived(data.query);
 	let query = $state(data.query);
 	const title = $derived(
 		query === ''
