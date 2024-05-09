@@ -20,7 +20,7 @@
 	);
 
 	const currentPage = $derived(data.currentPage);
-	const maxPages = $derived(data.maxPages);
+	// const maxPages = $derived(data.maxPages);
 	const category = $derived(data.category);
 	const results = $derived(data.results);
 	const timing = $derived(data.timing);

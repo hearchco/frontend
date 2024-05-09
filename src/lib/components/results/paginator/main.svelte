@@ -34,6 +34,7 @@
 <form class="pb-5 flex flex-row justify-center" method="get" action="/search">
 	<input type="hidden" name="q" bind:value={query} />
 	<input type="hidden" name="category" value={category} />
+	<!-- eslint-disable-next-line no-unused-vars -->
 	{#each { length: numberOfPages } as _, i}
 		<Number page={calcPageNum(i)} selected={selected(i)} />
 	{/each}

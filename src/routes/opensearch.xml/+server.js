@@ -18,11 +18,10 @@ function getSearchUrl() {
 	return `${instanceUrl}search`;
 }
 
-/** @returns {string} */
-function getSuggestionsUrl() {
-	const instanceUrl = getInstanceUrl();
-	return `${instanceUrl}suggestions`;
-}
+// function getSuggestionsUrl() {
+// 	const instanceUrl = getInstanceUrl();
+// 	return `${instanceUrl}suggestions`;
+// }
 
 /**
  * @param {'GET' | 'POST'} opensearchMethod - The method to use for searching
