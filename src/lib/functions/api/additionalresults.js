@@ -7,7 +7,7 @@ import { fetchResults } from './fetchresults';
  * @returns {Promise<ResultType[]>}
  */
 export async function fetchAdditionalResults(oldResults, params) {
-	const newResults = await fetchResults(params, fetch);
+	const newResults = await fetchResults(params);
 
 	// get the last rank from old results
 	const lastRank = oldResults[oldResults.length - 1].rank;
