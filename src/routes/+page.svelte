@@ -22,15 +22,13 @@
 		ondblclick={swing}
 		class:animate-swing={easteregg}
 		class:animate-swing-infinite={loading && !easteregg}
-		class="size-40"
+		class="size-32 sm:size-40"
 		src={Logo}
 		alt="Hearchco"
 		draggable="false"
 	/>
 </div>
 
-<div class="mx-auto max-w-screen-md">
-	<div class="mx-1.5 sm:mx-4 my-8">
-		<Searchbox homepage={true} bind:loading />
-	</div>
+<div class="mx-auto py-8 max-w-screen-md">
+	<Searchbox homepage={true} bind:loading />
 </div>

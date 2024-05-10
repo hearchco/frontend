@@ -44,7 +44,7 @@
 
 <form
 	class:pt-5={category}
-	class="mx-2 size-full"
+	class="px-2 size-full"
 	method="get"
 	action="/search"
 	onsubmit={handleSubmit}
