@@ -33,7 +33,7 @@ function getCategory(query, params) {
 	return category;
 }
 
-/** @type {import('./$types').PageServerLoad} */
+/** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {
 	// Get query, current page, and max pages from URL
 	const query = url.searchParams.get('q') ?? '';
