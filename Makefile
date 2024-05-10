@@ -14,7 +14,7 @@ check:
 	pnpm run check
 
 test:
-	pnpm run test
+	pnpm run test:unit
 
 lint:
 	pnpm run lint
