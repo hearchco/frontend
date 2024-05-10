@@ -35,6 +35,11 @@
 	function handleCategory() {
 		query = removeCatFromQuery(query);
 	}
+
+	function handleReset() {
+		query = '';
+		document.getElementById('search-input')?.focus();
+	}
 </script>
 
 <form
@@ -51,6 +56,7 @@
 	>
 		<!-- svelte-ignore a11y_autofocus -->
 		<input
+			id="search-input"
 			name="q"
 			class="ml-4 mr-1.5 h-full w-full bg-transparent focus:outline-none"
 			type="text"
@@ -67,7 +73,7 @@
 			type="reset"
 			class:hidden={query === ''}
 			class="mx-1.5 max-[200px]:hidden text-neutral-500 hover:text-hearchco-primary hover:dark:text-hearchco-secondary duration-100 ease-in-out"
-			onclick={() => (query = '')}
+			onclick={handleReset}
 		>
 			<svg class="size-6" viewBox="0 0 512 512" aria-hidden="true">
 				<path
