@@ -22,11 +22,11 @@
 		document.documentElement.classList.remove('dark');
 	}
 
-	function setSystemTheme() {
-		theme = systemTheme;
-		localStorage.removeItem('theme');
-		document.documentElement.classList.remove('dark');
-	}
+	// function setSystemTheme() {
+	// 	theme = systemTheme;
+	// 	localStorage.removeItem('theme');
+	// 	document.documentElement.classList.remove('dark');
+	// }
 
 	function toggleTheme() {
 		if (theme === 'light') {
