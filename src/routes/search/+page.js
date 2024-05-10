@@ -45,7 +45,7 @@ export async function load({ url, fetch }) {
 		// Bad Request
 		throw error(400, "Missing 'q' parameter");
 	}
-	if (isNaN(currentPage) || currentPage < 0) {
+	if (isNaN(currentPage) || currentPage <= 0) {
 		// Bad Request
 		throw error(400, "Invalid 'start' parameter");
 	}
