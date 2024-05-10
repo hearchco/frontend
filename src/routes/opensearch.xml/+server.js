@@ -48,7 +48,7 @@ function getOpenSearchXml(opensearchMethod) {
 	<LongName>Hearchco metasearch engine</LongName>
 	<Description>Hearchco is a distributed and fast metasearch engine that respects your privacy.</Description>
 	<InputEncoding>UTF-8</InputEncoding>
-	<Image type="image/png">/favicon.png</Image>
+	<Image type="image/svg">/favicon.svg</Image>
 	${searchUrlTag}
 	<Url rel="self" type="application/opensearchdescription+xml" method="${opensearchMethod}" template="${instanceUrl}opensearch.xml" />
 	<Query role="example" searchTerms="Hearchco" />
