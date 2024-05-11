@@ -22,11 +22,17 @@ export function toCategoryType(category) {
 			return CategoryEnum.GENERAL;
 		case 'images':
 			return CategoryEnum.IMAGES;
-		case 'quick' || 'fast':
+		case 'quick':
 			return CategoryEnum.QUICK;
-		case 'science' || 'sci':
+		case 'fast':
+			return CategoryEnum.QUICK;
+		case 'science':
 			return CategoryEnum.SCIENCE;
-		case 'broad' || 'surf':
+		case 'sci':
+			return CategoryEnum.SCIENCE;
+		case 'broad':
+			return CategoryEnum.BROAD;
+		case 'surf':
 			return CategoryEnum.BROAD;
 		default:
 			return undefined;
