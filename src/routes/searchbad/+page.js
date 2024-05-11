@@ -5,7 +5,7 @@ import { removeCatFromQuery } from '$lib/functions/query/removecat';
 import { concatSearchParams } from '$lib/functions/api/concatparams';
 import { fetchResults } from '$lib/functions/api/fetchresults';
 
-import { CategoryEnum } from '$lib/types/search/category';
+import { CategoryEnum, toCategoryType } from '$lib/types/search/category';
 
 /**
  * Get category from URL or query
@@ -19,13 +19,13 @@ function getCategory(query, params) {
 	const categoryParam = params.get('category') ?? '';
 	const category =
 		categoryFromQuery !== ''
-			? categoryFromQuery
+			? toCategoryType(categoryFromQuery)
 			: categoryParam !== ''
-				? categoryParam
+				? toCategoryType(categoryParam)
 				: CategoryEnum.GENERAL;
 
 	// Check if category is valid
-	if (!Object.values(CategoryEnum).includes(category)) {
+	if (!category) {
 		// Bad Request
 		throw error(400, "Invalid 'category' parameter in URL or query");
 	}

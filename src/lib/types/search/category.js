@@ -6,34 +6,43 @@
 export const CategoryEnum = {
 	GENERAL: 'general',
 	IMAGES: 'images',
-	INFO: 'info',
+	QUICK: 'quick',
 	SCIENCE: 'science',
-	NEWS: 'news',
-	BLOG: 'blog',
-	SURF: 'surf',
-	NEWNEWS: 'newnews'
+	BROAD: 'broad'
 };
 
 /**
- * Enum for user visible category types.
- * @enum {string}
- * @readonly
+ * Converts a string to a category type if possible.
+ * @param {string} category - The category to convert.
+ * @returns {CategoryEnum | undefined} The category type.
  */
-export const VisibleCategoryEnum = {
-	GENERAL: CategoryEnum.GENERAL,
-	IMAGES: CategoryEnum.IMAGES
-};
+export function toCategoryType(category) {
+	switch (category) {
+		case 'general':
+			return CategoryEnum.GENERAL;
+		case 'images':
+			return CategoryEnum.IMAGES;
+		case 'quick' || 'fast':
+			return CategoryEnum.QUICK;
+		case 'science' || 'sci':
+			return CategoryEnum.SCIENCE;
+		case 'broad' || 'surf':
+			return CategoryEnum.BROAD;
+		default:
+			return undefined;
+	}
+}
 
 /**
- * Converts a category to a user visible category.
- * @param {CategoryEnum} category
- * @returns {VisibleCategoryEnum}
+ * Returns the category to be used for UI display.
+ * @param {CategoryEnum} category - The category to convert.
+ * @returns {CategoryEnum} The category to display.
  */
-export function convertCategoryToVisible(category) {
+export function toDisplayCategory(category) {
 	switch (category) {
 		case CategoryEnum.IMAGES:
-			return VisibleCategoryEnum.IMAGES;
+			return CategoryEnum.IMAGES;
 		default:
-			return VisibleCategoryEnum.GENERAL;
+			return CategoryEnum.GENERAL;
 	}
 }

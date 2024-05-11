@@ -1,9 +1,5 @@
 <script>
-	import {
-		CategoryEnum,
-		VisibleCategoryEnum,
-		convertCategoryToVisible
-	} from '$lib/types/search/category';
+	import { CategoryEnum } from '$lib/types/search/category';
 	import { removeCatFromQuery } from '$lib/functions/query/removecat';
 
 	/**
@@ -113,14 +109,14 @@
 	</div>
 	{#if !homepage}
 		<div class="w-full h-5 flex gap-1">
-			{#each Object.values(VisibleCategoryEnum) as cat}
+			{#each Object.values(CategoryEnum) as cat}
 				<button
 					onclick={handleCategory}
 					type="submit"
 					name="category"
 					value={cat}
-					class:border-hearchco-primary={cat === convertCategoryToVisible(category)}
-					class:dark:border-hearchco-secondary={cat === convertCategoryToVisible(category)}
+					class:border-hearchco-primary={cat === category}
+					class:dark:border-hearchco-secondary={cat === category}
 					class="px-3 pt-7 pb-6 capitalize border-b-2 hover:border-hearchco-primary hover:dark:border-hearchco-secondary duration-100 ease-in-out"
 				>
 					{cat}

@@ -4,7 +4,7 @@
 	import Zero from '$lib/components/results/zero/main.svelte';
 	import General from '$lib/components/results/general/main.svelte';
 	import Images from '$lib/components/results/images/main.svelte';
-	import { CategoryEnum } from '$lib/types/search/category.js';
+	import { CategoryEnum, toDisplayCategory } from '$lib/types/search/category.js';
 
 	let { data } = $props();
 
@@ -45,7 +45,7 @@
 
 {#if results.length === 0}
 	<Zero />
-{:else if category === CategoryEnum.IMAGES}
+{:else if toDisplayCategory(category) === CategoryEnum.IMAGES}
 	<Images {javascript} query={originalQuery} {category} {currentPage} {results} bind:imagePreview />
 {:else}
 	<General {javascript} query={originalQuery} {category} {currentPage} {results} />
