@@ -1,6 +1,6 @@
 <script>
 	import { CategoryEnum } from '$lib/types/search/category';
-	import { removeCatFromQuery } from '$lib/functions/query/removecat';
+	import { getQueryWithoutCategory } from '$lib/functions/query/category';
 
 	/**
 	 * @typedef {object} Props
@@ -29,7 +29,7 @@
 	}
 
 	function handleCategory() {
-		query = removeCatFromQuery(query);
+		query = getQueryWithoutCategory(query);
 	}
 
 	function handleReset() {

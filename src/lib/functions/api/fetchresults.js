@@ -42,7 +42,7 @@ export async function fetchResults(params, fetcher = fetch) {
 
 	if ('message' in jsonResponse && 'value' in jsonResponse) {
 		// same as backend
-		throw error(response.status, `${jsonResponse.message}: ${jsonResponse.value}`);
+		throw error(response.status, `API error: ${jsonResponse.message}: ${jsonResponse.value}`);
 	}
 
 	/** @type {ResultType[]} */

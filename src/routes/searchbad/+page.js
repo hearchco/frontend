@@ -1,7 +1,7 @@
 import { browser } from '$app/environment';
 import { error } from '@sveltejs/kit';
 
-import { removeCatFromQuery } from '$lib/functions/query/removecat';
+import { getCategoryFromQuery, getQueryWithoutCategory } from '$lib/functions/query/category';
 import { concatSearchParams } from '$lib/functions/api/concatparams';
 import { fetchResults } from '$lib/functions/api/fetchresults';
 
@@ -15,7 +15,7 @@ import { CategoryEnum, toCategoryType } from '$lib/types/search/category';
  * @throws {Error} - If category is invalid
  */
 function getCategory(query, params) {
-	const categoryFromQuery = query.startsWith('!') ? query.split(' ')[0].slice(1) : '';
+	const categoryFromQuery = getCategoryFromQuery(query);
 	const categoryParam = params.get('category') ?? '';
 	const category =
 		categoryFromQuery !== ''
@@ -58,7 +58,7 @@ export async function load({ url, fetch }) {
 	const category = getCategory(query, url.searchParams);
 
 	// Remove category from query if it exists
-	const queryWithoutCategory = removeCatFromQuery(query);
+	const queryWithoutCategory = getQueryWithoutCategory(query);
 	if (queryWithoutCategory === '') {
 		// Bad Request
 		throw error(400, "Only category specified in 'q' parameter");
