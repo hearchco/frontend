@@ -68,7 +68,7 @@
 		<button
 			type="reset"
 			class:hidden={query === ''}
-			class="mx-1.5 max-[200px]:hidden text-neutral-500 hover:text-hearchco-primary hover:dark:text-hearchco-secondary duration-100 ease-in-out"
+			class="mx-1.5 max-5xs:hidden text-neutral-500 hover:text-hearchco-primary hover:dark:text-hearchco-secondary duration-100 ease-in-out"
 			onclick={handleReset}
 		>
 			<svg class="size-6" viewBox="0 0 512 512" aria-hidden="true">
@@ -86,7 +86,7 @@
 			type="submit"
 			name="category"
 			value={category}
-			class="shrink-0 h-full w-10 min-[320px]:w-16 sm:w-20 rounded-full text-hearchco-primary dark:text-hearchco-secondary hover:text-hearchco-secondary hover:dark:text-hearchco-primary hover:bg-hearchco-primary hover:dark:bg-hearchco-secondary duration-100 ease-in-out"
+			class="shrink-0 h-full w-10 3xs:w-16 sm:w-20 rounded-full text-hearchco-primary dark:text-hearchco-secondary hover:text-hearchco-secondary hover:dark:text-hearchco-primary hover:bg-hearchco-primary hover:dark:bg-hearchco-secondary duration-100 ease-in-out"
 		>
 			<svg class="mx-auto h-1/2 w-auto" viewBox="0 0 512 512" aria-hidden="true">
 				<path
@@ -117,7 +117,7 @@
 					value={cat}
 					class:border-hearchco-primary={cat === category}
 					class:dark:border-hearchco-secondary={cat === category}
-					class="px-3 pt-[10px] pb-[26px] capitalize border-b-2 hover:border-hearchco-primary hover:dark:border-hearchco-secondary duration-100 ease-in-out"
+					class="px-2 xs:px-3 pt-[10px] pb-[26px] capitalize border-b-2 hover:border-hearchco-primary hover:dark:border-hearchco-secondary duration-100 ease-in-out"
 				>
 					{cat}
 				</button>

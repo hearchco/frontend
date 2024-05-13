@@ -23,13 +23,13 @@
 	</p>
 	<a href="/" class="py-2 flex place-content-center items-center">
 		<img
-			class="max-[400px]:hidden size-20 -rotate-12 transform -scale-x-100"
+			class="max-2xs:hidden size-20 -rotate-12 transform -scale-x-100"
 			src={Logo}
 			alt="Hearchco Mirrored"
 		/>
 		<p class="px-3 text-xl italic hover:text-hearchco-primary hover:dark:text-hearchco-secondary">
 			Go back to homepage
 		</p>
-		<img class="max-[400px]:hidden size-20 rotate-12" src={Logo} alt="Hearchco" />
+		<img class="max-2xs:hidden size-20 rotate-12" src={Logo} alt="Hearchco" />
 	</a>
 </div>

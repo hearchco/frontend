@@ -22,7 +22,7 @@
 		ondblclick={swing}
 		class:animate-swing={easteregg}
 		class:animate-swing-infinite={loading && !easteregg}
-		class="size-24 min-[200px]:size-32 sm:size-40"
+		class="size-24 4xs:size-32 sm:size-40"
 		src={Logo}
 		alt="Hearchco"
 		draggable="false"

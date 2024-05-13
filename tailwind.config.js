@@ -30,6 +30,13 @@ export default {
 			gridTemplateColumns: {
 				fit: 'repeat(auto-fit, minmax(168px, 1fr))',
 				'sm-fit': 'repeat(auto-fit, minmax(28dvw, 1fr))'
+			},
+			screens: {
+				xs: '475px',
+				'2xs': '400px',
+				'3xs': '320px',
+				'4xs': '260px',
+				'5xs': '200px'
 			}
 		}
 	},
