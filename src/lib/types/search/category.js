@@ -7,8 +7,8 @@ export const CategoryEnum = {
 	GENERAL: 'general',
 	IMAGES: 'images',
 	QUICK: 'quick',
-	SCIENCE: 'science',
-	BROAD: 'broad'
+	THOROUGH: 'thorough',
+	SCIENCE: 'science'
 };
 
 /**
@@ -20,20 +20,24 @@ export function toCategoryType(category) {
 	switch (category) {
 		case 'general':
 			return CategoryEnum.GENERAL;
+		case 'normal':
+			return CategoryEnum.GENERAL;
 		case 'images':
+			return CategoryEnum.IMAGES;
+		case 'image':
 			return CategoryEnum.IMAGES;
 		case 'quick':
 			return CategoryEnum.QUICK;
 		case 'fast':
 			return CategoryEnum.QUICK;
+		case 'thorough':
+			return CategoryEnum.THOROUGH;
+		case 'slow':
+			return CategoryEnum.THOROUGH;
 		case 'science':
 			return CategoryEnum.SCIENCE;
 		case 'sci':
 			return CategoryEnum.SCIENCE;
-		case 'broad':
-			return CategoryEnum.BROAD;
-		case 'surf':
-			return CategoryEnum.BROAD;
 		default:
 			return undefined;
 	}

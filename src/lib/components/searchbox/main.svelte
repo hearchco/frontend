@@ -40,7 +40,7 @@
 
 <form
 	class:pt-5={category}
-	class="px-2 size-full"
+	class="px-1 size-full"
 	method="get"
 	action="/search"
 	onsubmit={handleSubmit}
@@ -108,7 +108,7 @@
 		</button>
 	</div>
 	{#if !homepage}
-		<div class="w-full h-5 flex gap-1">
+		<div class="w-full h-3 flex gap-1">
 			{#each Object.values(CategoryEnum) as cat}
 				<button
 					onclick={handleCategory}
@@ -117,7 +117,7 @@
 					value={cat}
 					class:border-hearchco-primary={cat === category}
 					class:dark:border-hearchco-secondary={cat === category}
-					class="px-3 pt-7 pb-6 capitalize border-b-2 hover:border-hearchco-primary hover:dark:border-hearchco-secondary duration-100 ease-in-out"
+					class="px-3 pt-[10px] pb-[26px] capitalize border-b-2 hover:border-hearchco-primary hover:dark:border-hearchco-secondary duration-100 ease-in-out"
 				>
 					{cat}
 				</button>
