@@ -18,7 +18,7 @@
 	let currentDesc = $derived(fullDesc ? result.description : shortDesc);
 </script>
 
-<article id="result-{result.rank}" class="overflow-hidden">
+<article id="result-{result.rank}" class="pt-2 overflow-hidden">
 	<a id="link-{result.rank}" href={result.url} rel="noreferrer">
 		{result.url}
 	</a>
@@ -49,13 +49,13 @@
 	{/if}
 	<p
 		id="description-{result.rank}"
-		class="my-1 text-justify text-sm text-neutral-600 dark:text-neutral-200"
+		class="py-1 text-justify text-sm text-neutral-600 dark:text-neutral-200"
 	>
 		{currentDesc}
 	</p>
 	<div
 		id="engines-{result.rank}"
-		class="my-2 text-right text-xs text-neutral-800 dark:text-neutral-400"
+		class="pb-2 text-right text-xs text-neutral-800 dark:text-neutral-400"
 	>
 		{#each result.engine_ranks as er (er.search_engine)}
 			<span class="mx-0.5">{er.search_engine}</span>
