@@ -21,7 +21,7 @@
 		id="results"
 		class="px-2 py-4 max-w-fit divide-y-2 divide-neutral-200 dark:divide-neutral-600"
 	>
-		{#each results as result, i (result.url)}
+		{#each results as result (result.url)}
 			<Single {result} />
 		{/each}
 	</section>
