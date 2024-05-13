@@ -6,7 +6,7 @@
 
 <ThemeToggle />
 
-<main class="min-h-[90dvh]">
+<main class="min-h-[90lvh]">
 	<!-- eslint-disable-next-line svelte/no-unused-svelte-ignore -->
 	<!-- svelte-ignore slot_element_deprecated -->
 	<slot />

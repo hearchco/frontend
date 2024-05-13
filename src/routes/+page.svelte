@@ -17,18 +17,18 @@
 
 <svelte:head><title>Hearchco</title></svelte:head>
 
-<div class="pt-36 flex place-content-center">
+<div class="pt-[20dvh] flex place-content-center">
 	<img
 		ondblclick={swing}
 		class:animate-swing={easteregg}
 		class:animate-swing-infinite={loading && !easteregg}
-		class="size-32 sm:size-40"
+		class="size-24 min-[200px]:size-32 sm:size-40"
 		src={Logo}
 		alt="Hearchco"
 		draggable="false"
 	/>
 </div>
 
-<div class="mx-auto py-8 max-w-screen-md">
+<div class="mx-auto pb-2 sm:pt-2 max-w-screen-md">
 	<Searchbox homepage={true} bind:loading />
 </div>
