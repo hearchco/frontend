@@ -24,8 +24,7 @@
 	// const maxPages = $derived(data.maxPages);
 	const category = $derived(data.category);
 	const results = $derived(data.results);
-	const timingRender = $derived(data.timing.render.end - data.timing.render.start);
-	const timingApi = $derived(data.timing.api.end - data.timing.api.start);
+	const timing = $derived(data.timing);
 
 	/** @type {ResultType | undefined} */
 	let imagePreview = $state(undefined);
@@ -41,7 +40,7 @@
 
 <Header bind:query {category} />
 {#if results.length !== 0}
-	<Stats numOfResults={results.length} {timingRender} {timingApi} />
+	<Stats numOfResults={results.length} {timing} />
 {/if}
 
 {#if results.length === 0}
