@@ -20,7 +20,7 @@
 	}}
 />
 
-<div id="image-preview-{result.rank}" class="px-4 pb-4 w-full lg:top-0 lg:sticky">
+<div id="image-preview-{result.rank}" class="px-4 lg:pr-0 pb-4 w-full lg:top-0 lg:sticky">
 	<div class="py-4 w-full flex justify-between items-start">
 		<a href={result.image_result.source_url}>
 			<h1
@@ -55,7 +55,7 @@
 				result.image_result.thumbnail_url_hash
 			)}
 			alt={result.title}
-			class="max-h-[40dvh] w-full object-contain bg-neutral-100 rounded-lg"
+			class="max-h-[40dvh] w-full object-contain bg-neutral-100 dark:bg-neutral-800 rounded-lg"
 		/>
 	</a>
 	<p
