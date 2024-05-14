@@ -2,16 +2,18 @@
 	/**
 	 * @typedef {object} Props
 	 * @property {number} numOfResults
-	 * @property {number} timing
+	 * @property {number} timingRender
+	 * @property {number} timingApi
 	 */
 
 	/** @type {Props} */
-	let { numOfResults, timing } = $props();
-	const timingString = $derived((timing / 1000).toFixed(2));
+	let { numOfResults, timingRender, timingApi } = $props();
+	const timingRenderString = $derived((timingRender / 1000).toFixed(2));
+	const timingApiString = $derived((timingApi / 1000).toFixed(2));
 </script>
 
 <div id="stats" class="mx-auto px-2 pt-2 max-w-screen-sm">
 	<p class="text-sm text-neutral-800 dark:text-neutral-400">
-		Hearched {numOfResults} results in {timingString}s 🐹
+		Hearched {numOfResults} results in {timingRenderString}s (API took {timingApiString}s) 🐹
 	</p>
 </div>
