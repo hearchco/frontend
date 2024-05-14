@@ -18,7 +18,7 @@
 	let currentDesc = $derived(fullDesc ? result.description : shortDesc);
 </script>
 
-<article id="result-{result.rank}" class="pt-2 overflow-hidden">
+<article id="result-{result.rank}" class="pt-2 break-words">
 	<a id="link-{result.rank}" href={result.url} rel="noreferrer">
 		{result.url}
 	</a>
