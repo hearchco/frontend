@@ -13,7 +13,7 @@
 	/** @type {Props} */
 	let {
 		homepage = false,
-		query = $bindable(''),
+		query = '',
 		category = CategoryEnum.GENERAL,
 		// eslint-disable-next-line no-unused-vars
 		loading = $bindable(false)

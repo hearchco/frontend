@@ -9,7 +9,7 @@
 	 */
 
 	/** @type {Props} */
-	let { query = $bindable(), category } = $props();
+	let { query, category } = $props();
 </script>
 
 <header class="border-b-2 border-neutral-100 dark:border-neutral-700">
@@ -17,7 +17,7 @@
 		<a href="/" class="hidden xs:block p-1" draggable="false">
 			<img class="size-[72px] pointer-events-none" src={Logo} alt="Hearchco" />
 		</a>
-		<Searchbox bind:query {category} />
+		<Searchbox {query} {category} />
 		<span class="max-sm:hidden size-20"></span>
 	</div>
 </header>

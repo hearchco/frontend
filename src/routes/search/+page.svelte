@@ -10,8 +10,7 @@
 
 	const javascript = $derived(data.browser);
 
-	const originalQuery = $derived(data.query);
-	let query = $state(data.query);
+	const query = $derived(data.query);
 	const title = $derived(
 		query === ''
 			? 'Hearchco Search'
@@ -38,7 +37,7 @@
 
 <svelte:head><title>{title}</title></svelte:head>
 
-<Header bind:query {category} />
+<Header {query} {category} />
 {#if results.length !== 0}
 	<Stats numOfResults={results.length} {timing} />
 {/if}
@@ -46,7 +45,7 @@
 {#if results.length === 0}
 	<Zero />
 {:else if toDisplayCategory(category) === CategoryEnum.IMAGES}
-	<Images {javascript} query={originalQuery} {category} {currentPage} {results} bind:imagePreview />
+	<Images {javascript} {query} {category} {currentPage} {results} bind:imagePreview />
 {:else}
-	<General {javascript} query={originalQuery} {category} {currentPage} {results} />
+	<General {javascript} {query} {category} {currentPage} {results} />
 {/if}
