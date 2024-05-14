@@ -1,6 +1,7 @@
 <script>
 	import { concatSearchParams } from '$lib/functions/api/concatparams';
 	import { fetchAdditionalResults } from '$lib/functions/api/additionalresults';
+	import { fetchResults } from '$lib/functions/api/fetchresults';
 
 	/**
 	 * @typedef {object} Props
@@ -25,7 +26,7 @@
 
 	async function preloadResults() {
 		const params = concatSearchParams({ q: query, category, start: nextPage.toString() });
-		await fetchAdditionalResults(results, params);
+		await fetchResults(params);
 	}
 </script>
 
