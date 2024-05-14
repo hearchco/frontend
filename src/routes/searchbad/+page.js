@@ -35,8 +35,6 @@ function getCategory(query, params) {
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {
-	const renderStart = Date.now();
-
 	// Get query, current page, and max pages from URL
 	const query = url.searchParams.get('q') ?? '';
 	const currentPage = parseInt(url.searchParams.get('start') ?? '1', 10);
@@ -75,9 +73,9 @@ export async function load({ url, fetch }) {
 	});
 
 	// Fetch results
-	const fetchStart = Date.now();
+	const timerStart = Date.now();
 	const results = await fetchResults(newSearchParams, fetch);
-	const fetchEnd = Date.now();
+	const timerEnd = Date.now();
 
 	return {
 		browser: browser,
@@ -86,15 +84,6 @@ export async function load({ url, fetch }) {
 		maxPages: maxPages,
 		category: category,
 		results: results,
-		timing: {
-			render: {
-				start: renderStart,
-				end: Date.now()
-			},
-			api: {
-				start: fetchStart,
-				end: fetchEnd
-			}
-		}
+		timing: timerEnd - timerStart
 	};
 }
