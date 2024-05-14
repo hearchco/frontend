@@ -28,7 +28,7 @@
 	>
 		<a href={result.url} rel="noreferrer">{result.title}</a>
 	</h1>
-	{#if shortDesc !== result.description}
+	{#if shortDesc.length < result.description.length}
 		<div class="flex place-content-end">
 			<button onclick={toggleDesc}>
 				<svg
