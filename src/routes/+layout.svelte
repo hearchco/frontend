@@ -1,14 +1,15 @@
-<script lang="ts">
-	// css
+<script>
 	import '../app.css';
-
-	// components
-	import { ModeWatcher } from 'mode-watcher';
-	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
-	import Footer from '$lib/components/Footer.svelte';
+	import ThemeToggle from '$lib/components/themetoggle/main.svelte';
+	import Footer from '$lib/components/footer/main.svelte';
 </script>
 
-<ModeWatcher />
-<DarkModeToggle />
-<slot />
+<ThemeToggle />
+
+<main class="min-h-[90lvh]">
+	<!-- eslint-disable-next-line svelte/no-unused-svelte-ignore -->
+	<!-- svelte-ignore slot_element_deprecated -->
+	<slot />
+</main>
+
 <Footer />

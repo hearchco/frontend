@@ -1,24 +1,34 @@
-<script lang="ts">
-	// components
-	import Logo from '$lib/components/Logo.svelte';
-	import Searchbox from '$lib/components/Searchbox.svelte';
+<script>
+	import Logo from '$lib/assets/logo.svg';
+	import { sleep } from '$lib/functions/sleep/sleep.js';
+	import Searchbox from '$lib/components/searchbox/main.svelte';
 
-	// types
-	import type { Snapshot } from './$types';
+	let loading = $state(false);
 
-	// variables
-	let query: string = '';
-
-	// snapshots
-	export const snapshot: Snapshot = {
-		capture: () => query,
-		restore: (value) => (query = value)
-	};
+	let easteregg = $state(false);
+	async function swing() {
+		if (!loading && !easteregg) {
+			easteregg = true;
+			await sleep(1500); // tailwindcss has this set for animation duration as well
+			easteregg = false;
+		}
+	}
 </script>
 
 <svelte:head><title>Hearchco</title></svelte:head>
 
-<div class="mx-4 mb-4 mt-36 min-w-fit">
-	<Logo classes="mx-auto h-40 w-40 mb-8" />
-	<div class="mx-auto max-w-screen-sm"><Searchbox bind:query homepage={true} /></div>
+<div class="pt-[20dvh] flex place-content-center">
+	<img
+		ondblclick={swing}
+		class:animate-swing={easteregg}
+		class:animate-swing-infinite={loading && !easteregg}
+		class="size-24 4xs:size-32 sm:size-40"
+		src={Logo}
+		alt="Hearchco"
+		draggable="false"
+	/>
+</div>
+
+<div class="mx-auto pb-2 sm:pt-2 max-w-screen-md">
+	<Searchbox homepage={true} bind:loading />
 </div>

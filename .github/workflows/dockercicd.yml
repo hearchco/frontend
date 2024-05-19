@@ -4,8 +4,6 @@ on:
   push:
     branches: ['main']
     tags: ['v*.*.*']
-  pull_request:
-    branches: ['main']
 
 env:
   REGISTRY: ghcr.io
@@ -21,21 +19,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # switch svelte.config.js to node
-      - run: make node
-
-      # install deps (using pnpm until bun fixes bug for static assets)
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
         with:
           version: 8
+          run_install: false
+
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: 'pnpm'
-      - run: make install
+          cache: 'pnpm' # must be preinstalled
 
-      # build project
+      # switch svelte.config.js to use node adapter
+      - run: make node
+
+      # install dependencies and build
+      - run: make install
       - run: make compile
+
+      # run tests
+      - run: make check
+      - run: make lint
+      - run: make test
 
       # setup docker (arm64)
       - uses: docker/setup-qemu-action@v3
