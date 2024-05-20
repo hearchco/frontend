@@ -7,6 +7,25 @@
 	/** @type {Props} */
 	let { result } = $props();
 
+	/**
+	 * @param {string} urll
+	 * @returns {string}
+	 */
+	function getOriginUrl(urll) {
+		// match only a single '/'
+		/** @type {RegExp} */
+		const pattern = RegExp('(?<!/)/(?!/)');
+		return urll.split(pattern, 1)[0];
+	}
+
+	/**
+	 * @param {string} urll
+	 * @returns {string}
+	 */
+	function getFaviconUrl(urll) {
+		return `${getOriginUrl(urll)}/favicon.ico`;
+	}
+
 	const shortDesc =
 		result.description.length > 500 ? result.description.slice(0, 497) + '...' : result.description;
 
@@ -22,12 +41,15 @@
 	<a id="link-{result.rank}" href={result.url} rel="noreferrer">
 		{result.url}
 	</a>
-	<h1
-		id="title-{result.rank}"
-		class="text-xl text-hearchco-primary dark:text-hearchco-secondary hover:underline"
-	>
-		<a href={result.url} rel="noreferrer">{result.title}</a>
-	</h1>
+	<a href={result.url} rel="noreferrer" class="flex">
+		<img class="mt-[6px] max-h-4 max-w-4 object-contain" src={getFaviconUrl(result.url)} alt=" " />
+		<h1
+			id="title-{result.rank}"
+			class="text-xl text-hearchco-primary dark:text-hearchco-secondary hover:underline"
+		>
+			{result.title}
+		</h1>
+	</a>
 	{#if shortDesc.length < result.description.length}
 		<div class="flex place-content-end">
 			<button onclick={toggleDesc}>
