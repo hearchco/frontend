@@ -44,7 +44,9 @@
 		{result.url}
 	</a>
 	<a class="flex" href={result.url} rel="noreferrer">
-		<div class="max-5xs:hidden mt-1.5 mr-1.5 min-w-4 min-h-4 size-4 dark:bg-neutral-700 rounded-md">
+		<div
+			class="max-5xs:hidden mt-1.5 mr-1.5 min-w-4 min-h-4 size-4 bg-neutral-100 dark:bg-neutral-700 rounded-md overflow-hidden"
+		>
 			<object
 				class="size-full object-contain"
 				data={getFaviconUrl(result.url)}
