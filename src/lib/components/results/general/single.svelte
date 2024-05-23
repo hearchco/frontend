@@ -1,4 +1,6 @@
 <script>
+	import Logo from '$lib/assets/logo.svg';
+
 	/**
 	 * @typedef {object} Props
 	 * @property {ResultType} result
@@ -42,7 +44,14 @@
 		{result.url}
 	</a>
 	<a href={result.url} rel="noreferrer" class="flex">
-		<img class="mt-[6px] max-h-4 max-w-4 object-contain" src={getFaviconUrl(result.url)} alt=" " />
+		<object
+			class="mt-[6px] mr-1 size-4 object-contain dark:bg-neutral-700 rounded-md"
+			data={getFaviconUrl(result.url)}
+			type="image/x-icon"
+			title={result.title}
+		>
+			<img class="rotate-180" src={Logo} alt="" />
+		</object>
 		<h1
 			id="title-{result.rank}"
 			class="text-xl text-hearchco-primary dark:text-hearchco-secondary hover:underline"
