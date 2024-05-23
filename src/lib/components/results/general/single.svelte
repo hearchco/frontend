@@ -43,15 +43,19 @@
 	<a id="link-{result.rank}" href={result.url} rel="noreferrer">
 		{result.url}
 	</a>
-	<a href={result.url} rel="noreferrer" class="flex">
-		<object
-			class="mt-[6px] mr-1 size-4 object-contain dark:bg-neutral-700 rounded-md"
-			data={getFaviconUrl(result.url)}
-			type="image/x-icon"
-			title={result.title}
+	<a class="flex" href={result.url} rel="noreferrer">
+		<div
+			class="max-5xs:hidden mt-1.5 mr-1.5 min-w-4 min-h-4 size-4 bg-neutral-100 dark:bg-neutral-700 rounded-md overflow-hidden"
 		>
-			<img class="rotate-180" src={Logo} alt="" />
-		</object>
+			<object
+				class="size-full object-contain"
+				data={getFaviconUrl(result.url)}
+				type="image/x-icon"
+				title={result.title}
+			>
+				<img class="size-full object-contain" src={Logo} alt="" />
+			</object>
+		</div>
 		<h1
 			id="title-{result.rank}"
 			class="text-xl text-hearchco-primary dark:text-hearchco-secondary hover:underline"
