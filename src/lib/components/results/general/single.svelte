@@ -9,25 +9,6 @@
 	/** @type {Props} */
 	let { result } = $props();
 
-	/**
-	 * @param {string} urll
-	 * @returns {string}
-	 */
-	function getOriginUrl(urll) {
-		// match only a single '/'
-		/** @type {RegExp} */
-		const pattern = RegExp('(?<!/)/(?!/)');
-		return urll.split(pattern, 1)[0];
-	}
-
-	/**
-	 * @param {string} urll
-	 * @returns {string}
-	 */
-	function getFaviconUrl(urll) {
-		return `${getOriginUrl(urll)}/favicon.ico`;
-	}
-
 	const shortDesc =
 		result.description.length > 500 ? result.description.slice(0, 497) + '...' : result.description;
 
@@ -47,14 +28,14 @@
 		<div
 			class="max-5xs:hidden mt-1.5 mr-1.5 min-w-4 min-h-4 size-4 bg-neutral-100 dark:bg-neutral-700 rounded-md overflow-hidden"
 		>
-			<object
+			<!-- <object
 				class="size-full object-contain"
 				data={getFaviconUrl(result.url)}
 				type="image/x-icon"
 				title={result.title}
-			>
-				<img class="size-full object-contain" src={Logo} alt="" />
-			</object>
+			> -->
+			<img class="size-full object-contain" src={Logo} alt="" />
+			<!-- </object> -->
 		</div>
 		<h1
 			id="title-{result.rank}"
