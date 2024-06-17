@@ -12,8 +12,8 @@ devDependencies:
     specifier: ^1.44.1
     version: 1.44.1
   '@sveltejs/adapter-node':
-    specifier: ^5.1.0
-    version: 5.1.0(@sveltejs/kit@2.5.11)
+    specifier: ^5.1.1
+    version: 5.1.1(@sveltejs/kit@2.5.11)
   '@sveltejs/kit':
     specifier: ^2.5.11
     version: 2.5.11(@sveltejs/vite-plugin-svelte@3.1.1)(svelte@5.0.0-next.155)(vite@5.3.1)
@@ -843,8 +843,8 @@ packages:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
 
-  /@sveltejs/adapter-node@5.1.0(@sveltejs/kit@2.5.11):
-    resolution: {integrity: sha512-1tjcWgzawWVXlCUy71gSk9zdmG9QG3/jGH2UAk2wEov3UEmFGPCvZ5dlNHO4S4XNHcjVYdzh/81wzmtXf0E15A==}
+  /@sveltejs/adapter-node@5.1.1(@sveltejs/kit@2.5.11):
+    resolution: {integrity: sha512-BQYLa9aWrL8D367p/NgSkDA58QOkoxoYs8HD7exYciAhyKx83LfF6QN8w+Uidg+H9ZX4nib7Fg0yDOKaxT4mxw==}
     peerDependencies:
       '@sveltejs/kit': ^2.4.0
     dependencies:
@@ -1809,18 +1809,6 @@ packages:
       is-glob: 4.0.3
     dev: true
 
-  /glob@10.3.12:
-    resolution: {integrity: sha512-TCNv8vJ+xz4QiqTpfOJA7HvYv+tNIRHKfUWw/q+v2jdgN4ebz+KY9tGx5J4rHP0o84mNP+ApH66HRX8us3Khqg==}
-    engines: {node: '>=16 || 14 >=14.17'}
-    hasBin: true
-    dependencies:
-      foreground-child: 3.1.1
-      jackspeak: 2.3.6
-      minimatch: 9.0.4
-      minipass: 7.1.0
-      path-scurry: 1.10.2
-    dev: true
-
   /glob@10.4.1:
     resolution: {integrity: sha512-2jelhlq3E4ho74ZyVLN03oKdAZVUa6UDZzFLVH1H7dnoax+y9qyaq8zBkfDIggjniU19z0wU18y16jMB2eyVIw==}
     engines: {node: '>=16 || 14 >=14.18'}
@@ -2054,15 +2042,6 @@ packages:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
 
-  /jackspeak@2.3.6:
-    resolution: {integrity: sha512-N3yCS/NegsOBokc8GAdM8UcmfsKiSS8cipheD/nivzr700H+nsMOxJjQnvwOcRYVuFkdH0wGUvW2WbXGmrZGbQ==}
-    engines: {node: '>=14'}
-    dependencies:
-      '@isaacs/cliui': 8.0.2
-    optionalDependencies:
-      '@pkgjs/parseargs': 0.11.0
-    dev: true
-
   /jackspeak@3.4.0:
     resolution: {integrity: sha512-JVYhQnN59LVPFCEcVa2C3CrEKYacvjRfqIQl+h8oi91aLYQVWRYbxjPcv1bUiUy/kLmQaANrYfNMCO3kuEDHfw==}
     engines: {node: '>=14'}
@@ -2226,11 +2205,6 @@ packages:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
 
-  /minipass@7.1.0:
-    resolution: {integrity: sha512-oGZRv2OT1lO2UF1zUcwdTb3wqUwI0kBGTgt/T7OdSj6M6N5m3o5uPf0AIW6lVxGGoiWUR7e2AwTE+xiwK8WQig==}
-    engines: {node: '>=16 || 14 >=14.17'}
-    dev: true
-
   /minipass@7.1.2:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -2390,14 +2364,6 @@ packages:
 
   /path-parse@1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
-    dev: true
-
-  /path-scurry@1.10.2:
-    resolution: {integrity: sha512-7xTavNy5RQXnsjANvVvMkEjvloOinkAjv/Z6Ildz9v2RinZ4SBKTWFOVRbaF8p0vpHnyjV/UwNDdKuUv6M5qcA==}
-    engines: {node: '>=16 || 14 >=14.17'}
-    dependencies:
-      lru-cache: 10.2.2
-      minipass: 7.1.0
     dev: true
 
   /path-scurry@1.11.1:
@@ -2859,7 +2825,7 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
       commander: 4.1.1
-      glob: 10.3.12
+      glob: 10.4.1
       lines-and-columns: 1.2.4
       mz: 2.7.0
       pirates: 4.0.6
