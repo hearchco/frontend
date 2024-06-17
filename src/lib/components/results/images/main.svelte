@@ -35,12 +35,8 @@
 		>
 			{#each results as result (result.url)}
 				<div
-					class:row-span-2={(result.image_result.thumbnail.height * 0.8) /
-						result.image_result.thumbnail.width >
-						1}
-					class:col-span-2={result.image_result.thumbnail.height /
-						(result.image_result.thumbnail.width * 0.64) <
-						1}
+					class:row-span-2={(result.thumbnail.height * 0.8) / result.thumbnail.width > 1}
+					class:col-span-2={result.thumbnail.height / (result.thumbnail.width * 0.64) < 1}
 					class="flex-none"
 				>
 					<Single {result} bind:imagePreview />

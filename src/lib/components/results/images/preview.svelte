@@ -22,7 +22,7 @@
 
 <div id="image-preview-{result.rank}" class="px-4 lg:pr-0 pb-4 w-full lg:top-0 lg:sticky">
 	<div class="py-4 w-full flex justify-between items-start">
-		<a href={result.image_result.source_url}>
+		<a href={result.source_url}>
 			<h1
 				id="title-{result.rank}"
 				class="text-xl text-hearchco-primary dark:text-hearchco-secondary hover:underline"
@@ -50,10 +50,7 @@
 	<a href={result.url}>
 		<img
 			id="link-{result.rank}"
-			src={proxyImageLink(
-				result.image_result.thumbnail_url,
-				result.image_result.thumbnail_url_hash
-			)}
+			src={proxyImageLink(result.thumbnail_url, result.thumbnail_url_hash)}
 			alt={result.title}
 			class="max-h-[40dvh] w-full object-contain bg-neutral-100 dark:bg-neutral-800 rounded-lg"
 		/>
