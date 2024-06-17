@@ -9,6 +9,8 @@
 	/** @type {Props} */
 	let { result } = $props();
 
+	// const favicon = result.favicon && result.favicon != '' ? result.favicon : Logo;
+
 	const shortDesc =
 		result.description.length > 500 ? result.description.slice(0, 497) + '...' : result.description;
 
@@ -25,22 +27,15 @@
 		{result.url}
 	</a>
 	<a class="flex" href={result.url} rel="noreferrer">
-		<div
-			class="max-5xs:hidden mt-1.5 mr-1.5 min-w-4 min-h-4 size-4 bg-neutral-100 dark:bg-neutral-700 rounded-md overflow-hidden"
-		>
-			<!-- <object
-				class="size-full object-contain"
-				data={getFaviconUrl(result.url)}
-				type="image/x-icon"
-				title={result.title}
-			> -->
-			<img class="size-full object-contain" src={Logo} alt="" />
-			<!-- </object> -->
-		</div>
 		<h1
 			id="title-{result.rank}"
 			class="text-xl text-hearchco-primary dark:text-hearchco-secondary hover:underline"
 		>
+			<div
+				class="max-5xs:hidden inline-block align-middle mb-0.5 mr-0.5 size-5 bg-neutral-100 dark:bg-neutral-700 rounded-md overflow-hidden"
+			>
+				<img class="p-[1px] size-full object-contain" src={Logo} alt="" />
+			</div>
 			{result.title}
 		</h1>
 	</a>
