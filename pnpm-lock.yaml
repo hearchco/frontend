@@ -7,16 +7,16 @@ settings:
 devDependencies:
   '@hearchco/sveltekit-adapter-aws':
     specifier: github:hearchco/sveltekit-adapter-aws#v0.1.2
-    version: github.com/hearchco/sveltekit-adapter-aws/27cc91cc39f845ef101845bcc95750c4c5b25a40(@sveltejs/kit@2.5.11)
+    version: github.com/hearchco/sveltekit-adapter-aws/27cc91cc39f845ef101845bcc95750c4c5b25a40(@sveltejs/kit@2.5.16)
   '@playwright/test':
     specifier: ^1.44.1
     version: 1.44.1
   '@sveltejs/adapter-node':
     specifier: ^5.1.1
-    version: 5.1.1(@sveltejs/kit@2.5.11)
+    version: 5.1.1(@sveltejs/kit@2.5.16)
   '@sveltejs/kit':
-    specifier: ^2.5.11
-    version: 2.5.11(@sveltejs/vite-plugin-svelte@3.1.1)(svelte@5.0.0-next.155)(vite@5.3.1)
+    specifier: ^2.5.16
+    version: 2.5.16(@sveltejs/vite-plugin-svelte@3.1.1)(svelte@5.0.0-next.155)(vite@5.3.1)
   '@sveltejs/vite-plugin-svelte':
     specifier: ^3.1.1
     version: 3.1.1(svelte@5.0.0-next.155)(vite@5.3.1)
@@ -636,7 +636,7 @@ packages:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
 
-  /@sveltejs/adapter-node@5.1.1(@sveltejs/kit@2.5.11):
+  /@sveltejs/adapter-node@5.1.1(@sveltejs/kit@2.5.16):
     resolution: {integrity: sha512-BQYLa9aWrL8D367p/NgSkDA58QOkoxoYs8HD7exYciAhyKx83LfF6QN8w+Uidg+H9ZX4nib7Fg0yDOKaxT4mxw==}
     peerDependencies:
       '@sveltejs/kit': ^2.4.0
@@ -644,12 +644,12 @@ packages:
       '@rollup/plugin-commonjs': 26.0.1(rollup@4.17.2)
       '@rollup/plugin-json': 6.1.0(rollup@4.17.2)
       '@rollup/plugin-node-resolve': 15.2.3(rollup@4.17.2)
-      '@sveltejs/kit': 2.5.11(@sveltejs/vite-plugin-svelte@3.1.1)(svelte@5.0.0-next.155)(vite@5.3.1)
+      '@sveltejs/kit': 2.5.16(@sveltejs/vite-plugin-svelte@3.1.1)(svelte@5.0.0-next.155)(vite@5.3.1)
       rollup: 4.17.2
     dev: true
 
-  /@sveltejs/kit@2.5.11(@sveltejs/vite-plugin-svelte@3.1.1)(svelte@5.0.0-next.155)(vite@5.3.1):
-    resolution: {integrity: sha512-zsx/wI8/z0pvoJkKg0pxFpfYR/DgIxJyik7BemLSYd4n9GO4R/GJQ4zMVg27VjJtxnyWh3SDptL2CDomQctUpg==}
+  /@sveltejs/kit@2.5.16(@sveltejs/vite-plugin-svelte@3.1.1)(svelte@5.0.0-next.155)(vite@5.3.1):
+    resolution: {integrity: sha512-09Ypy+ibuhTCTpRFRnR+cDI3VARiu16o7vVSjETAA43ZCLtqvrNrVxUkJ/fKHrAjx2peKWilcHE8+SbW2Z/AsQ==}
     engines: {node: '>=18.13'}
     hasBin: true
     requiresBuild: true
@@ -3091,7 +3091,7 @@ packages:
     resolution: {integrity: sha512-rAbqEGa8ovJy4pyBxZM70hg4pE6gDgaQ0Sl9M3enG3I0d6H4XSAM3GeNGLKnsBpuijUow064sf7ww1nutC5/3w==}
     dev: true
 
-  github.com/hearchco/sveltekit-adapter-aws/27cc91cc39f845ef101845bcc95750c4c5b25a40(@sveltejs/kit@2.5.11):
+  github.com/hearchco/sveltekit-adapter-aws/27cc91cc39f845ef101845bcc95750c4c5b25a40(@sveltejs/kit@2.5.16):
     resolution: {tarball: https://codeload.github.com/hearchco/sveltekit-adapter-aws/tar.gz/27cc91cc39f845ef101845bcc95750c4c5b25a40}
     id: github.com/hearchco/sveltekit-adapter-aws/27cc91cc39f845ef101845bcc95750c4c5b25a40
     name: '@hearchco/sveltekit-adapter-aws'
@@ -3099,7 +3099,7 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^2.0.0
     dependencies:
-      '@sveltejs/kit': 2.5.11(@sveltejs/vite-plugin-svelte@3.1.1)(svelte@5.0.0-next.155)(vite@5.3.1)
+      '@sveltejs/kit': 2.5.16(@sveltejs/vite-plugin-svelte@3.1.1)(svelte@5.0.0-next.155)(vite@5.3.1)
       aws-sdk: 2.1642.0
       esbuild: 0.21.5
     dev: true
