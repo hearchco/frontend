@@ -37,10 +37,7 @@
 		<img
 			id="img-{result.rank}"
 			class="size-full object-cover object-center"
-			src={proxyImageLink(
-				result.image_result.thumbnail_url,
-				result.image_result.thumbnail_url_hash
-			)}
+			src={proxyImageLink(result.thumbnail_url, result.thumbnail_url_hash)}
 			alt={result.title}
 			{loading}
 		/>
