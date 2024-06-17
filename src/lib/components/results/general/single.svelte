@@ -9,7 +9,7 @@
 	/** @type {Props} */
 	let { result } = $props();
 
-	const favicon = result.favicon && result.favicon != '' ? result.favicon : Logo;
+	// const favicon = result.favicon && result.favicon != '' ? result.favicon : Logo;
 
 	const shortDesc =
 		result.description.length > 500 ? result.description.slice(0, 497) + '...' : result.description;
@@ -34,7 +34,7 @@
 			<div
 				class="max-5xs:hidden inline-block align-middle mb-0.5 mr-0.5 size-5 bg-neutral-100 dark:bg-neutral-700 rounded-md overflow-hidden"
 			>
-				<img class="p-[1px] size-full object-contain" src={favicon} alt="" />
+				<img class="p-[1px] size-full object-contain" src={Logo} alt="" />
 			</div>
 			{result.title}
 		</h1>
