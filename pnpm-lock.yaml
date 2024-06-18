@@ -36,8 +36,8 @@ devDependencies:
     specifier: ^2.39.4
     version: 2.39.4(eslint@9.5.0)(svelte@5.0.0-next.155)
   globals:
-    specifier: ^15.5.0
-    version: 15.5.0
+    specifier: ^15.6.0
+    version: 15.6.0
   postcss:
     specifier: ^8.4.38
     version: 8.4.38
@@ -1600,8 +1600,8 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /globals@15.5.0:
-    resolution: {integrity: sha512-r7/9tQj5RylGxt/BKGv0D2SvehYvRFYg4ukSNk+EuZxvWI7uK/MJFmOCLq8aKvgh3EVBYFbBlOMAtaITXZr80w==}
+  /globals@15.6.0:
+    resolution: {integrity: sha512-UzcJi88Hw//CurUIRa9Jxb0vgOCcuD/MNjwmXp633cyaRKkCWACkoqHCtfZv43b1kqXGg/fpOa8bwgacCeXsVg==}
     engines: {node: '>=18'}
     dev: true
 
