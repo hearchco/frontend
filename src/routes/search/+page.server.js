@@ -73,15 +73,22 @@ export async function load({ url, fetch }) {
 
 	// Fetch results
 	const timerStart = Date.now();
-	const results = await fetchResults(newSearchParams, fetch);
+	const res = await fetchResults(newSearchParams, fetch);
 	const timerEnd = Date.now();
 
+	/** @type {TimingType} */
+	const timing = {
+		fetch: timerEnd - timerStart,
+		scrape: res.duration
+	};
+
 	return {
+		apiVersion: res.version,
 		query: queryWithoutCategory,
 		currentPage: currentPage,
 		maxPages: maxPages,
 		category: category,
-		results: results,
-		timing: timerEnd - timerStart
+		results: res.results,
+		timing: timing
 	};
 }

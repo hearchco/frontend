@@ -4,7 +4,7 @@ import { createApiUrl } from '$lib/functions/api/createurl.js';
 /**
  * @param {URLSearchParams} params
  * @param {typeof fetch} [fetcher]
- * @returns {Promise<ResultType[]>}
+ * @returns {Promise<ResultsResponseType>}
  */
 export async function fetchResults(params, fetcher = fetch) {
 	/** @type {URL} */
@@ -31,7 +31,7 @@ export async function fetchResults(params, fetcher = fetch) {
 		throw error(502, `Failed to fetch results: ${err.message}`);
 	}
 
-	/** @type {ResultType[] | ErrorResponseType} */
+	/** @type {ResultsResponseType | ErrorResponseType} */
 	let jsonResponse;
 	try {
 		jsonResponse = await response.json();
@@ -45,8 +45,8 @@ export async function fetchResults(params, fetcher = fetch) {
 		throw error(response.status, `API error: ${jsonResponse.message}: ${jsonResponse.value}`);
 	}
 
-	/** @type {ResultType[]} */
-	const results = jsonResponse;
+	/** @type {ResultsResponseType} */
+	const resultsResponse = jsonResponse;
 
-	return results;
+	return resultsResponse;
 }
