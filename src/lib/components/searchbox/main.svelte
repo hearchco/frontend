@@ -15,7 +15,6 @@
 		homepage = false,
 		query = '',
 		category = CategoryEnum.GENERAL,
-		// eslint-disable-next-line no-unused-vars
 		loading = $bindable(false)
 	} = $props();
 

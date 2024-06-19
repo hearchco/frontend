@@ -8,7 +8,6 @@
 	 */
 
 	/** @type {Props} */
-	// eslint-disable-next-line no-unused-vars
 	let { result, imagePreview = $bindable() } = $props();
 </script>
 
