@@ -77,7 +77,6 @@ export async function load({ url, fetch }) {
 
 	return {
 		browser: browser,
-		apiVersion: resp.version,
 		query: queryWithoutCategory,
 		currentPage: currentPage,
 		maxPages: maxPages,

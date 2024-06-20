@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      PUBLIC_UI_VERSION: ${{ github.sha }}
 
     steps:
       - uses: actions/checkout@v4
