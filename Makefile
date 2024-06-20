@@ -1,6 +1,9 @@
 install:
 	pnpm install --frozen-lockfile
 
+update:
+	pnpm update
+
 dev:
 	pnpm run dev
 
