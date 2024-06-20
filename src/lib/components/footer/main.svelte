@@ -1,13 +1,12 @@
 <script>
 	/**
 	 * @typedef {object} Props
+	 * @property {string} uiVersion
 	 * @property {string} apiVersion
 	 */
 
 	/** @type {Props} */
-	let { apiVersion } = $props();
-
-	const apiVersionWOSemicolon = $derived(apiVersion.replace(/\;$/, ''));
+	let { uiVersion, apiVersion } = $props();
 </script>
 
 <footer class="h-[10lvh] w-full border-t-2 border-neutral-100 dark:border-neutral-700">
@@ -18,8 +17,8 @@
 		>
 			Source code
 		</a>
-		<p class="text-neutral-600 dark:text-neutral-300 font-light">
-			Agent version: {apiVersionWOSemicolon}
+		<p class="text-sm text-neutral-600 dark:text-neutral-300 font-light">
+			UI ver: {uiVersion.replace(/\;$/, '')} | Agent ver: {apiVersion.replace(/\;$/, '')}
 		</p>
 	</div>
 </footer>

@@ -5,6 +5,7 @@
 	import Footer from '$lib/components/footer/main.svelte';
 
 	let { data } = $props();
+	const uiVersion = $derived(data.uiVersion);
 	const apiVersion = $derived(data.apiVersion);
 </script>
 
@@ -18,4 +19,4 @@
 	<slot />
 </main>
 
-<Footer {apiVersion} />
+<Footer {uiVersion} {apiVersion} />

@@ -35,6 +35,8 @@ jobs:
       # install dependencies and build
       - run: make install
       - run: make compile
+        env:
+          PUBLIC_UI_VERSION: ${{ github.ref }}
 
       # run tests
       - run: make check
