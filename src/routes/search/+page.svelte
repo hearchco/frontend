@@ -23,7 +23,7 @@
 	// const maxPages = $derived(data.maxPages);
 	const category = $derived(data.category);
 	const results = $derived(data.results);
-	const timing = $derived(data.timing);
+	const duration = $derived(data.duration);
 
 	/** @type {ResultType | undefined} */
 	let imagePreview = $state(undefined);
@@ -39,7 +39,7 @@
 
 <Header {query} {category} />
 {#if results.length !== 0}
-	<Stats numOfResults={results.length} {timing} />
+	<Stats numOfResults={results.length} {duration} />
 {/if}
 
 {#if results.length === 0}
