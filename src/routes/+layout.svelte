@@ -3,6 +3,9 @@
 	import Preconnect from '$lib/components/preconnect/main.svelte';
 	import ThemeToggle from '$lib/components/themetoggle/main.svelte';
 	import Footer from '$lib/components/footer/main.svelte';
+
+	let { data } = $props();
+	const apiVersion = $derived(data.apiVersion);
 </script>
 
 <Preconnect />
@@ -15,4 +18,4 @@
 	<slot />
 </main>
 
-<Footer />
+<Footer {apiVersion} />

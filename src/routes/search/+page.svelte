@@ -9,7 +9,6 @@
 	let { data } = $props();
 
 	const javascript = $derived(data.browser);
-
 	const query = $derived(data.query);
 	const title = $derived(
 		query === ''
@@ -18,7 +17,6 @@
 				? `${query} | Hearchco Search`
 				: `${query.slice(0, 15)}... | Hearchco Search`
 	);
-
 	const currentPage = $derived(data.currentPage);
 	// const maxPages = $derived(data.maxPages);
 	const category = $derived(data.category);
