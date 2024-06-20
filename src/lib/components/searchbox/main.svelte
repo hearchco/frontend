@@ -22,7 +22,7 @@
 	function handleSubmit(e) {
 		if (query === '') {
 			e.preventDefault();
-		} else {
+		} else if (!loading) {
 			loading = true;
 		}
 	}
