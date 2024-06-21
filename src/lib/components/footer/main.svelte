@@ -18,7 +18,7 @@
 			Source code
 		</a>
 		<p class="text-sm text-neutral-600 dark:text-neutral-300 font-light">
-			UI ver: {uiVersion} | Agent ver: {apiVersion.replace(/;$/, '')}
+			UI ver: {uiVersion} | Agent ver: {apiVersion}
 		</p>
 	</div>
 </footer>
