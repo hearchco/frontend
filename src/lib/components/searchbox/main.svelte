@@ -1,6 +1,7 @@
 <script>
 	import { CategoryEnum } from '$lib/types/search/category';
 	import { getQueryWithoutCategory } from '$lib/functions/query/category';
+	import Suggestions from './suggestions.svelte';
 
 	/**
 	 * @typedef {object} Props
@@ -106,6 +107,9 @@
 			</svg>
 		</button>
 	</div>
+
+	<Suggestions {query} />
+
 	{#if !homepage}
 		<div class="w-full h-3 flex gap-1">
 			{#each Object.values(CategoryEnum) as cat}

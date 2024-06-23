@@ -1,5 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/public';
+import { createApiUrl } from '$lib/functions/api/createurl';
 
 const opensearchType = 'application/opensearchdescription+xml';
 
@@ -48,7 +49,7 @@ function getOpensearchXml(opensearchMethod) {
 	const instanceUrl = getInstanceUrl();
 	const searchUrl = getSearchUrl();
 	const faviconUrl = getFaviconUrl();
-	// TODO: const suggestionsUrl = getSuggestionsUrl();
+	const suggestionsUrl = getSuggestionsUrl();
 
 	const searchUrlTag =
 		opensearchMethod === 'GET'
@@ -58,8 +59,15 @@ function getOpensearchXml(opensearchMethod) {
 				<Param name="q" value="{searchTerms}" />
 			</Url>
 			`;
+	const suggestionsUrlTag =
+		opensearchMethod === 'GET'
+			? `<Url rel="suggestions" type="application/x-suggestions+json" template="${suggestionsUrl}?q={searchTerms}" />`
+			: `
+			<Url rel="suggestions" type="application/x-suggestions+json" template="${suggestionsUrl}">
+				<Param name="q" value="{searchTerms}" />
+			</Url>
+			`;
 
-	// TODO: <Url rel="suggestions" type="application/x-suggestions+json" method="{{ opensearch_method }}" template="{{ url_for('autocompleter', _external=True) }}?q={searchTerms}"/>
 	const body = `
 <?xml version="1.0" encoding="utf-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
@@ -68,6 +76,7 @@ function getOpensearchXml(opensearchMethod) {
 	<InputEncoding>UTF-8</InputEncoding>
 	<Image width="${faviconSize}" height="${faviconSize}" type="${faviconType}">${faviconUrl}</Image>
 	${searchUrlTag}
+	${suggestionsUrlTag}
 	<Url rel="self" type="application/opensearchdescription+xml" method="${opensearchMethod}" template="${instanceUrl}opensearch.xml" />
 	<Query role="example" searchTerms="Hearchco" />
 	<moz:SearchForm>${searchUrl}</moz:SearchForm>
@@ -100,7 +109,7 @@ function getFaviconUrl() {
 	return `${instanceUrl}favicon.ico`;
 }
 
-// function getSuggestionsUrl() {
-// 	const instanceUrl = getInstanceUrl();
-// 	return `${instanceUrl}suggestions`;
-// }
+/** @returns {string} */
+function getSuggestionsUrl() {
+	return createApiUrl('suggestions').toString();
+}

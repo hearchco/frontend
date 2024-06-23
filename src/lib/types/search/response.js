@@ -12,3 +12,9 @@
  * @property {number} duration - The duration of the search in milliseconds.
  * @property {ResultType[]} results - The search results.
  */
+
+/**
+ * @typedef {Array<string|string[]>} SuggestionsResponseType
+ * @property {string} 0 - The first element is a string.
+ * @property {string[]} 1 - The second element is an array of strings.
+ */
