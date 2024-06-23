@@ -14,7 +14,8 @@
  */
 
 /**
- * @typedef {Array<string|string[]>} SuggestionsResponseType
- * @property {string} 0 - The first element is a string.
- * @property {string[]} 1 - The second element is an array of strings.
+ * @typedef {Object} SuggestionsResponseType
+ * @property {string} version - The version of the API.
+ * @property {number} duration - The duration of the search in milliseconds.
+ * @property {SuggestionType[]} suggestions - The suggestions.
  */

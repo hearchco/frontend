@@ -4,7 +4,7 @@ import { createApiUrl } from '$lib/functions/api/createurl.js';
 /**
  * @param {string} query
  * @param {typeof fetch} [fetcher]
- * @returns {Promise<string[]>}
+ * @returns {Promise<SuggestionType[]>}
  */
 export async function fetchSuggestions(query, fetcher = fetch) {
 	/** @type {URLSearchParams} */
@@ -34,7 +34,7 @@ export async function fetchSuggestions(query, fetcher = fetch) {
 		throw error(502, `Failed to fetch suggestions: ${err.message}`);
 	}
 
-	/** @type {any[] | ErrorResponseType} */
+	/** @type {SuggestionsResponseType | ErrorResponseType} */
 	let jsonResponse;
 	try {
 		jsonResponse = await response.json();
@@ -46,19 +46,10 @@ export async function fetchSuggestions(query, fetcher = fetch) {
 	if ('message' in jsonResponse && 'value' in jsonResponse) {
 		// same as backend
 		throw error(response.status, `API error: ${jsonResponse.message}: ${jsonResponse.value}`);
-	} else if (!Array.isArray(jsonResponse) || jsonResponse.length !== 2) {
-		// Bad Gateway
-		throw error(502, `API error: Unexpected response format: not an array of length 2`);
-	} else if (typeof jsonResponse[0] !== 'string' || !Array.isArray(jsonResponse[1])) {
-		// Bad Gateway
-		throw error(502, `API error: Unexpected response format: not a string followed by an array`);
-	} else if (!jsonResponse[1].every((item) => typeof item === 'string')) {
-		// Bad Gateway
-		throw error(502, `API error: Unexpected response format: array contains non-string items`);
 	}
 
-	/** @type {string[]} */
-	const suggestions = jsonResponse[1];
+	/** @type {SuggestionType[]} */
+	const suggestions = jsonResponse.suggestions;
 
 	return suggestions;
 }
