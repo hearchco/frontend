@@ -1,6 +1,6 @@
 <script>
 	import Logo from '$lib/assets/logo.svg';
-	import { proxyImageLink } from '$lib/functions/api/proxyimage';
+	import { proxyFaviconLink } from '$lib/functions/api/proxyimage';
 
 	/**
 	 * @typedef {object} Props
@@ -12,7 +12,7 @@
 
 	const favicon =
 		result.favicon_hash && result.favicon_hash != ''
-			? proxyImageLink(result.url, result.favicon_hash, true)
+			? proxyFaviconLink(result.url, result.favicon_hash)
 			: Logo;
 
 	const shortDesc =
