@@ -5,14 +5,16 @@ import { createApiUrl } from '$lib/functions/api/createurl';
  * Create a public API URL for the proxy image endpoint
  * @param {string} url
  * @param {string} hash
+ * @param {boolean} [favicon]
  * @returns {string}
  */
-export function proxyImageLink(url, hash) {
+export function proxyImageLink(url, hash, favicon = false) {
 	// must be done like this instead of concatSearchParams because URL musn't be encoded
 	const params = new URLSearchParams();
 	// ordered alphabetically to increase cache hits
 	params.set('hash', hash);
 	params.set('url', url);
+	params.set('favicon', favicon.toString());
 
 	/** @type {URL} */
 	let apiUrl;
