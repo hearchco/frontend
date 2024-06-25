@@ -20,7 +20,7 @@
 	} = $props();
 
 	/** @param {SubmitEvent} e */
-	async function handleSubmit(e) {
+	function handleSubmit(e) {
 		if (query === '') {
 			e.preventDefault();
 		} else if (!loading) {
