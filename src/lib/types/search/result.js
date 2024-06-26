@@ -8,6 +8,7 @@
  * @property {string} title - The title of the result.
  * @property {string} description - The description of the result.
  * @property {EngineRankType[]} engine_ranks - Rankings on different search engines.
+ * @property {string} favicon_hash - Hash required for proxying the favicon.
  * ImageResultType
  * @property {ImageFormatType} original - The original image format details.
  * @property {ImageFormatType} thumbnail - The thumbnail image format details.
