@@ -24,6 +24,14 @@
 	}
 
 	let currentDesc = $derived(fullDesc ? result.description : shortDesc);
+
+	/** @param {Event} event */
+	function handleFaviconError({ target }) {
+		if (target && target instanceof HTMLImageElement) {
+			target.onerror = null;
+			target.src = Logo;
+		}
+	}
 </script>
 
 <article id="result-{result.rank}" class="pt-2 break-words">
@@ -38,7 +46,13 @@
 			<div
 				class="max-5xs:hidden inline-block align-middle mb-0.5 mr-0.5 size-5 bg-neutral-100 dark:bg-neutral-700 rounded-md overflow-hidden"
 			>
-				<img class="p-[1px] size-full object-contain" src={favicon} alt="🐹" loading="lazy" />
+				<img
+					onerror={handleFaviconError}
+					class="p-[1px] size-full object-contain"
+					src={favicon}
+					alt="{result.title} favicon"
+					loading="lazy"
+				/>
 			</div>
 			{result.title}
 		</h1>
