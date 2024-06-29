@@ -8,7 +8,7 @@ import { createApiUrl } from '$lib/functions/api/createurl.js';
  */
 export async function fetchSuggestions(query, fetcher = fetch) {
 	/** @type {URLSearchParams} */
-	const params = new URLSearchParams(`q=${query}`);
+	const params = new URLSearchParams(`q=${query}&output=json`);
 
 	/** @type {URL} */
 	let apiUrl;
