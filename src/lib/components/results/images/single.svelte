@@ -31,7 +31,7 @@
 		class:hover:dark:ring-hearchco-secondary={selected}
 		class:hover:ring-neutral-300={!selected}
 		class:hover:dark:ring-neutral-100={!selected}
-		class="size-full rounded-lg shadow-sm dark:shadow-none overflow-hidden hover:ring-4 hover:scale-110 relative z-0 hover:z-50 transform delay-75 duration-300 ease-in-out"
+		class="size-full rounded-lg shadow-sm dark:shadow-none overflow-hidden hover:ring-4 hover:scale-110 relative z-0 hover:z-10 transform delay-75 duration-300 ease-in-out"
 		onclick={openImage}
 	>
 		<img

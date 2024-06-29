@@ -194,7 +194,7 @@
 			{#if showSuggestions}
 				<ul
 					onmouseleave={() => (currentIndex = -1)}
-					class="w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
+					class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
 				>
 					{#each suggestions as suggestion, i}
 						<li
