@@ -12,8 +12,8 @@
 </script>
 
 <svelte:window
-	on:keydown={(e) => {
-		if (e.key === 'Escape') {
+	onkeydown={({ key }) => {
+		if (key === 'Escape') {
 			imagePreview = undefined;
 		}
 	}}
