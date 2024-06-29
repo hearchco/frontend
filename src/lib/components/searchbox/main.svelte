@@ -38,12 +38,12 @@
 
 	/** @type {Promise<SuggestionType[]>} */
 	let suggestions = $derived.by(async () => {
-		if (query === '') {
+		if (query === '' || getQueryWithoutCategory(query) === '') {
 			enoughSuggs = false;
 			return [];
 		} else {
 			enoughSuggs = false;
-			const suggs = await fetchSuggestions(query);
+			const suggs = await fetchSuggestions(getQueryWithoutCategory(query));
 			if (suggs.length > 10) suggs.splice(10, suggs.length - 10);
 			if (suggs.length > 0) enoughSuggs = true;
 			return suggs;
@@ -194,7 +194,7 @@
 			{#if showSuggestions}
 				<ul
 					onmouseleave={() => (currentIndex = -1)}
-					class="w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
+					class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
 				>
 					{#each suggestions as suggestion, i}
 						<li
