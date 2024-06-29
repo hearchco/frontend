@@ -16,6 +16,7 @@
 		homepage = false,
 		query = '',
 		category = CategoryEnum.GENERAL,
+		// @ts-ignore
 		loading = $bindable(false)
 	} = $props();
 
@@ -24,14 +25,30 @@
 	/** @type {HTMLElement | null} */
 	let searchInput = $state(null);
 
-	let currentIndex = $state(-1);
+	// When a suggestion is clicked.
 	let clickedIndex = $state(-1);
+	// When a suggestion is hovered over or arrow keys are used.
+	let currentIndex = $state(-1);
 
-	let ableToShowSuggs = $state(true);
-	let suggestionsLength = $state(0);
+	let shouldShowSuggs = $state(true);
+	let enoughSuggs = $state(false);
 
 	/** @type {boolean} */
-	let showSuggestions = $derived(ableToShowSuggs && suggestionsLength > 0);
+	let showSuggestions = $derived(shouldShowSuggs && enoughSuggs);
+
+	/** @type {Promise<SuggestionType[]>} */
+	let suggestions = $derived.by(async () => {
+		if (query === '') {
+			enoughSuggs = false;
+			return [];
+		} else {
+			enoughSuggs = false;
+			const suggs = await fetchSuggestions(query);
+			if (suggs.length > 10) suggs.splice(10, suggs.length - 10);
+			if (suggs.length > 0) enoughSuggs = true;
+			return suggs;
+		}
+	});
 
 	/** @param {SubmitEvent} e */
 	async function handleSubmit(e) {
@@ -48,20 +65,14 @@
 			query = suggs[currentIndex].value;
 		}
 
+		// Used to activate animation.
 		loading = true;
+
+		// Reset the state.
 		clickedIndex = -1;
 		currentIndex = -1;
-		suggestionsLength = 0;
-		ableToShowSuggs = false;
-	}
-
-	function handleCategory() {
-		query = getQueryWithoutCategory(query);
-	}
-
-	function handleReset() {
-		query = '';
-		searchInput?.focus();
+		shouldShowSuggs = false;
+		enoughSuggs = false;
 	}
 
 	/** @param {KeyboardEvent} event */
@@ -78,34 +89,20 @@
 			currentIndex = -1;
 		}
 	}
-
-	/** @type {Promise<SuggestionType[]>} */
-	let suggestions = $derived.by(async () => {
-		if (query === '') {
-			suggestionsLength = 0;
-			return [];
-		} else {
-			suggestionsLength = 0;
-			const suggs = await fetchSuggestions(query);
-			if (suggs.length > 10) suggs.splice(10, suggs.length - 10);
-			suggestionsLength = suggs.length;
-			return suggs;
-		}
-	});
 </script>
 
 <svelte:window
 	onkeydown={({ key }) => {
 		if (key === 'Escape') {
 			searchInput?.blur();
-			ableToShowSuggs = false;
+			shouldShowSuggs = false;
 		}
 	}}
 	onclick={({ target }) => {
 		if (target && target instanceof HTMLElement) {
 			if (searchBox && !searchBox.contains(target)) {
 				searchInput?.blur();
-				ableToShowSuggs = false;
+				shouldShowSuggs = false;
 			}
 		}
 	}}
@@ -131,7 +128,7 @@
 			<!-- svelte-ignore a11y_autofocus -->
 			<input
 				bind:this={searchInput}
-				onfocusin={() => (ableToShowSuggs = true)}
+				onfocusin={() => (shouldShowSuggs = true)}
 				onkeydown={handleKeyDown}
 				name="q"
 				class="ml-4 mr-1.5 h-full w-full bg-transparent focus:outline-none"
@@ -149,7 +146,10 @@
 				<button
 					type="reset"
 					class="mx-1.5 max-5xs:hidden text-neutral-500 hover:text-hearchco-primary hover:dark:text-hearchco-secondary duration-100 ease-in-out"
-					onclick={handleReset}
+					onclick={() => {
+						query = '';
+						searchInput?.focus();
+					}}
 				>
 					<svg class="size-6" viewBox="0 0 512 512" aria-hidden="true">
 						<path
@@ -224,7 +224,10 @@
 		<div class="w-full h-3 flex gap-1">
 			{#each Object.values(CategoryEnum) as cat}
 				<button
-					onclick={handleCategory}
+					onclick={() => {
+						query = getQueryWithoutCategory(query);
+						category = cat;
+					}}
 					type="submit"
 					name="category"
 					value={cat}
