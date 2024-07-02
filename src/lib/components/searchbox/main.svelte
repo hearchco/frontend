@@ -42,10 +42,11 @@
 			enoughSuggs = false;
 			return [];
 		} else {
-			enoughSuggs = false;
+			// Show the loading skeleton.
+			enoughSuggs = true;
 			const suggs = await fetchSuggestions(getQueryWithoutCategory(query));
 			if (suggs.length > 10) suggs.splice(10, suggs.length - 10);
-			if (suggs.length > 0) enoughSuggs = true;
+			if (suggs.length === 0) enoughSuggs = false;
 			return suggs;
 		}
 	});
@@ -190,8 +191,24 @@
 			</button>
 		</div>
 
-		{#await suggestions then suggestions}
-			{#if showSuggestions}
+		{#if showSuggestions}
+			{#await suggestions}
+				<ul
+					class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
+				>
+					{#each Array(10) as _, i}
+						<li class="rounded-lg animate-pulse">
+							<div
+								class:bg-neutral-200={i % 2 !== 0}
+								class:dark:bg-neutral-700={i % 2 !== 0}
+								class:bg-neutral-300={i % 2 === 0}
+								class:dark:bg-neutral-600={i % 2 === 0}
+								class="px-4 py-0.5 h-6 bg-neutral-200 dark:bg-neutral-700 rounded-lg"
+							></div>
+						</li>
+					{/each}
+				</ul>
+			{:then suggestions}
 				<ul
 					onmouseleave={() => (currentIndex = -1)}
 					class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
@@ -216,8 +233,8 @@
 						</li>
 					{/each}
 				</ul>
-			{/if}
-		{/await}
+			{/await}
+		{/if}
 	</div>
 
 	{#if !homepage}
