@@ -191,55 +191,54 @@
 			</button>
 		</div>
 
-		{#if showSuggestions}
-			{#await suggestions}
-				<ul
-					class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
-				>
-					{#each Array(10) as _, i}
-						{@const even = i % 2 === 0}
-						{@const odd = !even}
-						<li class="rounded-lg animate-pulse">
-							<div
-								class:bg-neutral-200={odd}
-								class:dark:bg-neutral-700={odd}
-								class:bg-neutral-300={even}
-								class:dark:bg-neutral-600={even}
-								class="px-4 py-0.5 h-6 rounded-lg"
-							></div>
-						</li>
-					{/each}
-				</ul>
-			{:then suggestions}
-				<ul
-					onmouseleave={() => (currentIndex = -1)}
-					class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
-				>
-					{#each suggestions as { value }, i}
-						{@const first = i === 0}
-						{@const last = i === suggestions.length - 1}
-						{@const current = currentIndex === i}
-						<li
-							class:rounded-t-none={first}
-							class:pb-1={last}
-							class:bg-neutral-100={current}
-							class:dark:bg-neutral-700={current}
-							class="rounded-lg"
+		{#await suggestions}
+			<ul
+				class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
+			>
+				{#each Array(10) as _, i}
+					{@const even = i % 2 === 0}
+					{@const odd = !even}
+					<li class="rounded-lg animate-pulse">
+						<div
+							class:bg-neutral-200={odd}
+							class:dark:bg-neutral-700={odd}
+							class:bg-neutral-300={even}
+							class:dark:bg-neutral-600={even}
+							class="px-4 py-0.5 h-6 rounded-lg"
+						></div>
+					</li>
+				{/each}
+			</ul>
+		{:then suggestions}
+			<ul
+				onmouseleave={() => (currentIndex = -1)}
+				class:hidden={!showSuggestions}
+				class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
+			>
+				{#each suggestions as { value }, i}
+					{@const first = i === 0}
+					{@const last = i === suggestions.length - 1}
+					{@const current = currentIndex === i}
+					<li
+						class:rounded-t-none={first}
+						class:pb-1={last}
+						class:bg-neutral-100={current}
+						class:dark:bg-neutral-700={current}
+						class="rounded-lg"
+					>
+						<button
+							onmouseover={() => (currentIndex = i)}
+							onfocus={() => (currentIndex = i)}
+							onclick={() => (clickedIndex = i)}
+							type="submit"
+							class="px-4 py-0.5 size-full text-left"
 						>
-							<button
-								onmouseover={() => (currentIndex = i)}
-								onfocus={() => (currentIndex = i)}
-								onclick={() => (clickedIndex = i)}
-								type="submit"
-								class="px-4 py-0.5 size-full text-left"
-							>
-								{value}
-							</button>
-						</li>
-					{/each}
-				</ul>
-			{/await}
-		{/if}
+							{value}
+						</button>
+					</li>
+				{/each}
+			</ul>
+		{/await}
 	</div>
 
 	{#if !homepage}
