@@ -197,12 +197,14 @@
 					class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
 				>
 					{#each Array(10) as _, i}
+						{@const even = i % 2 === 0}
+						{@const odd = !even}
 						<li class="rounded-lg animate-pulse">
 							<div
-								class:bg-neutral-200={i % 2 !== 0}
-								class:dark:bg-neutral-700={i % 2 !== 0}
-								class:bg-neutral-300={i % 2 === 0}
-								class:dark:bg-neutral-600={i % 2 === 0}
+								class:bg-neutral-200={odd}
+								class:dark:bg-neutral-700={odd}
+								class:bg-neutral-300={even}
+								class:dark:bg-neutral-600={even}
 								class="px-4 py-0.5 h-6 rounded-lg"
 							></div>
 						</li>
@@ -213,12 +215,15 @@
 					onmouseleave={() => (currentIndex = -1)}
 					class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
 				>
-					{#each suggestions as suggestion, i}
+					{#each suggestions as { value }, i}
+						{@const first = i === 0}
+						{@const last = i === suggestions.length - 1}
+						{@const current = currentIndex === i}
 						<li
-							class:rounded-t-none={i === 0}
-							class:pb-1={i === suggestions.length - 1}
-							class:bg-neutral-100={currentIndex === i}
-							class:dark:bg-neutral-700={currentIndex === i}
+							class:rounded-t-none={first}
+							class:pb-1={last}
+							class:bg-neutral-100={current}
+							class:dark:bg-neutral-700={current}
 							class="rounded-lg"
 						>
 							<button
@@ -228,7 +233,7 @@
 								type="submit"
 								class="px-4 py-0.5 size-full text-left"
 							>
-								{suggestion.value}
+								{value}
 							</button>
 						</li>
 					{/each}
@@ -240,6 +245,7 @@
 	{#if !homepage}
 		<div class="w-full h-3 flex gap-1">
 			{#each Object.values(CategoryEnum) as cat}
+				{@const current = cat === category}
 				<button
 					onclick={() => {
 						query = getQueryWithoutCategory(query);
@@ -248,8 +254,8 @@
 					type="submit"
 					name="category"
 					value={cat}
-					class:border-hearchco-primary={cat === category}
-					class:dark:border-hearchco-secondary={cat === category}
+					class:border-hearchco-primary={current}
+					class:dark:border-hearchco-secondary={current}
 					class="px-2 xs:px-3 pt-[10px] pb-[26px] capitalize border-b-2 hover:border-hearchco-primary hover:dark:border-hearchco-secondary duration-100 ease-in-out"
 				>
 					{cat}
