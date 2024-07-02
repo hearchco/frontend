@@ -203,7 +203,7 @@
 								class:dark:bg-neutral-700={i % 2 !== 0}
 								class:bg-neutral-300={i % 2 === 0}
 								class:dark:bg-neutral-600={i % 2 === 0}
-								class="px-4 py-0.5 h-6 bg-neutral-200 dark:bg-neutral-700 rounded-lg"
+								class="px-4 py-0.5 h-6 rounded-lg"
 							></div>
 						</li>
 					{/each}
