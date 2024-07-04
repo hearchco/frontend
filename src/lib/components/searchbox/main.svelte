@@ -191,10 +191,11 @@
 			</button>
 		</div>
 
-		{#await suggestions}
-			<ul
-				class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
-			>
+		<ul
+			class:hidden={!showSuggestions}
+			class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
+		>
+			{#await suggestions}
 				{#each Array(10) as _, i}
 					{@const even = i % 2 === 0}
 					{@const odd = !even}
@@ -208,13 +209,7 @@
 						></div>
 					</li>
 				{/each}
-			</ul>
-		{:then suggestions}
-			<ul
-				onmouseleave={() => (currentIndex = -1)}
-				class:hidden={!showSuggestions}
-				class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
-			>
+			{:then suggestions}
 				{#each suggestions as { value }, i}
 					{@const first = i === 0}
 					{@const last = i === suggestions.length - 1}
@@ -237,8 +232,8 @@
 						</button>
 					</li>
 				{/each}
-			</ul>
-		{/await}
+			{/await}
+		</ul>
 	</div>
 
 	{#if !homepage}
