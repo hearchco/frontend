@@ -105,9 +105,11 @@
 				shouldShowSuggs = false;
 				break;
 			case '/':
-				event.preventDefault();
-				searchInput?.focus();
-				shouldShowSuggs = true;
+				if (!shouldShowSuggs) {
+					event.preventDefault();
+					searchInput?.focus();
+					shouldShowSuggs = true;
+				}
 				break;
 		}
 	}}
