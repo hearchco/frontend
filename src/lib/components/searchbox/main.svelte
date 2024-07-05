@@ -78,25 +78,39 @@
 
 	/** @param {KeyboardEvent} event */
 	async function handleKeyDown(event) {
-		if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-			event.preventDefault();
-			const suggs = await suggestions;
-			if (event.key === 'ArrowDown') {
-				currentIndex = Math.min(currentIndex + 1, suggs.length - 1);
-			} else if (event.key === 'ArrowUp') {
-				currentIndex = Math.max(currentIndex - 1, -1);
-			}
-		} else if (event.key !== 'Enter') {
-			currentIndex = -1;
+		switch (event.key) {
+			case 'ArrowDown':
+			case 'ArrowUp':
+				event.preventDefault();
+				const suggs = await suggestions;
+				if (event.key === 'ArrowDown') {
+					currentIndex = Math.min(currentIndex + 1, suggs.length - 1);
+				} else {
+					currentIndex = Math.max(currentIndex - 1, -1);
+				}
+				break;
+			case 'Enter':
+				break;
+			default:
+				currentIndex = -1;
 		}
 	}
 </script>
 
 <svelte:window
-	onkeydown={({ key }) => {
-		if (key === 'Escape') {
-			searchInput?.blur();
-			shouldShowSuggs = false;
+	onkeydown={(event) => {
+		switch (event.key) {
+			case 'Escape':
+				searchInput?.blur();
+				shouldShowSuggs = false;
+				break;
+			case '/':
+				if (!shouldShowSuggs) {
+					event.preventDefault();
+					searchInput?.focus();
+					shouldShowSuggs = true;
+				}
+				break;
 		}
 	}}
 	onclick={({ target }) => {
