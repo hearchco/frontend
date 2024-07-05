@@ -82,9 +82,8 @@
 			case 'ArrowDown':
 			case 'ArrowUp':
 				event.preventDefault();
-				const suggs = await suggestions;
 				if (event.key === 'ArrowDown') {
-					currentIndex = Math.min(currentIndex + 1, suggs.length - 1);
+					currentIndex = Math.min(currentIndex + 1, (await suggestions).length - 1);
 				} else {
 					currentIndex = Math.max(currentIndex - 1, -1);
 				}
