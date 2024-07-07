@@ -46,7 +46,7 @@
 		} else {
 			fetchSuggestions(getQueryWithoutCategory(query)).then((suggs) => {
 				const maxSize = 10;
-				if (suggs.length > maxSize) suggs.splice(maxSize, suggs.length - 10);
+				if (suggs.length > maxSize) suggs.splice(maxSize, suggs.length - maxSize);
 				suggestions = suggs;
 			});
 		}
