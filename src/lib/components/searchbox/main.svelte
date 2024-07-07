@@ -173,7 +173,7 @@
 			class:border-neutral-200={showSuggestions}
 			class:dark:border-b-2={showSuggestions}
 			class:rounded-full={!showSuggestions}
-			class="size-full flex dark:bg-neutral-800 dark:shadow-none border box-content dark:border-0 border-neutral-100 dark:border-neutral-700"
+			class="box-content size-full flex dark:bg-neutral-800 dark:shadow-none border dark:border-0 border-neutral-100 dark:border-neutral-700"
 		>
 			<!-- svelte-ignore a11y_autofocus -->
 			<input
@@ -251,17 +251,17 @@
 				{@const current = currentIndex === i}
 				<li
 					class:rounded-t-none={first}
-					class:pb-1={last}
+					class:pb-0.5={last}
 					class:bg-neutral-100={current}
 					class:dark:bg-neutral-700={current}
-					class="px-4 py-0.5 rounded-lg"
+					class="rounded-lg"
 				>
 					<button
 						onmouseover={() => (currentIndex = i)}
 						onfocus={() => (currentIndex = i)}
 						onclick={() => (clickedIndex = i)}
 						type="submit"
-						class="size-full text-left"
+						class="px-4 py-0.5 size-full text-left"
 					>
 						{value}
 					</button>
