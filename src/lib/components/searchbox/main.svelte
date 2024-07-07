@@ -242,6 +242,7 @@
 		</div>
 
 		<ul
+			onmouseleave={() => (currentIndex = -1)}
 			class:hidden={!showSuggestions}
 			class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
 		>
