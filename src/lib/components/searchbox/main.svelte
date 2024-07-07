@@ -173,7 +173,7 @@
 			class:border-neutral-200={showSuggestions}
 			class:dark:border-b-2={showSuggestions}
 			class:rounded-full={!showSuggestions}
-			class="size-full flex dark:bg-neutral-800 dark:shadow-none border dark:border-0 border-neutral-100 dark:border-neutral-700"
+			class="size-full flex dark:bg-neutral-800 dark:shadow-none border box-content dark:border-0 border-neutral-100 dark:border-neutral-700"
 		>
 			<!-- svelte-ignore a11y_autofocus -->
 			<input
