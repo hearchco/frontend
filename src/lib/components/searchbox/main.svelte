@@ -31,7 +31,7 @@
 	let currentIndex = $state(-1);
 
 	// Whether to show suggestions or not.
-	let shouldShowSuggs = $state(true);
+	let shouldShowSuggs = $state(homepage);
 
 	/** @type {SuggestionType[]} */
 	let suggestions = $state([]);
@@ -149,6 +149,8 @@
 	onclick={({ target }) => {
 		if (target && target instanceof HTMLElement) {
 			if (searchBox && !searchBox.contains(target)) {
+				// Disable setting the selected suggestion as query when clicking outside the search box.
+				currentIndex = -1;
 				searchInput?.blur();
 				shouldShowSuggs = false;
 			}
