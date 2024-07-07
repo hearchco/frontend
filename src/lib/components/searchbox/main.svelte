@@ -254,14 +254,14 @@
 					class:pb-1={last}
 					class:bg-neutral-100={current}
 					class:dark:bg-neutral-700={current}
-					class="rounded-lg"
+					class="px-4 py-0.5 rounded-lg"
 				>
 					<button
 						onmouseover={() => (currentIndex = i)}
 						onfocus={() => (currentIndex = i)}
 						onclick={() => (clickedIndex = i)}
 						type="submit"
-						class="px-4 py-0.5 size-full text-left"
+						class="size-full text-left"
 					>
 						{value}
 					</button>
