@@ -43,7 +43,7 @@
 	$effect(() => {
 		if (query === '' || getQueryWithoutCategory(query) === '') {
 			suggestions = [];
-		} else {
+		} else if (currentIndex === -1) {
 			fetchSuggestions(getQueryWithoutCategory(query)).then((suggs) => {
 				const maxSize = 10;
 				if (suggs.length > maxSize) suggs.splice(maxSize, suggs.length - maxSize);
@@ -52,8 +52,22 @@
 		}
 	});
 
+	// Old query to allow returning to it.
+	let oldQuery = $state(query);
+
+	// Changes the query when the focus is lost.
+	$effect(() => {
+		if (!shouldShowSuggs) {
+			if (currentIndex !== -1) {
+				query = suggestions[currentIndex].value;
+				currentIndex = -1;
+			}
+			oldQuery = query;
+		}
+	});
+
 	/** @param {SubmitEvent} e */
-	async function handleSubmit(e) {
+	function handleSubmit(e) {
 		if (query === '') {
 			e.preventDefault();
 			return;
@@ -73,24 +87,45 @@
 		currentIndex = -1;
 		shouldShowSuggs = false;
 		suggestions = [];
+		oldQuery = query;
 	}
 
 	/** @param {KeyboardEvent} event */
-	async function handleKeyDown(event) {
+	function handleKeyDown(event) {
 		switch (event.key) {
 			case 'ArrowDown':
 			case 'ArrowUp':
 				event.preventDefault();
+
 				if (event.key === 'ArrowDown') {
-					currentIndex = Math.min(currentIndex + 1, (await suggestions).length - 1);
+					currentIndex = Math.min(currentIndex + 1, suggestions.length - 1);
 				} else {
 					currentIndex = Math.max(currentIndex - 1, -1);
 				}
+
+				if (currentIndex !== -1) {
+					query = suggestions[currentIndex].value;
+				} else {
+					query = oldQuery;
+				}
+
 				break;
 			case 'Enter':
 				break;
 			default:
 				currentIndex = -1;
+		}
+	}
+
+	/** @param {KeyboardEvent} event */
+	function handleKeyUp({ key }) {
+		switch (key) {
+			case 'ArrowDown':
+			case 'ArrowUp':
+			case 'Enter':
+				break;
+			default:
+				oldQuery = query;
 		}
 	}
 </script>
@@ -143,6 +178,7 @@
 				bind:this={searchInput}
 				onfocusin={() => (shouldShowSuggs = true)}
 				onkeydown={handleKeyDown}
+				onkeyup={handleKeyUp}
 				name="q"
 				class="ml-4 mr-1.5 h-full w-full bg-transparent focus:outline-none"
 				type="text"
