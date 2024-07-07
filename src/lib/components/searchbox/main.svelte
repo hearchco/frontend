@@ -30,24 +30,23 @@
 	// When a suggestion is hovered over or arrow keys are used.
 	let currentIndex = $state(-1);
 
+	// Whether to show suggestions or not.
 	let shouldShowSuggs = $state(true);
-	let enoughSuggs = $state(false);
 
-	/** @type {boolean} */
-	let showSuggestions = $derived(shouldShowSuggs && enoughSuggs);
+	/** @type {SuggestionType[]} */
+	let suggestions = $state([]);
 
-	/** @type {Promise<SuggestionType[]>} */
-	let suggestions = $derived.by(async () => {
+	// Determines if the suggestions can be shown.
+	let showSuggestions = $derived(shouldShowSuggs && suggestions.length > 0);
+
+	$effect(() => {
 		if (query === '' || getQueryWithoutCategory(query) === '') {
-			enoughSuggs = false;
-			return [];
+			suggestions = [];
 		} else {
-			// Show the loading skeleton.
-			enoughSuggs = true;
-			const suggs = await fetchSuggestions(getQueryWithoutCategory(query));
-			if (suggs.length > 10) suggs.splice(10, suggs.length - 10);
-			if (suggs.length === 0) enoughSuggs = false;
-			return suggs;
+			fetchSuggestions(getQueryWithoutCategory(query)).then((suggs) => {
+				if (suggs.length > 10) suggs.splice(10, suggs.length - 10);
+				suggestions = suggs;
+			});
 		}
 	});
 
@@ -59,11 +58,9 @@
 		}
 
 		if (clickedIndex !== -1) {
-			const suggs = await suggestions;
-			query = suggs[clickedIndex].value;
+			query = suggestions[clickedIndex].value;
 		} else if (currentIndex !== -1) {
-			const suggs = await suggestions;
-			query = suggs[currentIndex].value;
+			query = suggestions[currentIndex].value;
 		}
 
 		// Used to activate animation.
@@ -73,7 +70,7 @@
 		clickedIndex = -1;
 		currentIndex = -1;
 		shouldShowSuggs = false;
-		enoughSuggs = false;
+		suggestions = [];
 	}
 
 	/** @param {KeyboardEvent} event */
@@ -208,44 +205,28 @@
 			class:hidden={!showSuggestions}
 			class="z-50 w-full rounded-b-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-0"
 		>
-			{#await suggestions}
-				{#each Array(10) as _, i}
-					{@const even = i % 2 === 0}
-					{@const odd = !even}
-					<li class="rounded-lg animate-pulse">
-						<div
-							class:bg-neutral-200={odd}
-							class:dark:bg-neutral-700={odd}
-							class:bg-neutral-300={even}
-							class:dark:bg-neutral-600={even}
-							class="px-4 py-0.5 h-6 rounded-lg"
-						></div>
-					</li>
-				{/each}
-			{:then suggestions}
-				{#each suggestions as { value }, i}
-					{@const first = i === 0}
-					{@const last = i === suggestions.length - 1}
-					{@const current = currentIndex === i}
-					<li
-						class:rounded-t-none={first}
-						class:pb-1={last}
-						class:bg-neutral-100={current}
-						class:dark:bg-neutral-700={current}
-						class="rounded-lg"
+			{#each suggestions as { value }, i}
+				{@const first = i === 0}
+				{@const last = i === suggestions.length - 1}
+				{@const current = currentIndex === i}
+				<li
+					class:rounded-t-none={first}
+					class:pb-1={last}
+					class:bg-neutral-100={current}
+					class:dark:bg-neutral-700={current}
+					class="rounded-lg"
+				>
+					<button
+						onmouseover={() => (currentIndex = i)}
+						onfocus={() => (currentIndex = i)}
+						onclick={() => (clickedIndex = i)}
+						type="submit"
+						class="px-4 py-0.5 size-full text-left"
 					>
-						<button
-							onmouseover={() => (currentIndex = i)}
-							onfocus={() => (currentIndex = i)}
-							onclick={() => (clickedIndex = i)}
-							type="submit"
-							class="px-4 py-0.5 size-full text-left"
-						>
-							{value}
-						</button>
-					</li>
-				{/each}
-			{/await}
+						{value}
+					</button>
+				</li>
+			{/each}
 		</ul>
 	</div>
 
