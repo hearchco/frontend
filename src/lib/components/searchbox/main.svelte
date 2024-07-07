@@ -39,12 +39,14 @@
 	// Determines if the suggestions can be shown.
 	let showSuggestions = $derived(shouldShowSuggs && suggestions.length > 0);
 
+	// Updates suggestions when the query changes.
 	$effect(() => {
 		if (query === '' || getQueryWithoutCategory(query) === '') {
 			suggestions = [];
 		} else {
 			fetchSuggestions(getQueryWithoutCategory(query)).then((suggs) => {
-				if (suggs.length > 10) suggs.splice(10, suggs.length - 10);
+				const maxSize = 10;
+				if (suggs.length > maxSize) suggs.splice(maxSize, suggs.length - 10);
 				suggestions = suggs;
 			});
 		}
