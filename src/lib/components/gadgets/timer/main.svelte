@@ -92,14 +92,12 @@
 	onkeydown={(event) => {
 		switch (event.key) {
 			case 'Escape':
+			case 'Enter':
 				editMode = false;
 				break;
 			case ' ':
 				event.preventDefault();
 				toggleActive();
-				break;
-			case 'Enter':
-				editMode = false;
 				break;
 		}
 	}}
