@@ -12,7 +12,7 @@ export async function fetchResults(params, fetcher = fetch) {
 	try {
 		apiUrl = createApiUrl('search', params);
 	} catch (/** @type {any} */ err) {
-		// Internal Server Error
+		// Internal Server Error.
 		throw error(500, `Failed to create API URL: ${err.message}`);
 	}
 
@@ -20,14 +20,14 @@ export async function fetchResults(params, fetcher = fetch) {
 	let response;
 	try {
 		response = await fetcher(apiUrl, {
-			method: 'GET', // POST doesn't cache on CDN
+			method: 'GET', // POST doesn't cache on CDN.
 			headers: {
 				Accept: 'application/json',
 				'Accept-Encoding': 'gzip, deflate, br'
 			}
 		});
 	} catch (/** @type {any} */ err) {
-		// Bad Gateway
+		// Bad Gateway.
 		throw error(502, `Failed to fetch results: ${err.message}`);
 	}
 
@@ -36,12 +36,12 @@ export async function fetchResults(params, fetcher = fetch) {
 	try {
 		jsonResponse = await response.json();
 	} catch (/** @type {any} */ err) {
-		// Internal Server Error
+		// Internal Server Error.
 		throw error(500, `Failed to parse results: ${err.message}`);
 	}
 
 	if ('message' in jsonResponse && 'value' in jsonResponse) {
-		// same as backend
+		// Same as backend.
 		throw error(response.status, `API error: ${jsonResponse.message}: ${jsonResponse.value}`);
 	}
 

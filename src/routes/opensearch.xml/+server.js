@@ -25,8 +25,8 @@ export async function POST() {
 }
 
 /**
- * @param {'GET' | 'POST'} opensearchMethod - The method to use for searching
- * @returns {string} - The OpenSearch XML body
+ * @param {'GET' | 'POST'} opensearchMethod - The method to use for searching.
+ * @returns {string} - The OpenSearch XML body.
  */
 function getOpensearchXml(opensearchMethod) {
 	const instanceName = env.PUBLIC_INSTANCE_NAME ?? 'Hearchco';

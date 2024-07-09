@@ -18,19 +18,15 @@ export const CategoryEnum = {
 export function toCategoryType(category) {
 	switch (category) {
 		case 'general':
-			return CategoryEnum.GENERAL;
 		case 'normal':
 			return CategoryEnum.GENERAL;
 		case 'images':
-			return CategoryEnum.IMAGES;
 		case 'image':
 			return CategoryEnum.IMAGES;
 		case 'science':
-			return CategoryEnum.SCIENCE;
 		case 'sci':
 			return CategoryEnum.SCIENCE;
 		case 'thorough':
-			return CategoryEnum.THOROUGH;
 		case 'slow':
 			return CategoryEnum.THOROUGH;
 		default:

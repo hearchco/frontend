@@ -11,7 +11,7 @@ export async function fetchVersion(fetcher = fetch) {
 	try {
 		apiUrl = createApiUrl('versionz');
 	} catch (/** @type {any} */ err) {
-		// Internal Server Error
+		// Internal Server Error.
 		throw error(500, `Failed to create API URL: ${err.message}`);
 	}
 
@@ -19,14 +19,14 @@ export async function fetchVersion(fetcher = fetch) {
 	let response;
 	try {
 		response = await fetcher(apiUrl, {
-			method: 'GET', // POST doesn't cache on CDN
+			method: 'GET', // POST doesn't cache on CDN.
 			headers: {
 				Accept: 'text/plain',
 				'Accept-Encoding': 'gzip, deflate, br'
 			}
 		});
 	} catch (/** @type {any} */ err) {
-		// Bad Gateway
+		// Bad Gateway.
 		throw error(502, `Failed to fetch version: ${err.message}`);
 	}
 

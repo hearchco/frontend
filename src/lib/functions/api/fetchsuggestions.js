@@ -15,7 +15,7 @@ export async function fetchSuggestions(query, fetcher = fetch) {
 	try {
 		apiUrl = createApiUrl('suggestions', params);
 	} catch (/** @type {any} */ err) {
-		// Internal Server Error
+		// Internal Server Error.
 		throw error(500, `Failed to create API URL: ${err.message}`);
 	}
 
@@ -23,7 +23,7 @@ export async function fetchSuggestions(query, fetcher = fetch) {
 	let response;
 	try {
 		response = await fetcher(apiUrl, {
-			method: 'GET', // POST doesn't cache on CDN
+			method: 'GET', // POST doesn't cache on CDN.
 			headers: {
 				Accept: 'application/json',
 				'Accept-Encoding': 'gzip, deflate, br'
@@ -39,12 +39,12 @@ export async function fetchSuggestions(query, fetcher = fetch) {
 	try {
 		jsonResponse = await response.json();
 	} catch (/** @type {any} */ err) {
-		// Internal Server Error
+		// Internal Server Error.
 		throw error(500, `Failed to parse suggestions: ${err.message}`);
 	}
 
 	if ('message' in jsonResponse && 'value' in jsonResponse) {
-		// same as backend
+		// Same as backend.
 		throw error(response.status, `API error: ${jsonResponse.message}: ${jsonResponse.value}`);
 	}
 

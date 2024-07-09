@@ -8,7 +8,7 @@
 
 	let { data } = $props();
 
-	const javascript = $derived(data.browser);
+	const browser = $derived(data.browser);
 	const query = $derived(data.query);
 	const title = $derived(
 		query === ''
@@ -43,7 +43,7 @@
 {#if results.length === 0}
 	<Zero />
 {:else if toDisplayCategory(category) === CategoryEnum.IMAGES}
-	<Images {javascript} {query} {category} {currentPage} {results} bind:imagePreview />
+	<Images {browser} {query} {category} {currentPage} {results} bind:imagePreview />
 {:else}
-	<General {javascript} {query} {category} {currentPage} {results} />
+	<General {browser} {query} {category} {currentPage} {results} />
 {/if}

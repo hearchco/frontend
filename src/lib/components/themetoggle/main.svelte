@@ -38,11 +38,11 @@
 </script>
 
 <svelte:head>
-	<!-- prevent Chromium based browser from inverting the page -->
+	<!-- Prevent Chromium based browser from inverting the page. -->
 	<meta name="color-scheme" content="light" />
-	<!-- prevent Dark Reader from inverting the page -->
+	<!-- Prevent Dark Reader from inverting the page. -->
 	<meta name="darkreader-lock" />
-	<!-- initialize theme -->
+	<!-- Load theme before body starts rendering. -->
 	<script>
 		const selectedTheme = localStorage.getItem('theme') ?? 'system';
 		const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches

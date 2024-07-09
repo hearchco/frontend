@@ -6,7 +6,7 @@
 
 	/**
 	 * @typedef {object} Props
-	 * @property {boolean} javascript
+	 * @property {boolean} browser
 	 * @property {string} query
 	 * @property {string} category
 	 * @property {number} currentPage
@@ -15,11 +15,11 @@
 	 */
 
 	/** @type {Props} */
-	let { javascript, query, category, currentPage, results, imagePreview = $bindable() } = $props();
+	let { browser, query, category, currentPage, results, imagePreview = $bindable() } = $props();
 </script>
 
 <div class="px-4 py-8 w-full lg:flex">
-	<!-- preview on top when screen width <lg -->
+	<!-- Preview on top when screen width less than lg -->
 	{#if imagePreview}
 		<div
 			id="image-preview-sm"
@@ -52,7 +52,7 @@
 	{/if}
 </div>
 
-{#if !javascript}
+{#if !browser}
 	<Paginator {query} {category} {currentPage} />
 {:else}
 	<InfiniteLoading {query} {category} {currentPage} bind:results />

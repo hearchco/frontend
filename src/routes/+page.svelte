@@ -9,7 +9,7 @@
 	async function swing() {
 		if (!loading && !easteregg) {
 			easteregg = true;
-			await sleep(1500); // tailwindcss has this set for animation duration as well
+			await sleep(1500); // TailwindCSS has this set for animation duration as well.
 			easteregg = false;
 		}
 	}
