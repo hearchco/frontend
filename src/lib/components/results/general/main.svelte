@@ -5,7 +5,7 @@
 
 	/**
 	 * @typedef {object} Props
-	 * @property {boolean} javascript
+	 * @property {boolean} browser
 	 * @property {string} query
 	 * @property {string} category
 	 * @property {number} currentPage
@@ -13,7 +13,7 @@
 	 */
 
 	/** @type {Props} */
-	let { javascript, query, category, currentPage, results } = $props();
+	let { browser, query, category, currentPage, results } = $props();
 </script>
 
 <div class="mx-auto pb-4 max-w-screen-sm">
@@ -27,7 +27,7 @@
 	</section>
 </div>
 
-{#if !javascript}
+{#if !browser}
 	<Paginator {query} {category} {currentPage} />
 {:else}
 	<InfiniteLoading {query} {category} {currentPage} bind:results />

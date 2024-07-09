@@ -2,7 +2,7 @@ import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/public';
 
 /**
- * Create an API URL
+ * Create an API URL.
  * @param {string} [path]
  * @param {URLSearchParams} [params]
  * @returns {URL}
@@ -10,7 +10,7 @@ import { env } from '$env/dynamic/public';
 export function createApiUrl(path, params) {
 	const apiUri = env.PUBLIC_API_URI;
 	if (!apiUri) {
-		// Internal Server Error
+		// Internal Server Error.
 		throw error(500, 'PUBLIC_API_URI env is not defined');
 	}
 
