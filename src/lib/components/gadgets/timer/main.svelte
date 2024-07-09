@@ -96,8 +96,10 @@
 				break;
 			case ' ':
 				event.preventDefault();
-			case 'Enter':
 				toggleActive();
+				break;
+			case 'Enter':
+				editMode = false;
 				break;
 		}
 	}}
