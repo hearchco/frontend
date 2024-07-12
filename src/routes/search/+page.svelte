@@ -1,6 +1,13 @@
 <script>
+	// Header
 	import Header from '$lib/components/header/main.svelte';
 	import Stats from '$lib/components/header/stats.svelte';
+
+	// Gadgets
+	import Timer from '$lib/components/gadgets/timer/main.svelte';
+	import { timery } from '$lib/functions/query/gadget.js';
+
+	// Results
 	import Zero from '$lib/components/results/zero/main.svelte';
 	import General from '$lib/components/results/general/main.svelte';
 	import Images from '$lib/components/results/images/main.svelte';
@@ -38,6 +45,10 @@
 <Header {query} {category} />
 {#if results.length !== 0}
 	<Stats numOfResults={results.length} {duration} />
+{/if}
+
+{#if browser && timery(query)}
+	<Timer />
 {/if}
 
 {#if results.length === 0}
