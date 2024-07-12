@@ -20,8 +20,26 @@
 	}
 
 	let hours = $state(0);
+	$effect(() => {
+		if (hours < 0) hours = 0;
+		if (hours > 10) hours = 10;
+	});
 	let minutes = $state(5);
+	$effect(() => {
+		if (minutes < 0) minutes = 0;
+		if (minutes > 59) {
+			hours += Math.floor(minutes / 60);
+			minutes = minutes % 60;
+		}
+	});
 	let seconds = $state(0);
+	$effect(() => {
+		if (seconds < 0) seconds = 0;
+		if (seconds > 59) {
+			minutes += Math.floor(seconds / 60);
+			seconds = seconds % 60;
+		}
+	});
 	const remainingTime = $derived(timerString(hours, minutes, seconds));
 
 	let editMode = $state(false);
@@ -159,7 +177,7 @@
 							autocomplete="off"
 							type="number"
 							min={0}
-							max={99}
+							max={10}
 							placeholder="0"
 							bind:value={hours}
 						/>
@@ -172,7 +190,7 @@
 							autocomplete="off"
 							type="number"
 							min={0}
-							max={99}
+							max={59}
 							placeholder="0"
 							bind:value={minutes}
 						/>
@@ -185,7 +203,7 @@
 							id="secondsInput"
 							type="number"
 							min={0}
-							max={99}
+							max={59}
 							placeholder="0"
 							bind:value={seconds}
 						/>
