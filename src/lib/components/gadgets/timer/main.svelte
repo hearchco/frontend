@@ -16,6 +16,12 @@
 	let beeping = $state(false);
 	/** @type {number|undefined} */
 	let beepingInterval = $state(undefined);
+	$effect(() => {
+		// Dummy IF to trigger the effect.
+		if (query) {
+		}
+		clearInterval(beepingInterval);
+	});
 
 	/** @type {HTMLElement | null} */
 	let timerNumbersContainer = $state(null);
@@ -156,7 +162,7 @@
 	}}
 />
 
-<Beeper bind:beeping bind:beepingInterval />
+<Beeper {beeping} bind:beepingInterval />
 
 <div class="mx-auto max-w-screen-sm">
 	<div class="mx-2 mt-2 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl">

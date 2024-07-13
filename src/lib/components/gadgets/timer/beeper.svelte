@@ -8,7 +8,7 @@
 	 */
 
 	/** @type {Props} */
-	let { beeping = $bindable(), beepingInterval = $bindable() } = $props();
+	let { beeping, beepingInterval = $bindable() } = $props();
 
 	/**
 	 * Get the frequency of a note.
