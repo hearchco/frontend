@@ -1,3 +1,5 @@
+import { hmsFromTotal, totalSeconds } from '$lib/functions/gadgets/timer';
+
 /**
  * Check if query is a timer gadget query
  * @param {string} query - Query to be checked
@@ -192,4 +194,55 @@ export function timery(query) {
 	];
 
 	return keywords.some((keyword) => query.trim().toLowerCase().includes(keyword));
+}
+
+/**
+ * Return hh:mm:ss from timery query.,
+ * @param {string} query - Query to be checked,
+ * @returns {[number, number, number]} - Array of hours, minutes, and seconds.
+ */
+export function timeFromTimery(query) {
+	// Define regex patterns for hours, minutes, and seconds.
+	const hoursRegex = /(\d+)\s*h(?:ours?)?/i;
+	const minutesRegex = /(\d+)\s*m(?:inutes?)?/i;
+	const secondsRegex = /(\d+)\s*s(?:econds?)?/i;
+
+	// Initialize time values.
+	/** @type {number|null} */
+	let hours = null;
+	/** @type {number|null} */
+	let minutes = null;
+	/** @type {number|null} */
+	let seconds = null;
+
+	// Match and assign hours.
+	const hoursMatch = query.match(hoursRegex);
+	if (hoursMatch) {
+		hours = parseInt(hoursMatch[1]);
+	}
+
+	// Match and assign minutes.
+	const minutesMatch = query.match(minutesRegex);
+	if (minutesMatch) {
+		minutes = parseInt(minutesMatch[1]);
+	}
+
+	// Match and assign seconds.
+	const secondsMatch = query.match(secondsRegex);
+	if (secondsMatch) {
+		seconds = parseInt(secondsMatch[1]);
+	}
+
+	// Calculate total seconds and convert to hh:mm:ss.
+	const matchedAny = (hours || minutes || seconds) !== null;
+	const total = totalSeconds(hours ?? 0, minutes ?? 0, seconds ?? 0);
+	const [convH, convM, convS] = hmsFromTotal(total);
+
+	// Return the converted time as an array if any time is found.
+	if (matchedAny) {
+		return [convH, convM, convS];
+	}
+
+	// Otherwise, return a default time of 00:05:00.
+	return [0, 5, 0];
 }

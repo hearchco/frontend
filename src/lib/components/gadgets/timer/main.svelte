@@ -1,5 +1,18 @@
 <script>
+	import { hmsFromTotal, totalSeconds } from '$lib/functions/gadgets/timer';
+	import { timeFromTimery } from '$lib/functions/query/gadgets/timer';
 	import Beeper from './beeper.svelte';
+
+	/**
+	 * @typedef {object} Props
+	 * @property {string} query
+	 */
+
+	/** @type {Props} */
+	let { query } = $props();
+
+	const [initHours, initMinutes, initSeconds] = timeFromTimery(query);
+
 	let beeping = $state(false);
 	/** @type {number|undefined} */
 	let beepingInterval = $state(undefined);
@@ -24,12 +37,12 @@
 		return `${hoursStr}${minutesStr}${secondsStr}`;
 	}
 
-	let hours = $state(0);
+	let hours = $state(initHours);
 	$effect(() => {
 		if (hours < 0) hours = 0;
 		if (hours > 10) hours = 10;
 	});
-	let minutes = $state(5);
+	let minutes = $state(initMinutes);
 	$effect(() => {
 		if (minutes < 0) minutes = 0;
 		if (minutes > 59) {
@@ -37,7 +50,7 @@
 			minutes = minutes % 60;
 		}
 	});
-	let seconds = $state(0);
+	let seconds = $state(initSeconds);
 	$effect(() => {
 		if (seconds < 0) seconds = 0;
 		if (seconds > 59) {
@@ -76,17 +89,15 @@
 
 		active = !active;
 		if (active) {
-			let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+			let total = totalSeconds(hours, minutes, seconds);
 			interval = setInterval(() => {
-				if (totalSeconds <= 0) {
+				if (total <= 0) {
 					clearInterval(interval);
 					active = false;
 					beeping = true;
 				} else {
-					totalSeconds--;
-					hours = Math.floor(totalSeconds / 3600);
-					minutes = Math.floor((totalSeconds % 3600) / 60);
-					seconds = Math.floor((totalSeconds % 3600) % 60);
+					total--;
+					[hours, minutes, seconds] = hmsFromTotal(total);
 				}
 			}, 1000);
 		} else {
@@ -95,9 +106,12 @@
 		}
 	}
 
-	let selectedHours = $state(0);
-	let selectedMinutes = $state(5);
-	let selectedSeconds = $state(0);
+	// svelte-ignore state_referenced_locally
+	let selectedHours = $state(hours);
+	// svelte-ignore state_referenced_locally
+	let selectedMinutes = $state(minutes);
+	// svelte-ignore state_referenced_locally
+	let selectedSeconds = $state(seconds);
 	const selectedTime = $derived(timerString(selectedHours, selectedMinutes, selectedSeconds));
 	$effect(() => {
 		if (editMode) {
@@ -126,10 +140,11 @@
 			case 'Enter':
 				editMode = false;
 				break;
-			case ' ':
-				event.preventDefault();
-				toggleState();
-				break;
+			// This breaks the input fields.
+			// case ' ':
+			// 	event.preventDefault();
+			// 	toggleState();
+			// 	break;
 		}
 	}}
 	onclick={({ target }) => {

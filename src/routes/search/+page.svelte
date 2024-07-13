@@ -5,7 +5,7 @@
 
 	// Gadgets
 	import Timer from '$lib/components/gadgets/timer/main.svelte';
-	import { timery } from '$lib/functions/query/gadget.js';
+	import { timery } from '$lib/functions/query/gadgets/timer.js';
 
 	// Results
 	import Zero from '$lib/components/results/zero/main.svelte';
@@ -48,7 +48,9 @@
 {/if}
 
 {#if browser && timery(query)}
-	<Timer />
+	{#key query}
+		<Timer {query} />
+	{/key}
 {/if}
 
 {#if results.length === 0}
