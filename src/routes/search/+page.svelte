@@ -4,6 +4,7 @@
 	import Stats from '$lib/components/header/stats.svelte';
 
 	// Gadgets
+	import Exchange from '$lib/components/gadgets/exchange/main.svelte';
 	import Timer from '$lib/components/gadgets/timer/main.svelte';
 	import { timery } from '$lib/functions/query/gadgets/timer.js';
 
@@ -12,6 +13,7 @@
 	import General from '$lib/components/results/general/main.svelte';
 	import Images from '$lib/components/results/images/main.svelte';
 	import { CategoryEnum, toDisplayCategory } from '$lib/types/search/category.js';
+	import { exchangery } from '$lib/functions/query/gadgets/exchange';
 
 	let { data } = $props();
 
@@ -47,9 +49,14 @@
 	<Stats numOfResults={results.length} {duration} />
 {/if}
 
-{#if browser && timery(query)}
+<!-- Gadgets -->
+{#if browser}
 	{#key query}
-		<Timer {query} />
+		{#if exchangery(query)}
+			<Exchange {query} />
+		{:else if timery(query)}
+			<Timer {query} />
+		{/if}
 	{/key}
 {/if}
 
