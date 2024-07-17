@@ -1,4 +1,20 @@
 <script>
+	import { hmsFromTotal, totalSeconds } from '$lib/functions/gadgets/timer';
+	import { timeFromTimery } from '$lib/functions/query/gadgets/timer';
+	import Beeper from './beeper.svelte';
+
+	/**
+	 * @typedef {object} Props
+	 * @property {string} query
+	 */
+
+	/** @type {Props} */
+	let { query } = $props();
+
+	const [initHours, initMinutes, initSeconds] = timeFromTimery(query);
+
+	let beeping = $state(false);
+
 	/** @type {HTMLElement | null} */
 	let timerNumbersContainer = $state(null);
 
@@ -19,12 +35,12 @@
 		return `${hoursStr}${minutesStr}${secondsStr}`;
 	}
 
-	let hours = $state(0);
+	let hours = $state(initHours);
 	$effect(() => {
 		if (hours < 0) hours = 0;
 		if (hours > 10) hours = 10;
 	});
-	let minutes = $state(5);
+	let minutes = $state(initMinutes);
 	$effect(() => {
 		if (minutes < 0) minutes = 0;
 		if (minutes > 59) {
@@ -32,7 +48,7 @@
 			minutes = minutes % 60;
 		}
 	});
-	let seconds = $state(0);
+	let seconds = $state(initSeconds);
 	$effect(() => {
 		if (seconds < 0) seconds = 0;
 		if (seconds > 59) {
@@ -48,32 +64,37 @@
 		if (active) {
 			console.trace('effect: active -> editMode = false');
 			editMode = false;
+			beeping = false;
 		}
 	});
 	$effect(() => {
 		if (editMode) {
 			console.trace('effect: editMode -> active = false; clearInterval(interval)');
 			active = false;
+			beeping = false;
 			clearInterval(interval);
 		}
 	});
 
 	/** @type {number|undefined} */
 	let interval = $state(undefined);
-	function toggleActive() {
-		active = !active;
+	function toggleState() {
+		if (beeping) {
+			beeping = false;
+			return;
+		}
 
+		active = !active;
 		if (active) {
-			let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+			let total = totalSeconds(hours, minutes, seconds);
 			interval = setInterval(() => {
-				if (totalSeconds <= 0) {
+				if (total <= 0) {
 					clearInterval(interval);
 					active = false;
+					beeping = true;
 				} else {
-					totalSeconds--;
-					hours = Math.floor(totalSeconds / 3600);
-					minutes = Math.floor((totalSeconds % 3600) / 60);
-					seconds = Math.floor((totalSeconds % 3600) % 60);
+					total--;
+					[hours, minutes, seconds] = hmsFromTotal(total);
 				}
 			}, 1000);
 		} else {
@@ -82,9 +103,12 @@
 		}
 	}
 
-	let selectedHours = $state(0);
-	let selectedMinutes = $state(5);
-	let selectedSeconds = $state(0);
+	// svelte-ignore state_referenced_locally
+	let selectedHours = $state(hours);
+	// svelte-ignore state_referenced_locally
+	let selectedMinutes = $state(minutes);
+	// svelte-ignore state_referenced_locally
+	let selectedSeconds = $state(seconds);
 	const selectedTime = $derived(timerString(selectedHours, selectedMinutes, selectedSeconds));
 	$effect(() => {
 		if (editMode) {
@@ -104,6 +128,12 @@
 			selectedSeconds = seconds;
 		}
 	});
+
+	const percentageComplete = $derived.by(() => {
+		const totalLeft = totalSeconds(hours, minutes, seconds);
+		const totalFull = totalSeconds(selectedHours, selectedMinutes, selectedSeconds);
+		return ((totalFull - totalLeft) / totalFull) * 100;
+	});
 </script>
 
 <svelte:window
@@ -112,10 +142,6 @@
 			case 'Escape':
 			case 'Enter':
 				editMode = false;
-				break;
-			case ' ':
-				event.preventDefault();
-				toggleActive();
 				break;
 		}
 	}}
@@ -128,6 +154,8 @@
 	}}
 />
 
+<Beeper {beeping} />
+
 <div class="mx-auto max-w-screen-sm">
 	<div class="mx-2 mt-2 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl">
 		<div class="mx-2 flex items-center space-x-2">
@@ -137,14 +165,13 @@
 		</div>
 		<div class="m-4 flex items-center">
 			<div
-				class="size-16 2xs:size-20 xs:size-24 sm:size-32 flex shrink-0 items-center justify-center border-4 border-neutral-200 dark:border-neutral-600 rounded-full"
+				style="--value:{percentageComplete}; --size:6rem; --thickness:0.5rem;"
+				class="radial-progress size-16 2xs:size-20 xs:size-24 sm:size-32 text-neutral-400"
+				role="progressbar"
 			>
-				<button
-					onclick={toggleActive}
-					class="size-1/3 text-neutral-200 dark:text-neutral-600 hover:text-neutral-400"
-				>
+				<button onclick={toggleState} class="z-10 size-10 text-neutral-600 hover:text-neutral-400">
 					<svg
-						class:hidden={active}
+						class:hidden={active || beeping}
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
 						fill="currentColor"
@@ -152,7 +179,8 @@
 						<path d="M8 5v14l11-7z" />
 					</svg>
 					<svg
-						class:hidden={!active}
+						class:animate-pulse={beeping}
+						class:hidden={!(active || beeping)}
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
 						fill="currentColor"
@@ -225,5 +253,46 @@
 	input[type='number'] {
 		appearance: textfield;
 		-moz-appearance: textfield; /* Firefox */
+	}
+
+	/* Custom style for radial progress bar from DaisyUI */
+	.radial-progress {
+		@apply box-content align-middle relative inline-grid h-[var(--size)] w-[var(--size)] place-content-center rounded-full bg-transparent;
+	}
+	.radial-progress::-moz-progress-bar {
+		@apply appearance-none bg-transparent;
+	}
+	.radial-progress::-webkit-progress-value {
+		@apply appearance-none bg-transparent;
+	}
+	.radial-progress::-webkit-progress-bar {
+		@apply appearance-none bg-transparent;
+	}
+	.radial-progress:before,
+	.radial-progress:after {
+		@apply absolute rounded-full;
+		content: '';
+	}
+	.radial-progress:before {
+		@apply inset-0;
+		background:
+			radial-gradient(farthest-side, currentColor 98%, #0000) top/var(--thickness) var(--thickness)
+				no-repeat,
+			conic-gradient(currentColor calc(var(--value) * 1%), #0000 0),
+			conic-gradient(rgb(82 82 82) calc(100 * 1%), #0000 0);
+		-webkit-mask: radial-gradient(
+			farthest-side,
+			#0000 calc(99% - var(--thickness)),
+			#000 calc(100% - var(--thickness))
+		);
+		mask: radial-gradient(
+			farthest-side,
+			#0000 calc(99% - var(--thickness)),
+			#000 calc(100% - var(--thickness))
+		);
+	}
+	.radial-progress:after {
+		inset: calc(50% - var(--thickness) / 2);
+		transform: rotate(calc(var(--value) * 3.6deg - 90deg)) translate(calc(var(--size) / 2 - 50%));
 	}
 </style>
