@@ -1,39 +1,59 @@
 <script>
 	import { onMount } from 'svelte';
 
-	let theme = $state('system');
-	let systemTheme = $state('');
+	/** @type {'light' | 'dark' | 'system'} */
+	let selected = $state('system');
+	/** @type {'light' | 'dark'} */
+	let system = $state('light');
+	/** @type {'light' | 'dark'} */
+	const theme = $derived(selected === 'system' ? system : selected);
 
+	// Load theme from local storage.
 	onMount(() => {
-		const selectedTheme = localStorage.getItem('theme') ?? 'system';
-		systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-		theme = selectedTheme === 'system' ? systemTheme : selectedTheme;
+		const value = localStorage.getItem('theme');
+		if (value === 'light' || value === 'dark') selected = value;
 	});
 
-	function setDarkTheme() {
-		theme = 'dark';
-		localStorage.setItem('theme', 'dark');
-		document.documentElement.classList.add('dark');
-	}
+	// Load system theme and update it when it changes.
+	onMount(() => {
+		const media = window.matchMedia('(prefers-color-scheme: dark)');
+		system = media.matches ? 'dark' : 'light';
+		// Update system theme when it changes.
+		media.addEventListener('change', (e) => {
+			system = e.matches ? 'dark' : 'light';
+		});
+	});
 
-	function setLightTheme() {
-		theme = 'light';
-		localStorage.setItem('theme', 'light');
-		document.documentElement.classList.remove('dark');
-	}
-
-	// function setSystemTheme() {
-	// 	theme = systemTheme;
-	// 	localStorage.removeItem('theme');
-	// 	document.documentElement.classList.remove('dark');
-	// }
-
-	function toggleTheme() {
+	// Update the DOM with the current theme.
+	$effect(() => {
 		if (theme === 'light') {
-			setDarkTheme();
+			document.documentElement.classList.remove('dark');
 		} else {
-			setLightTheme();
+			document.documentElement.classList.add('dark');
 		}
+	});
+
+	// Save / remove theme to / from local storage.
+	$effect(() => {
+		if (selected === 'system') {
+			localStorage.removeItem('theme');
+		} else {
+			localStorage.setItem('theme', selected);
+		}
+	});
+
+	// Toggle theme when button is clicked.
+	function toggleTheme() {
+		if (selected === 'light') {
+			selected = 'dark';
+		} else {
+			selected = 'light';
+		}
+	}
+
+	// Clear theme when button is double clicked.
+	function clearTheme() {
+		selected = 'system';
 	}
 </script>
 
@@ -44,18 +64,14 @@
 	<meta name="darkreader-lock" />
 	<!-- Load theme before body starts rendering. -->
 	<script>
-		const selectedTheme = localStorage.getItem('theme') ?? 'system';
-		const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-			? 'dark'
-			: 'light';
-		const theme = selectedTheme !== 'system' ? selectedTheme : systemTheme;
-		if (theme === 'dark') {
-			document.documentElement.classList.add('dark');
-		}
+		const selected = localStorage.getItem('theme') ?? 'system';
+		const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		const theme = selected !== 'system' ? selected : system;
+		if (theme === 'dark') document.documentElement.classList.add('dark');
 	</script>
 </svelte:head>
 
-<button class="absolute top-0 right-0 md:p-4" onclick={toggleTheme}>
+<button class="absolute top-0 right-0 md:p-4" onclick={toggleTheme} ondblclick={clearTheme}>
 	<div class="size-10 object-cover hover:scale-110 duration-300 ease-in-out">
 		<svg
 			class="hidden dark:block fill-hearchco-primary dark:fill-hearchco-secondary stroke-hearchco-primary dark:stroke-hearchco-secondary"
