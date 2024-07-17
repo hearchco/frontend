@@ -128,6 +128,12 @@
 			selectedSeconds = seconds;
 		}
 	});
+
+	const percentageComplete = $derived.by(() => {
+		const totalLeft = totalSeconds(hours, minutes, seconds);
+		const totalFull = totalSeconds(selectedHours, selectedMinutes, selectedSeconds);
+		return ((totalFull - totalLeft) / totalFull) * 100;
+	});
 </script>
 
 <svelte:window
@@ -159,12 +165,11 @@
 		</div>
 		<div class="m-4 flex items-center">
 			<div
-				class="size-16 2xs:size-20 xs:size-24 sm:size-32 flex shrink-0 items-center justify-center border-4 border-neutral-200 dark:border-neutral-600 rounded-full"
+				style="--value:{percentageComplete}; --size:6rem; --thickness:0.5rem;"
+				class="radial-progress size-16 2xs:size-20 xs:size-24 sm:size-32 text-neutral-400"
+				role="progressbar"
 			>
-				<button
-					onclick={toggleState}
-					class="size-1/3 text-neutral-200 dark:text-neutral-600 hover:text-neutral-400"
-				>
+				<button onclick={toggleState} class="z-10 size-10 text-neutral-600 hover:text-neutral-400">
 					<svg
 						class:hidden={active || beeping}
 						xmlns="http://www.w3.org/2000/svg"
@@ -248,5 +253,46 @@
 	input[type='number'] {
 		appearance: textfield;
 		-moz-appearance: textfield; /* Firefox */
+	}
+
+	/* Custom style for radial progress bar from DaisyUI */
+	.radial-progress {
+		@apply box-content align-middle relative inline-grid h-[var(--size)] w-[var(--size)] place-content-center rounded-full bg-transparent;
+	}
+	.radial-progress::-moz-progress-bar {
+		@apply appearance-none bg-transparent;
+	}
+	.radial-progress::-webkit-progress-value {
+		@apply appearance-none bg-transparent;
+	}
+	.radial-progress::-webkit-progress-bar {
+		@apply appearance-none bg-transparent;
+	}
+	.radial-progress:before,
+	.radial-progress:after {
+		@apply absolute rounded-full;
+		content: '';
+	}
+	.radial-progress:before {
+		@apply inset-0;
+		background:
+			radial-gradient(farthest-side, currentColor 98%, #0000) top/var(--thickness) var(--thickness)
+				no-repeat,
+			conic-gradient(currentColor calc(var(--value) * 1%), #0000 0),
+			conic-gradient(rgb(82 82 82) calc(100 * 1%), #0000 0);
+		-webkit-mask: radial-gradient(
+			farthest-side,
+			#0000 calc(99% - var(--thickness)),
+			#000 calc(100% - var(--thickness))
+		);
+		mask: radial-gradient(
+			farthest-side,
+			#0000 calc(99% - var(--thickness)),
+			#000 calc(100% - var(--thickness))
+		);
+	}
+	.radial-progress:after {
+		inset: calc(50% - var(--thickness) / 2);
+		transform: rotate(calc(var(--value) * 3.6deg - 90deg)) translate(calc(var(--size) / 2 - 50%));
 	}
 </style>
