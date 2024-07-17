@@ -18,7 +18,6 @@
 	onMount(() => {
 		const media = window.matchMedia('(prefers-color-scheme: dark)');
 		system = media.matches ? 'dark' : 'light';
-		// Update system theme when it changes.
 		media.addEventListener('change', (e) => {
 			system = e.matches ? 'dark' : 'light';
 		});
@@ -66,7 +65,7 @@
 	<script>
 		const selected = localStorage.getItem('theme') ?? 'system';
 		const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-		const theme = selected !== 'system' ? selected : system;
+		const theme = selected === 'system' ? system : selected;
 		if (theme === 'dark') document.documentElement.classList.add('dark');
 	</script>
 </svelte:head>
