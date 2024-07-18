@@ -14,6 +14,11 @@
 	const [initHours, initMinutes, initSeconds] = timeFromTimery(query);
 
 	let beeping = $state(false);
+	$effect(() => {
+		if (query) {
+		}
+		beeping = false;
+	});
 
 	/** @type {HTMLElement | null} */
 	let timerNumbersContainer = $state(null);
