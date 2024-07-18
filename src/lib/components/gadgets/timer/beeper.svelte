@@ -1,14 +1,21 @@
 <script>
 	import { sleep } from '$lib/functions/sleep/sleep';
+	import { onMount } from 'svelte';
 
 	/**
 	 * @typedef {object} Props
 	 * @property {boolean} beeping
-	 * @property {number|undefined} beepingInterval
 	 */
 
 	/** @type {Props} */
-	let { beeping, beepingInterval = $bindable() } = $props();
+	let { beeping } = $props();
+
+	/** @type {AudioContext|null} */
+	let ctx = $state(null);
+
+	onMount(() => {
+		ctx = new window.AudioContext();
+	});
 
 	/**
 	 * Get the frequency of a note.
@@ -44,8 +51,9 @@
 		}
 	}
 
+	const noteDuration = 175;
 	const marioNotes = [
-		9, 9, 0, 9, 0, 13, 9, 0, 6, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 18, 0, 0, 21, 0, 0, 16, 0, 14, 0, 15,
+		9, 9, 0, 9, 0, 13, 9, 0, 6, 0, 0, 0, 0, 0, 0, 13, 0, 0, 18, 0, 0, 21, 0, 0, 16, 0, 14, 0, 15,
 		16, 0, 18, 9, 6, 4, 0, 8, 6, 0, 8, 6, 0, 9, 0, 13, 11, 13
 	];
 
@@ -53,11 +61,10 @@
 	 * Beeps a sound
 	 * @param {AudioContext} ctx
 	 * @param {number} freq
-	 * @param {number} duration
 	 * @param {number} vol
 	 * @returns {void}
 	 */
-	function beep(ctx, freq = 520, duration = 200, vol = 100) {
+	function beep(ctx, freq, vol = 5) {
 		const oscillator = ctx.createOscillator();
 		const gain = ctx.createGain();
 		oscillator.connect(gain);
@@ -66,27 +73,26 @@
 		gain.connect(ctx.destination);
 		gain.gain.value = vol * 0.01;
 		oscillator.start(ctx.currentTime);
-		oscillator.stop(ctx.currentTime + duration * 0.001);
+		oscillator.stop(ctx.currentTime + noteDuration * 0.001);
 	}
 
-	/** @returns {Promise<void>} */
-	async function playTimerSound() {
-		const ctx = new window.AudioContext();
-		for (const note of marioNotes) {
-			await sleep(200);
-			beep(ctx, getFrequency(note));
+	/**
+	 * Plays the timer sound
+	 * @param {AudioContext} ctx
+	 * @returns {Promise<void>}
+	 */
+	async function playTimerSound(ctx) {
+		while (beeping) {
+			for (const note of marioNotes) {
+				if (!beeping) return;
+				await sleep(noteDuration);
+				if (!beeping) return;
+				beep(ctx, getFrequency(note));
+			}
 		}
-	}
-
-	/** @returns {void} */
-	function startBeeping() {
-		playTimerSound();
-		beepingInterval = setInterval(playTimerSound, 200 * marioNotes.length);
 	}
 
 	$effect(() => {
-		if (beeping) {
-			startBeeping();
-		}
+		if (beeping && ctx) playTimerSound(ctx);
 	});
 </script>
