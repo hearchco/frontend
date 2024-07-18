@@ -6,6 +6,8 @@ import { concatSearchParams } from '$lib/functions/api/concatparams';
 import { fetchResults } from '$lib/functions/api/fetchresults';
 
 import { CategoryEnum, toCategoryType } from '$lib/types/search/category';
+import { exchangery, extractExchangeQuery } from '$lib/functions/query/gadgets/exchange';
+import { fetchCurrencies } from '$lib/functions/api/fetchcurrencies';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {
@@ -47,7 +49,30 @@ export async function load({ url, fetch }) {
 	});
 
 	// Fetch results.
-	const resp = await fetchResults(newSearchParams, fetch);
+	const respP = fetchResults(newSearchParams, fetch);
+
+	// If not an exchange query, return results.
+	if (!exchangery(queryWithoutCategory)) {
+		const resp = await respP;
+		return {
+			browser: browser,
+			query: queryWithoutCategory,
+			currentPage: currentPage,
+			maxPages: maxPages,
+			category: category,
+			results: resp.results,
+			duration: resp.duration,
+			exchange: null
+		};
+	}
+
+	// Fetch exchange result.
+	const { from, to, amount } = extractExchangeQuery(queryWithoutCategory);
+	const currenciesP = fetchCurrencies();
+
+	// Wait for all promises to resolve.
+	const resp = await respP;
+	const currencies = await currenciesP;
 
 	return {
 		browser: browser,
@@ -56,7 +81,13 @@ export async function load({ url, fetch }) {
 		maxPages: maxPages,
 		category: category,
 		results: resp.results,
-		duration: resp.duration
+		duration: resp.duration,
+		exchange: {
+			from: from,
+			to: to,
+			amount: amount,
+			currencies: new Map(Object.entries(currencies.currencies))
+		}
 	};
 }
 

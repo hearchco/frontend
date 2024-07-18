@@ -29,7 +29,7 @@ export function extractExchangeQuery(query) {
 
 	const parts = query.split(' ');
 	const amount = parseFloat(parts[0]);
-	const from = parts[1];
-	const to = parts[3];
+	const from = parts[1].toUpperCase();
+	const to = parts[3].toUpperCase();
 	return { from, to, amount };
 }

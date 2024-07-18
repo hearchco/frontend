@@ -50,11 +50,15 @@
 {/if}
 
 <!-- Gadgets -->
-{#if browser}
+{#if data.exchange}
+	{@const from = data.exchange.from}
+	{@const to = data.exchange.to}
+	{@const amount = data.exchange.amount}
+	{@const currencies = data.exchange.currencies}
+	<Exchange {from} {to} {amount} {currencies} />
+{:else if browser}
 	{#key query}
-		{#if exchangery(query)}
-			<Exchange {query} />
-		{:else if timery(query)}
+		{#if timery(query)}
 			<Timer {query} />
 		{/if}
 	{/key}
