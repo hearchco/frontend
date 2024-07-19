@@ -15,8 +15,6 @@
 
 	let beeping = $state(false);
 	$effect(() => {
-		if (query) {
-		}
 		beeping = false;
 	});
 
