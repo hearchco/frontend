@@ -193,7 +193,11 @@ export function timery(query) {
 		'activity timr'
 	];
 
-	return keywords.some((keyword) => query.trim().toLowerCase().includes(keyword));
+	// Return true if the query contains any of the keywords, but only as words not substrings of another word.
+	return keywords.some((keyword) => {
+		const regex = new RegExp(`\\b${keyword}\\b`, 'i');
+		return regex.test(query);
+	});
 }
 
 /**

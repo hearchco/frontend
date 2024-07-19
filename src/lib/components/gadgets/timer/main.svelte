@@ -15,6 +15,7 @@
 
 	let beeping = $state(false);
 	$effect(() => {
+		query; // Re-run effect when query changes.
 		beeping = false;
 	});
 
