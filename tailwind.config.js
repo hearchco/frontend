@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	darkMode: 'selector',
+	darkMode: ['variant', [
+		'@media (prefers-color-scheme: dark) { &:not(.light *) }',
+		'&:is(.dark *)',
+	]],
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {

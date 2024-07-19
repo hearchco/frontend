@@ -26,8 +26,10 @@
 	// Update the DOM with the current theme.
 	$effect(() => {
 		if (theme === 'light') {
+			document.documentElement.classList.add('light');
 			document.documentElement.classList.remove('dark');
 		} else {
+			document.documentElement.classList.remove('light');
 			document.documentElement.classList.add('dark');
 		}
 	});
@@ -67,6 +69,7 @@
 		const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 		const theme = selected === 'system' ? system : selected;
 		if (theme === 'dark') document.documentElement.classList.add('dark');
+		else document.documentElement.classList.add('light');
 	</script>
 </svelte:head>
 
