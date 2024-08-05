@@ -19,3 +19,22 @@
  * @property {number} duration - The duration of the search in milliseconds.
  * @property {SuggestionType[]} suggestions - The suggestions.
  */
+
+/**
+ * @typedef {Object} ExchangeResponseType
+ * @property {string} version - The version of the API.
+ * @property {number} duration - The duration of the search in milliseconds.
+ * @property {string} base - The base currency.
+ * @property {string} from - The currency to be exchanged.
+ * @property {string} to - The currency to be exchanged to.
+ * @property {number} amount - The amount to be exchanged.
+ * @property {number} result - The exchange rate result.
+ */
+
+/**
+ * @typedef {Object} CurrenciesResponseType
+ * @property {string} version - The version of the API.
+ * @property {number} duration - The duration of the search in milliseconds.
+ * @property {string} base - The base currency.
+ * @property {Map<string,number>} currencies - The currencies map (key: currency code, value: exchange rate).
+ */
