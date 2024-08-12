@@ -24,37 +24,38 @@
 	 */
 	function getFrequency(note = 1) {
 		switch (note) {
+			case 1:
+				return 659; // E5
+			case 2:
+				return 622; // D#5
+			case 3:
+				return 587; // D5
 			case 4:
-				return 440;
+				return 523; // C5
+			case 5:
+				return 493; // B4
 			case 6:
-				return 392;
+				return 466; // A#4
+			case 7:
+				return 440; // A4
 			case 8:
-				return 349;
+				return 392; // G4
 			case 9:
-				return 330;
+				return 349; // F4
+			case 10:
+				return 330; // E4
 			case 11:
-				return 294;
-			case 13:
-				return 262;
-			case 14:
-				return 247;
-			case 15:
-				return 233;
-			case 16:
-				return 220;
-			case 18:
-				return 196;
-			case 21:
-				return 165;
+				return 294; // D4
 			default:
-				return 0;
+				return 0; // Rest
 		}
 	}
 
-	const noteDuration = 175;
-	const marioNotes = [
-		9, 9, 0, 9, 0, 13, 9, 0, 6, 0, 0, 0, 0, 0, 0, 13, 0, 0, 18, 0, 0, 21, 0, 0, 16, 0, 14, 0, 15,
-		16, 0, 18, 9, 6, 4, 0, 8, 6, 0, 8, 6, 0, 9, 0, 13, 11, 13
+	const noteDuration = 250;
+	const notes = [
+		4, 4, 4, 5, 6, 6, 6, 7, 8, 8, 8, 9, 10, 10, 10, 7, 4, 4, 4, 5, 6, 6, 6, 7, 8, 8, 8, 9, 10, 10,
+		10, 7, 4, 4, 4, 5, 6, 6, 6, 7, 8, 8, 8, 9, 10, 10, 10, 7, 4, 4, 4, 5, 6, 6, 6, 7, 8, 8, 8, 9,
+		10, 10, 10, 7
 	];
 
 	/**
@@ -71,7 +72,7 @@
 		oscillator.frequency.value = freq;
 		oscillator.type = 'square';
 		gain.connect(ctx.destination);
-		gain.gain.value = vol * 0.01;
+		gain.gain.value = vol * 0.005;
 		oscillator.start(ctx.currentTime);
 		oscillator.stop(ctx.currentTime + noteDuration * 0.001);
 	}
@@ -83,7 +84,7 @@
 	 */
 	async function playTimerSound(ctx) {
 		while (beeping) {
-			for (const note of marioNotes) {
+			for (const note of notes) {
 				if (!beeping) return;
 				await sleep(noteDuration);
 				if (!beeping) return;
