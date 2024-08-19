@@ -1,0 +1,48 @@
+name: CD
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'pnpm' # must be preinstalled
+
+      # switch svelte.config.js to use aws adapter
+      - run: make aws
+
+      # install dependencies and build
+      - run: make install
+      - run: make compile
+        env:
+          PUBLIC_UI_VERSION: ${{ github.ref }}
+
+      # zip the build directory
+      - run: |
+          cd build/ && zip -r ../hearchco-frontend-build-aws.zip .
+
+      # upload the build to the release
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: hearchco-frontend-build-aws.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
