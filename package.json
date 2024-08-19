@@ -15,7 +15,7 @@
 		"test:unit": "vitest"
 	},
 	"devDependencies": {
-		"@hearchco/sveltekit-adapter-aws": "npm:@jsr/hearchco__sveltekit-adapter-aws@^0.1.10",
+		"@hearchco/sveltekit-adapter-aws": "npm:@jsr/hearchco__sveltekit-adapter-aws@^0.1.12",
 		"@playwright/test": "^1.46.1",
 		"@sveltejs/adapter-node": "^5.2.2",
 		"@sveltejs/kit": "^2.5.22",
