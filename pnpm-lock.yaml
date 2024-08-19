@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@hearchco/sveltekit-adapter-aws':
-        specifier: npm:@jsr/hearchco__sveltekit-adapter-aws@^0.1.10
-        version: '@jsr/hearchco__sveltekit-adapter-aws@0.1.10(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.225)(vite@5.4.1))(svelte@5.0.0-next.225)(vite@5.4.1)'
+        specifier: npm:@jsr/hearchco__sveltekit-adapter-aws@^0.1.12
+        version: '@jsr/hearchco__sveltekit-adapter-aws@0.1.12(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.225)(vite@5.4.1))(svelte@5.0.0-next.225)(vite@5.4.1)'
       '@playwright/test':
         specifier: ^1.46.1
         version: 1.46.1
@@ -417,8 +417,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@jsr/hearchco__sveltekit-adapter-aws@0.1.10':
-    resolution: {integrity: sha512-rhz/XF1i3bHYl2JxbpJu0In/xPhbyhI554itT2GbqgLbPVl1oSqDSgaptoUGdqmIfHhUoULY5tw/mahr8iInew==, tarball: https://npm.jsr.io/~/11/@jsr/hearchco__sveltekit-adapter-aws/0.1.10.tgz}
+  '@jsr/hearchco__sveltekit-adapter-aws@0.1.12':
+    resolution: {integrity: sha512-DxhBel7XcmvLHt3dcvDEwHiOaP+ZvJF6/wOaJrRCM4nrIVBCuwOykyIPlx2KOlT903MbG6T9FI35TBFP37b6VQ==, tarball: https://npm.jsr.io/~/11/@jsr/hearchco__sveltekit-adapter-aws/0.1.12.tgz}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2000,7 +2000,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  '@jsr/hearchco__sveltekit-adapter-aws@0.1.10(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.225)(vite@5.4.1))(svelte@5.0.0-next.225)(vite@5.4.1)':
+  '@jsr/hearchco__sveltekit-adapter-aws@0.1.12(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.225)(vite@5.4.1))(svelte@5.0.0-next.225)(vite@5.4.1)':
     dependencies:
       '@sveltejs/kit': 2.5.22(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.225)(vite@5.4.1))(svelte@5.0.0-next.225)(vite@5.4.1)
       esbuild: 0.23.0
