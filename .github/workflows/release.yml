@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      PUBLIC_UI_VERSION: ${{ github.ref }}
 
     steps:
       - uses: actions/checkout@v4
@@ -29,8 +31,6 @@ jobs:
       # install dependencies and build
       - run: make install
       - run: make compile
-        env:
-          PUBLIC_UI_VERSION: ${{ github.ref }}
 
       # zip the build directory
       - run: |
