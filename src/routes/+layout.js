@@ -5,7 +5,7 @@ import { fetchVersion } from '$lib/functions/api/fetchversion';
 export async function load({ fetch }) {
 	const apiVersion = await fetchVersion(fetch);
 	return {
-		uiVersion: PUBLIC_UI_VERSION ?? 'dev',
+		uiVersion: extractVersion(PUBLIC_UI_VERSION) ?? 'dev',
 		apiVersion: extractVersion(apiVersion) ?? 'dev'
 	};
 }
@@ -16,7 +16,7 @@ export async function load({ fetch }) {
  */
 function extractVersion(input) {
 	// Regular expression to match the version part
-	const versionRegex = /^v\d+\.\d+\.\d+/;
+	const versionRegex = /v\d+\.\d+\.\d+(-preview)?/;
 	const match = input.match(versionRegex);
 
 	// Return the matched version or null if not found
