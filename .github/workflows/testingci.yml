@@ -10,7 +10,7 @@ jobs:
     permissions:
       contents: read
     env:
-      PUBLIC_UI_VERSION: ${{ github.sha }}
+      PUBLIC_UI_VERSION: ${{ github.sha }}-preview
 
     steps:
       - uses: actions/checkout@v4
