@@ -39,12 +39,12 @@ export async function load({ url, fetch }) {
 	}
 
 	// Concatenate search params.
-	const newSearchParams = concatSearchParams({
-		q: queryWithoutCategory,
-		category: category !== CategoryEnum.GENERAL ? category : '',
-		start: currentPage !== 1 ? currentPage.toString() : '',
-		pages: maxPages !== 1 ? maxPages.toString() : ''
-	});
+	const newSearchParams = concatSearchParams([
+		['q', queryWithoutCategory],
+		['category', category !== CategoryEnum.GENERAL ? category : ''],
+		['start', currentPage !== 1 ? currentPage.toString() : ''],
+		['pages', maxPages !== 1 ? maxPages.toString() : '']
+	]);
 
 	// Fetch results.
 	const resp = await fetchResults(newSearchParams, fetch);

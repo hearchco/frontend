@@ -1,18 +1,21 @@
-/**
- * Concatenate search params.
- * @param {Record<string, string>} searchParamsMap - Array of search params.
- * @returns {URLSearchParams} - Concatenated search params.
- */
-export function concatSearchParams(searchParamsMap) {
-	// Convert search params map to array avoiding empty values.
-	const searchParamsArray = Object.entries(searchParamsMap).map(([key, value]) =>
-		value !== '' ? `${key}=${value}` : ''
-	);
+import { error } from '@sveltejs/kit';
 
-	return new URLSearchParams(
-		`?${searchParamsArray
-			.filter((param) => param !== '')
-			.sort()
-			.join('&')}`
-	);
+/**
+ * Converts an array of search params into a URLSearchParams object and sorts it.
+ * @param {string[][]} params - Search params.
+ * @returns {URLSearchParams} - Sorted search params object.
+ */
+export function concatSearchParams(params) {
+	const nonEmptyParams = params.filter((param) => param[1] !== '');
+	let paramsObj;
+
+	try {
+		paramsObj = new URLSearchParams(nonEmptyParams);
+	} catch (/** @type {any} */ err) {
+		// Internal Server Error.
+		throw error(500, `Failed to create URLSearchParams: ${err.message}`);
+	}
+
+	paramsObj.sort();
+	return paramsObj;
 }

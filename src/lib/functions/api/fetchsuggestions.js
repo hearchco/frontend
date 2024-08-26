@@ -1,5 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { createApiUrl } from '$lib/functions/api/createurl.js';
+import { concatSearchParams } from './concatparams';
 
 /**
  * @param {string} query
@@ -8,7 +9,10 @@ import { createApiUrl } from '$lib/functions/api/createurl.js';
  */
 export async function fetchSuggestions(query, fetcher = fetch) {
 	/** @type {URLSearchParams} */
-	const params = new URLSearchParams(`q=${query}&output=json`);
+	const params = concatSearchParams([
+		['q', query],
+		['output', 'json']
+	]);
 
 	/** @type {URL} */
 	let apiUrl;

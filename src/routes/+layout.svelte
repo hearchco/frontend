@@ -5,13 +5,14 @@
 	import Footer from '$lib/components/footer/main.svelte';
 
 	let { data } = $props();
+	const browser = $derived(data.browser);
 	const uiVersion = $derived(data.uiVersion);
 	const apiVersion = $derived(data.apiVersion);
 </script>
 
 <Preconnect />
 
-<ThemeToggle />
+<ThemeToggle {browser} />
 
 <main class="min-h-[90lvh]">
 	<!-- eslint-disable-next-line svelte/no-unused-svelte-ignore -->
