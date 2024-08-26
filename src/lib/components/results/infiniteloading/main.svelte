@@ -18,14 +18,22 @@
 	/** @param {SubmitEvent} event */
 	async function handleSubmit(event) {
 		event.preventDefault();
-		const params = concatSearchParams({ q: query, category, start: nextPage.toString() });
+		const params = concatSearchParams([
+			['q', query],
+			['category', category],
+			['start', nextPage.toString()]
+		]);
 		const newResults = await fetchAdditionalResults(results, params);
 		results = newResults;
 		nextPage = nextPage + 1;
 	}
 
 	async function preloadResults() {
-		const params = concatSearchParams({ q: query, category, start: nextPage.toString() });
+		const params = concatSearchParams([
+			['q', query],
+			['category', category],
+			['start', nextPage.toString()]
+		]);
 		await fetchResults(params);
 	}
 </script>
