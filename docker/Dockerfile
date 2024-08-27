@@ -6,6 +6,6 @@ COPY --chown=node:node ["package.json", "build/", "./"]
 
 CMD [ "index.js" ]
 
-EXPOSE 3000
+EXPOSE 8080
 
 LABEL org.opencontainers.image.source="https://github.com/hearchco/frontend"

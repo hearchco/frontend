@@ -27,7 +27,7 @@ services:
       - 'traefik.enable=true'
       - 'traefik.http.routers.frontend.rule=Host(`search.example.org`)'
       - 'traefik.http.routers.frontend.entrypoints=web'
-      - 'traefik.http.services.frontend.loadbalancer.server.port=3000'
+      - 'traefik.http.services.frontend.loadbalancer.server.port=8080'
   agent:
     image: ghcr.io/hearchco/agent:latest
     environment:
