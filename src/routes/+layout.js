@@ -1,11 +1,13 @@
-import { PUBLIC_UI_VERSION } from '$env/static/public';
+import { browser } from '$app/environment';
+import { PUBLIC_UI_VERSION as uiVersion } from '$env/static/public';
 import { fetchVersion } from '$lib/functions/api/fetchversion';
 
 /** @type {import('./$types').LayoutLoad} */
 export async function load({ fetch }) {
 	const apiVersion = await fetchVersion(fetch);
 	return {
-		uiVersion: extractVersion(PUBLIC_UI_VERSION) ?? 'dev',
+		browser: browser,
+		uiVersion: extractVersion(uiVersion) ?? 'dev',
 		apiVersion: extractVersion(apiVersion) ?? 'dev'
 	};
 }

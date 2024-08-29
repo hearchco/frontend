@@ -1,5 +1,5 @@
-import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/public';
+import { error } from '@sveltejs/kit';
 
 /**
  * Create an API URL.
@@ -14,13 +14,13 @@ export function createApiUrl(path, params) {
 		throw error(500, 'PUBLIC_API_URI env is not defined');
 	}
 
-	const apiUrl = (apiUri.endsWith('/') ? apiUri : apiUri + '/') + (path ?? '');
-	const urll = new URL(apiUrl);
-
-	if (params) {
-		for (const [key, value] of params) {
-			urll.searchParams.set(key, value);
-		}
+	let urll;
+	try {
+		urll = new URL(path ?? '', apiUri);
+		if (params) urll.search = params.toString();
+	} catch (/** @type {any} */ err) {
+		// Internal Server Error.
+		throw error(500, `Failed to create URL: ${err.message}`);
 	}
 
 	return urll;

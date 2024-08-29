@@ -1,6 +1,14 @@
 <script>
 	import { onMount } from 'svelte';
 
+	/**
+	 * @typedef {object} Props
+	 * @property {boolean} [browser]
+	 */
+
+	/** @type {Props} */
+	let { browser = false } = $props();
+
 	/** @type {'light' | 'dark' | 'system'} */
 	let selected = $state('system');
 	/** @type {'light' | 'dark'} */
@@ -73,7 +81,12 @@
 	</script>
 </svelte:head>
 
-<button class="absolute top-0 right-0 md:p-4" onclick={toggleTheme} ondblclick={clearTheme}>
+<button
+	class:hidden={!browser}
+	class="absolute top-0 right-0 md:p-4"
+	onclick={toggleTheme}
+	ondblclick={clearTheme}
+>
 	<div class="size-10 object-cover hover:scale-110 duration-300 ease-in-out">
 		<svg
 			class="hidden dark:block fill-hearchco-primary dark:fill-hearchco-secondary stroke-hearchco-primary dark:stroke-hearchco-secondary"
