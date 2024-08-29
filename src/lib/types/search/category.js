@@ -22,11 +22,14 @@ export function toCategoryType(category) {
 			return CategoryEnum.GENERAL;
 		case 'images':
 		case 'image':
+		case 'imgs':
+		case 'img':
 			return CategoryEnum.IMAGES;
 		case 'science':
 		case 'sci':
 			return CategoryEnum.SCIENCE;
 		case 'thorough':
+		case 'detailed':
 		case 'slow':
 			return CategoryEnum.THOROUGH;
 		default:
