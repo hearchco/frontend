@@ -32,7 +32,7 @@ jobs:
           cache: 'pnpm' # must be preinstalled
 
       # switch svelte.config.js to use node adapter
-      - run: make node
+      - run: make adapter-node
 
       # install dependencies and build
       - run: make install

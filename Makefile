@@ -26,8 +26,11 @@ lint:
 format:
 	pnpm run format
 
-aws:
+adapter-aws:
 	cp svelte.config.aws.js svelte.config.js
 
-node:
+adapter-node:
 	cp svelte.config.node.js svelte.config.js
+
+adapter-auto:
+	cp svelte.config.auto.js svelte.config.js

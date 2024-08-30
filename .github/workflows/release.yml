@@ -26,7 +26,7 @@ jobs:
           cache: 'pnpm' # must be preinstalled
 
       # switch svelte.config.js to use aws adapter
-      - run: make aws
+      - run: make adapter-aws
 
       # install dependencies and build
       - run: make install
