@@ -1,4 +1,6 @@
 <script>
+	import { toCurrencyName } from '$lib/functions/gadgets/exchange';
+
 	/**
 	 * @typedef {object} Props
 	 * @property {string} from
@@ -61,7 +63,7 @@
 					class="w-5/12 p-2 bg-white dark:bg-neutral-700 border dark:border-neutral-600 rounded"
 				>
 					{#each currenciesNames as currency}
-						<option value={currency}>{currency}</option>
+						<option value={currency}>{toCurrencyName(currency) ?? currency}</option>
 					{/each}
 				</select>
 				<div class="w-2/12 flex justify-center items-center">
@@ -83,7 +85,7 @@
 					class="w-5/12 p-2 bg-white dark:bg-neutral-700 border dark:border-neutral-600 rounded"
 				>
 					{#each currenciesNames as currency}
-						<option value={currency}>{currency}</option>
+						<option value={currency}>{toCurrencyName(currency) ?? currency}</option>
 					{/each}
 				</select>
 			</div>

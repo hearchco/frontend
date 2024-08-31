@@ -1,3 +1,8 @@
+import { getCurrencyCode } from '$lib/functions/gadgets/exchange';
+
+const regex =
+	/^(?<amount>\d+(\.\d+)?) (?<from>[a-zA-Z]{3}|[a-zA-Z ]+) (?:to|in) (?<to>[a-zA-Z]{3}|[a-zA-Z ]+)$/;
+
 /**
  * Check if query is an exchange gadget query
  * @param {string} query - Query to be checked
@@ -5,9 +10,13 @@
  */
 export function exchangery(query) {
 	// Check if the query is in format "<amount> <currency1> to/in <currency2>"
-	// where <currency1> and <currency2> are 3-letter currency codes
-	const regex = /^\d+(\.\d+)? [a-zA-Z]{3} (to|in) [a-zA-Z]{3}$/;
-	return regex.test(query);
+	// where <currency1> and <currency2> are either 3-letter currency codes or currency names
+	const match = query.match(regex);
+	if (match === null || match.groups === undefined) return false;
+
+	const fromCode = getCurrencyCode(match.groups['from']);
+	const toCode = getCurrencyCode(match.groups['to']);
+	return fromCode !== undefined && toCode !== undefined;
 }
 
 /**
@@ -23,13 +32,17 @@ export function exchangery(query) {
  * @returns {ExchangeQueryType} - Extracted parameters
  */
 export function extractExchangeQuery(query) {
-	if (!exchangery(query)) {
+	const match = query.match(regex);
+	if (match === null || match.groups === undefined) {
 		throw new Error('Invalid exchange query');
 	}
 
-	const parts = query.split(' ');
-	const amount = parseFloat(parts[0]);
-	const from = parts[1].toUpperCase();
-	const to = parts[3].toUpperCase();
+	const from = getCurrencyCode(match.groups['from']);
+	const to = getCurrencyCode(match.groups['to']);
+	const amount = parseFloat(match.groups['amount']);
+	if (from === undefined || to === undefined) {
+		throw new Error('Invalid exchange query');
+	}
+
 	return { from, to, amount };
 }
