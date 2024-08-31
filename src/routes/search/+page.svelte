@@ -13,7 +13,6 @@
 	import General from '$lib/components/results/general/main.svelte';
 	import Images from '$lib/components/results/images/main.svelte';
 	import { CategoryEnum, toDisplayCategory } from '$lib/types/search/category.js';
-	import { exchangery } from '$lib/functions/query/gadgets/exchange';
 
 	let { data } = $props();
 
