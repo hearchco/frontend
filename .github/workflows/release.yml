@@ -34,11 +34,16 @@ jobs:
 
       # zip the build directory
       - run: |
-          cd build/ && zip -r ../hearchco-frontend-build-aws.zip .
+          cd build/cloudfront && cp index.js hearchco_cf_index_aws.js . && cd ../..
+          cd build/lambda && zip -r hearchco_index_mjs_aws.zip . && cd ../..
+          cd build/s3 && zip -r hearchco_s3_assets_aws.zip . && cd ../..
 
       # upload the build to the release
       - uses: softprops/action-gh-release@v2
         with:
-          files: hearchco-frontend-build-aws.zip
+          files: |
+            build/cloudfront/hearchco_cf_index_aws.js
+            build/lambda/hearchco_index_mjs_aws.zip
+            build/s3/hearchco_s3_assets_aws.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
