@@ -34,7 +34,7 @@ jobs:
 
       # zip the build directory
       - run: |
-          cd build/cloudfront && cp index.js hearchco_cf_index_aws.js . && cd ../..
+          cd build/cloudfront && cp index.js hearchco_cf_index_aws.js && cd ../..
           cd build/lambda && zip -r hearchco_index_mjs_aws.zip . && cd ../..
           cd build/s3 && zip -r hearchco_s3_assets_aws.zip . && cd ../..
 
