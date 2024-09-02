@@ -12,7 +12,7 @@
 
 	const favicon =
 		result.favicon_hash && result.favicon_hash != ''
-			? proxyFaviconLink(result.url, result.favicon_hash)
+			? proxyFaviconLink(result.url, result.favicon_hash, result.favicon_hash_timestamp)
 			: Logo;
 
 	const shortDesc =

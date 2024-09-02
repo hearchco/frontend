@@ -6,13 +6,15 @@ import { concatSearchParams } from './concatparams';
  * Create a public API URL for the proxy image endpoint.
  * @param {string} url
  * @param {string} hash
+ * @param {string} timestamp
  * @param {boolean} [favicon]
  * @returns {string}
  */
-export function proxyImageLink(url, hash, favicon = false) {
+export function proxyImageLink(url, hash, timestamp, favicon = false) {
 	const params = concatSearchParams([
-		['hash', hash],
 		['url', url],
+		['hash', hash],
+		['timestamp', timestamp],
 		['favicon', favicon.toString()]
 	]);
 
@@ -32,9 +34,10 @@ export function proxyImageLink(url, hash, favicon = false) {
  * Create a public API URL for the proxy favicon image endpoint.
  * @param {string} url
  * @param {string} hash
+ * @param {string} timestamp
  * @returns {string}
  */
-export function proxyFaviconLink(url, hash) {
+export function proxyFaviconLink(url, hash, timestamp) {
 	const uriPattern = '^(http(s?))(://)([^/]+)';
 	const uriRegex = new RegExp(uriPattern);
 	const uriMatch = url.match(uriRegex);
@@ -44,5 +47,5 @@ export function proxyFaviconLink(url, hash) {
 	}
 
 	const uri = uriMatch[0];
-	return proxyImageLink(uri, hash, true);
+	return proxyImageLink(uri, hash, timestamp, true);
 }
