@@ -49,7 +49,11 @@
 	<a href={result.url}>
 		<img
 			id="link-{result.rank}"
-			src={proxyImageLink(result.thumbnail_url, result.thumbnail_url_hash)}
+			src={proxyImageLink(
+				result.thumbnail_url,
+				result.thumbnail_url_hash,
+				result.thumbnail_url_hash_timestamp
+			)}
 			alt={result.title}
 			class="max-h-[40dvh] w-full object-contain bg-neutral-100 dark:bg-neutral-800 rounded-lg"
 		/>
