@@ -58,13 +58,13 @@ importers:
         version: 5.0.0-next.244
       svelte-check:
         specifier: ^4.0.1
-        version: 4.0.1(svelte@5.0.0-next.244)(typescript@5.5.4)
+        version: 4.0.1(svelte@5.0.0-next.244)(typescript@5.6.2)
       tailwindcss:
         specifier: ^3.4.10
         version: 3.4.10
       typescript:
-        specifier: ^5.5.4
-        version: 5.5.4
+        specifier: ^5.6.2
+        version: 5.6.2
       vite:
         specifier: ^5.4.4
         version: 5.4.4
@@ -1676,8 +1676,8 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
-  typescript@5.5.4:
-    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
+  typescript@5.6.2:
+    resolution: {integrity: sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3146,7 +3146,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte-check@4.0.1(svelte@5.0.0-next.244)(typescript@5.5.4):
+  svelte-check@4.0.1(svelte@5.0.0-next.244)(typescript@5.6.2):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       chokidar: 3.6.0
@@ -3154,7 +3154,7 @@ snapshots:
       picocolors: 1.0.1
       sade: 1.8.1
       svelte: 5.0.0-next.244
-      typescript: 5.5.4
+      typescript: 5.6.2
     transitivePeerDependencies:
       - picomatch
 
@@ -3246,7 +3246,7 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
-  typescript@5.5.4: {}
+  typescript@5.6.2: {}
 
   update-browserslist-db@1.1.0(browserslist@4.23.3):
     dependencies:
