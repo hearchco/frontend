@@ -13,28 +13,33 @@ import { fetchCurrencies } from '$lib/functions/api/fetchcurrencies';
 export async function load({ url, fetch }) {
 	// Get query, current page, and max pages from URL.
 	const query = url.searchParams.get('q') ?? '';
-	const currentPage = parseInt(url.searchParams.get('start') ?? '1', 10);
-	const maxPages = parseInt(url.searchParams.get('pages') ?? '1', 10);
+	console.debug('Query:', query);
+	const currentPage = Number.parseInt(url.searchParams.get('start') ?? '1', 10);
+	console.debug('Current page:', currentPage);
+	const maxPages = Number.parseInt(url.searchParams.get('pages') ?? '1', 10);
+	console.debug('Max pages:', maxPages);
 
 	// Validate query, current page, and max pages.
 	if (query === '') {
 		// Bad Request.
 		throw error(400, "Missing 'q' parameter");
 	}
-	if (isNaN(currentPage) || currentPage <= 0) {
+	if (Number.isNaN(currentPage) || currentPage <= 0) {
 		// Bad Request.
 		throw error(400, "Invalid 'start' parameter");
 	}
-	if (isNaN(maxPages) || maxPages <= 0) {
+	if (Number.isNaN(maxPages) || maxPages <= 0) {
 		// Bad Request.
 		throw error(400, "Invalid 'pages' parameter");
 	}
 
 	// Get category from URL or query (query takes precedence).
 	const category = getCategory(query, url.searchParams);
+	console.debug('Category:', category);
 
 	// Remove category from query if it exists.
 	const queryWithoutCategory = getQueryWithoutCategory(query);
+	console.debug('Query without category:', queryWithoutCategory);
 	if (queryWithoutCategory === '') {
 		// Bad Request.
 		throw error(400, "Only category specified in 'q' parameter");
@@ -47,6 +52,8 @@ export async function load({ url, fetch }) {
 		['start', currentPage !== 1 ? currentPage.toString() : ''],
 		['pages', maxPages !== 1 ? maxPages.toString() : '']
 	]);
+	console.debug('New search params:', newSearchParams);
+	console.debug('New search params string:', newSearchParams.toString());
 
 	// Fetch results.
 	const respP = fetchResults(newSearchParams, fetch);
