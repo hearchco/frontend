@@ -67,7 +67,11 @@
 					{/each}
 				</select>
 				<div class="w-2/12 flex justify-center items-center">
-					<button onclick={handleSwap} class="size-6 text-neutral-800 dark:text-neutral-200">
+					<button
+						aria-label="Swap currencies"
+						onclick={handleSwap}
+						class="size-6 text-neutral-800 dark:text-neutral-200"
+					>
 						<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 							<path
 								d="M33.5,23.6a2.1,2.1,0,0,0-2.7-.2,1.9,1.9,0,0,0-.2,3L35.2,31H8a2,2,0,0,0,0,4H35.2l-4.6,4.6a1.9,1.9,0,0,0,.2,3,2.1,2.1,0,0,0,2.7-.2l7.9-8a1.9,1.9,0,0,0,0-2.8Z"

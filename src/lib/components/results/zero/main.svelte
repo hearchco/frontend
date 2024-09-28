@@ -3,7 +3,7 @@
 </script>
 
 <div class="pt-40 flex place-content-center items-center">
-	<a href="/" class="px-2 mr-5 hidden sm:block">
+	<a aria-label="Homepage" href="/" class="px-2 mr-5 hidden sm:block">
 		<img src={Logo} alt="Hearchco Logo" class="size-20 -rotate-12 tranform -scale-x-100" />
 	</a>
 	<div class="text-center">
@@ -22,7 +22,7 @@
 			>.
 		</p>
 	</div>
-	<a href="/" class="px-2 ml-5 hidden sm:block">
+	<a aria-label="Homepage" href="/" class="px-2 ml-5 hidden sm:block">
 		<img src={Logo} alt="Hearchco Logo" class="size-20 rotate-12" />
 	</a>
 </div>
