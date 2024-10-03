@@ -19,23 +19,23 @@
 		"@playwright/test": "^1.47.2",
 		"@sveltejs/adapter-auto": "^3.2.5",
 		"@sveltejs/adapter-node": "^5.2.5",
-		"@sveltejs/kit": "^2.6.0",
+		"@sveltejs/kit": "^2.6.1",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0-next.7",
 		"@types/eslint": "^9.6.1",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.11.1",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.44.1",
-		"globals": "^15.9.0",
+		"globals": "^15.10.0",
 		"postcss": "^8.4.47",
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.7",
 		"svelte": "5.0.0-next.260",
-		"svelte-check": "^4.0.3",
+		"svelte-check": "^4.0.4",
 		"tailwindcss": "^3.4.13",
 		"typescript": "^5.6.2",
 		"vite": "^5.4.8",
-		"vitest": "^2.1.1"
+		"vitest": "^2.1.2"
 	},
 	"type": "module"
 }
