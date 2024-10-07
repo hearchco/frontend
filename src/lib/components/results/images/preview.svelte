@@ -30,6 +30,7 @@
 			</h1>
 		</a>
 		<button
+			aria-label="Close image preview"
 			type="button"
 			class="ml-1 max-5xs:hidden text-neutral-500 hover:text-hearchco-primary hover:dark:text-hearchco-secondary duration-100 ease-in-out"
 			onclick={() => (imagePreview = undefined)}
@@ -46,7 +47,7 @@
 			</svg>
 		</button>
 	</div>
-	<a href={result.url}>
+	<a aria-label="Go to source of image" href={result.url}>
 		<img
 			id="link-{result.rank}"
 			src={proxyImageLink(

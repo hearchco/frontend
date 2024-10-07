@@ -82,6 +82,7 @@
 </svelte:head>
 
 <button
+	aria-label="Toggle theme"
 	class:hidden={!browser}
 	class="absolute top-0 right-0 md:p-4"
 	onclick={toggleTheme}

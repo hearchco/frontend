@@ -195,6 +195,7 @@
 			/>
 			{#if query !== ''}
 				<button
+					aria-label="Clear search"
 					type="reset"
 					class="mx-1.5 max-5xs:hidden text-neutral-500 hover:text-hearchco-primary hover:dark:text-hearchco-secondary duration-100 ease-in-out"
 					onclick={() => {
@@ -215,6 +216,7 @@
 				</button>
 			{/if}
 			<button
+				aria-label="Search"
 				type="submit"
 				name="category"
 				value={category}

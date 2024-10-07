@@ -24,6 +24,7 @@
 
 <article class="size-full" id="image-{result.rank}">
 	<button
+		aria-label="Open image"
 		class:ring-4={selected}
 		class:ring-hearchco-primary={selected}
 		class:dark:ring-hearchco-secondary={selected}

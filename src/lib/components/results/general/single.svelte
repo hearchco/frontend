@@ -59,7 +59,7 @@
 	</a>
 	{#if shortDesc.length < result.description.length}
 		<div class="flex place-content-end">
-			<button onclick={toggleDesc}>
+			<button aria-label="Show more of description" onclick={toggleDesc}>
 				<svg
 					class="h-auto w-6"
 					width="100"
