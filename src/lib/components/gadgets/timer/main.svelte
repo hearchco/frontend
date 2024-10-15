@@ -173,7 +173,11 @@
 				class="radial-progress size-16 2xs:size-20 xs:size-24 sm:size-32 text-neutral-400"
 				role="progressbar"
 			>
-				<button onclick={toggleState} class="z-10 size-10 text-neutral-600 hover:text-neutral-400">
+				<button
+					aria-label="Toggle timer"
+					onclick={toggleState}
+					class="z-10 size-10 text-neutral-600 hover:text-neutral-400"
+				>
 					<svg
 						class:hidden={active || beeping}
 						xmlns="http://www.w3.org/2000/svg"

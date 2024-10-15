@@ -14,7 +14,7 @@
 
 <header class="border-b-2 border-neutral-100 dark:border-neutral-700">
 	<div class="mx-auto py-6 max-w-screen-md flex items-center">
-		<a href="/" class="hidden xs:block p-1" draggable="false">
+		<a aria-label="Homepage" href="/" class="hidden xs:block p-1" draggable="false">
 			<img class="size-[72px] pointer-events-none" src={Logo} alt="Hearchco" />
 		</a>
 		<Searchbox {query} {category} />
