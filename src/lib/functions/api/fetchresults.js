@@ -36,8 +36,22 @@ export async function fetchResults(params, fetcher = fetch) {
 	try {
 		jsonResponse = await response.json();
 	} catch (/** @type {any} */ err) {
+		/** @type {string} */
+		let textResponse;
+		try {
+			textResponse = await response.text();
+		} catch (/** @type {any} */ err) {
+			// Internal Server Error.
+			throw error(
+				500,
+				`Failed to read response text: ${err.message} (${response.status} ${response.statusText})`
+			);
+		}
 		// Internal Server Error.
-		throw error(500, `Failed to parse results: ${err.message}`);
+		throw error(
+			500,
+			`Failed to parse results: ${err.message} (${response.status} ${response.statusText}): ${textResponse}`
+		);
 	}
 
 	if ('message' in jsonResponse && 'value' in jsonResponse) {
