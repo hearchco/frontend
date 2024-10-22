@@ -10,9 +10,9 @@ export async function fetchVersion(fetcher = fetch) {
 	let apiUrl;
 	try {
 		apiUrl = createApiUrl('versionz');
-	} catch (/** @type {any} */ err) {
+	} catch (err) {
 		// Internal Server Error.
-		throw error(500, `Failed to create API URL: ${err.message}`);
+		throw error(500, `Failed to create API URL: ${err}`);
 	}
 
 	/** @type {Response} */
@@ -25,13 +25,19 @@ export async function fetchVersion(fetcher = fetch) {
 				'Accept-Encoding': 'gzip, deflate, br'
 			}
 		});
-	} catch (/** @type {any} */ err) {
+	} catch (err) {
 		// Bad Gateway.
-		throw error(502, `Failed to fetch version: ${err.message}`);
+		throw error(502, `Failed to fetch version: ${err}`);
 	}
 
 	/** @type {string} */
-	const version = await response.text();
+	let version;
+	try {
+		version = await response.text();
+	} catch (err) {
+		// Internal Server Error.
+		throw error(500, `Failed to read version: ${err}`);
+	}
 
 	return version;
 }

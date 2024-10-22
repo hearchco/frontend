@@ -11,9 +11,9 @@ export function concatSearchParams(params) {
 
 	try {
 		paramsObj = new URLSearchParams(nonEmptyParams);
-	} catch (/** @type {any} */ err) {
+	} catch (err) {
 		// Internal Server Error.
-		throw error(500, `Failed to create URLSearchParams: ${err.message}`);
+		throw error(500, `Failed to create URLSearchParams: ${err}`);
 	}
 
 	paramsObj.sort();

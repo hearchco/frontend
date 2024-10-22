@@ -22,9 +22,9 @@ export function proxyImageLink(url, hash, timestamp, favicon = false) {
 	let apiUrl;
 	try {
 		apiUrl = createApiUrl('proxy', params);
-	} catch (/** @type {any} */ err) {
+	} catch (err) {
 		// Internal Server Error.
-		throw error(500, `Failed to create API URL: ${err.message}`);
+		throw error(500, `Failed to create API URL: ${err}`);
 	}
 
 	return apiUrl.toString();
@@ -42,7 +42,7 @@ export function proxyFaviconLink(url, hash, timestamp) {
 	const uriRegex = new RegExp(uriPattern);
 	const uriMatch = url.match(uriRegex);
 
-	if (!uriMatch || uriMatch.length == 0) {
+	if (!uriMatch || uriMatch.length === 0) {
 		throw error(400, 'Invalid URL');
 	}
 
