@@ -29,23 +29,26 @@ export async function fetchAPI(fetcher, path, params) {
 				'Accept-Encoding': 'gzip, deflate, br'
 			}
 		});
-
-		// Check if the response is OK, otherwise handle the error.
-		if (!response.ok) {
-			// Try to read the response body as text.
-			let responseBody;
-			try {
-				responseBody = await response.text();
-			} catch (err) {
-				responseBody = `Failed to read response body: ${err}`;
-			}
-
-			// Throw an error with the response status and body.
-			throw error(response.status, `Error fetching: ${response.statusText}: ${responseBody}`);
-		}
 	} catch (err) {
 		// Bad Gateway.
 		throw error(502, `Failed to fetch: ${err}`);
+	}
+
+	// Check if the response is OK, otherwise handle the error.
+	if (!response.ok) {
+		// Try to read the response body as text.
+		let responseBody;
+		try {
+			responseBody = await response.text();
+		} catch (err) {
+			responseBody = `Failed to read response body: ${err}`;
+		}
+
+		// Same as the API.
+		throw error(
+			response.status,
+			`Response from API not OK (${response.statusText}): ${responseBody}`
+		);
 	}
 
 	/** @type {T | ErrorResponseType} */
@@ -60,9 +63,9 @@ export async function fetchAPI(fetcher, path, params) {
 			// Try to read the response body as text.
 			textResponse = await response.text();
 		} catch (textErr) {
-			// Internal Server Error.
+			// Bad Gateway.
 			throw error(
-				500,
+				502,
 				`Failed to read response body: ${textErr} (${response.status} ${response.statusText}): ${err}`
 			);
 		}
@@ -77,7 +80,10 @@ export async function fetchAPI(fetcher, path, params) {
 	// Check if the response is an error from the API (ErrorResponseType).
 	if (isErrorResponse(jsonResponse)) {
 		// Same as the API.
-		throw error(response.status, `API error: ${jsonResponse.message}: ${jsonResponse.value}`);
+		throw error(
+			response.status,
+			`Response from API is an error: ${jsonResponse.message}: ${jsonResponse.value}`
+		);
 	}
 
 	return jsonResponse;
