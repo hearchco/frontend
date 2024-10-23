@@ -1,4 +1,4 @@
-import { fetchResults } from './fetchresults';
+import { fetchResults } from './fetchapi';
 
 /**
  * Fetches additional results from the API and combines with the old results.

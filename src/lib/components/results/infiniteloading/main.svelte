@@ -1,7 +1,7 @@
 <script>
 	import { concatSearchParams } from '$lib/functions/api/concatparams';
 	import { fetchAdditionalResults } from '$lib/functions/api/additionalresults';
-	import { fetchResults } from '$lib/functions/api/fetchresults';
+	import { fetchResults } from '$lib/functions/api/fetchapi';
 
 	/**
 	 * @typedef {object} Props

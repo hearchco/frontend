@@ -2,6 +2,7 @@ import { error } from '@sveltejs/kit';
 import { createApiUrl } from '$lib/functions/api/createurl.js';
 
 /**
+ * Fetches the version of the API (/versionz).
  * @param {typeof fetch} [fetcher]
  * @returns {Promise<string>}
  */
