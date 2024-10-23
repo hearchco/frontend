@@ -3,11 +3,9 @@ import { error } from '@sveltejs/kit';
 
 import { getCategoryFromQuery, getQueryWithoutCategory } from '$lib/functions/query/category';
 import { concatSearchParams } from '$lib/functions/api/concatparams';
-import { fetchResults } from '$lib/functions/api/fetchresults';
-
+import { fetchResults, fetchCurrencies } from '$lib/functions/api/fetchapi';
 import { CategoryEnum, toCategoryType } from '$lib/types/search/category';
 import { exchangery, extractExchangeQuery } from '$lib/functions/query/gadgets/exchange';
-import { fetchCurrencies } from '$lib/functions/api/fetchcurrencies';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {

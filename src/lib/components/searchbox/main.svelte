@@ -1,7 +1,7 @@
 <script>
 	import { CategoryEnum } from '$lib/types/search/category';
 	import { getQueryWithoutCategory } from '$lib/functions/query/category';
-	import { fetchSuggestions } from '$lib/functions/api/fetchsuggestions';
+	import { fetchSuggestions } from '$lib/functions/api/fetchapi';
 
 	/**
 	 * @typedef {object} Props
@@ -44,10 +44,11 @@
 		if (query === '' || getQueryWithoutCategory(query) === '') {
 			suggestions = [];
 		} else if (currentIndex === -1) {
-			fetchSuggestions(getQueryWithoutCategory(query)).then((suggs) => {
+			fetchSuggestions(getQueryWithoutCategory(query)).then((resp) => {
 				const maxSize = 10;
-				if (suggs.length > maxSize) suggs.splice(maxSize, suggs.length - maxSize);
-				suggestions = suggs;
+				if (resp.suggestions.length > maxSize)
+					resp.suggestions.splice(maxSize, resp.suggestions.length - maxSize);
+				suggestions = resp.suggestions;
 			});
 		}
 	});

@@ -1,6 +1,6 @@
 import { browser } from '$app/environment';
 import { PUBLIC_UI_VERSION as uiVersion } from '$env/static/public';
-import { fetchVersion } from '$lib/functions/api/fetchversion';
+import { fetchVersion } from '$lib/functions/api/fetchapiversion';
 
 /** @type {import('./$types').LayoutLoad} */
 export async function load({ fetch }) {
