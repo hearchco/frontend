@@ -1,8 +1,10 @@
-FROM cgr.dev/chainguard/node-lts:latest
+FROM gcr.io/distroless/nodejs22-debian12:nonroot
+
+WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY --chown=node:node ["package.json", "build/", "./"]
+COPY ["package.json", "build/", "./"]
 
 CMD [ "index.js" ]
 
