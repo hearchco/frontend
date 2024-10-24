@@ -4,13 +4,14 @@
  * @property {string} url - URL of the result.
  * @property {string} url_hash - Hash of the URL (used only for images).
  * @property {string} url_hash_timestamp - Timestamp of the URL hash (used only for images).
+ * @property {string} fqdn - The fully qualified domain name of the result.
+ * @property {string} fqdn_hash - Hash required for proxying the favicon.
+ * @property {string} fqdn_hash_timestamp - Timestamp of the favicon hash.
  * @property {number} rank - The rank of the result.
  * @property {number} score - The score of the result.
  * @property {string} title - The title of the result.
  * @property {string} description - The description of the result.
  * @property {EngineRankType[]} engine_ranks - Rankings on different search engines.
- * @property {string} favicon_hash - Hash required for proxying the favicon.
- * @property {string} favicon_hash_timestamp - Timestamp of the favicon hash.
  * ImageResultType
  * @property {ImageFormatType} original - The original image format details.
  * @property {ImageFormatType} thumbnail - The thumbnail image format details.

@@ -7,15 +7,13 @@ import { concatSearchParams } from './concatparams';
  * @param {string} url
  * @param {string} hash
  * @param {string} timestamp
- * @param {boolean} [favicon]
  * @returns {string}
  */
-export function proxyImageLink(url, hash, timestamp, favicon = false) {
+export function proxyImageLink(url, hash, timestamp) {
 	const params = concatSearchParams([
 		['url', url],
 		['hash', hash],
-		['timestamp', timestamp],
-		['favicon', favicon.toString()]
+		['timestamp', timestamp]
 	]);
 
 	/** @type {URL} */
@@ -32,20 +30,26 @@ export function proxyImageLink(url, hash, timestamp, favicon = false) {
 
 /**
  * Create a public API URL for the proxy favicon image endpoint.
- * @param {string} url
+ * @param {string} fqdn
  * @param {string} hash
  * @param {string} timestamp
  * @returns {string}
  */
-export function proxyFaviconLink(url, hash, timestamp) {
-	const uriPattern = '^(http(s?))(://)([^/]+)';
-	const uriRegex = new RegExp(uriPattern);
-	const uriMatch = url.match(uriRegex);
+export function proxyFaviconLink(fqdn, hash, timestamp) {
+	const params = concatSearchParams([
+		['fqdn', fqdn],
+		['hash', hash],
+		['timestamp', timestamp]
+	]);
 
-	if (!uriMatch || uriMatch.length === 0) {
-		throw error(400, 'Invalid URL');
+	/** @type {URL} */
+	let apiUrl;
+	try {
+		apiUrl = createApiUrl('proxy', params);
+	} catch (err) {
+		// Internal Server Error.
+		throw error(500, `Failed to create API URL: ${err}`);
 	}
 
-	const uri = uriMatch[0];
-	return proxyImageLink(uri, hash, timestamp, true);
+	return apiUrl.toString();
 }
