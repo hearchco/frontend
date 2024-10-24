@@ -10,11 +10,7 @@
 	/** @type {Props} */
 	let { result } = $props();
 
-	const favicon =
-		result.favicon_hash && result.favicon_hash != ''
-			? proxyFaviconLink(result.url, result.favicon_hash, result.favicon_hash_timestamp)
-			: Logo;
-
+	const favicon = proxyFaviconLink(result.fqdn, result.fqdn_hash, result.fqdn_hash_timestamp);
 	const shortDesc =
 		result.description.length > 500 ? result.description.slice(0, 497) + '...' : result.description;
 
