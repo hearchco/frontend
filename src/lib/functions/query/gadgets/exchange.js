@@ -1,7 +1,7 @@
 import { getCurrencyCode } from '$lib/functions/gadgets/exchange';
 
 const regex =
-	/^(?<amount>\d+(\.\d+)?) (?<from>[a-zA-Z]{3}|[a-zA-Z ]+) (?:to|in) (?<to>[a-zA-Z]{3}|[a-zA-Z ]+)$/;
+	/^(?<amount>\d+(\.\d+)?)(?:\s*)(?<from>[a-zA-Z]{3}|[a-zA-Z ]+)(?:\s*)(?:to|in)(?:\s*)(?<to>[a-zA-Z]{3}|[a-zA-Z ]+)$/;
 
 /**
  * Check if query is an exchange gadget query
@@ -14,8 +14,8 @@ export function exchangery(query) {
 	const match = query.match(regex);
 	if (match === null || match.groups === undefined) return false;
 
-	const fromCode = getCurrencyCode(match.groups['from']);
-	const toCode = getCurrencyCode(match.groups['to']);
+	const fromCode = getCurrencyCode(match.groups.from);
+	const toCode = getCurrencyCode(match.groups.to);
 	return fromCode !== undefined && toCode !== undefined;
 }
 
@@ -37,9 +37,9 @@ export function extractExchangeQuery(query) {
 		throw new Error('Invalid exchange query');
 	}
 
-	const from = getCurrencyCode(match.groups['from']);
-	const to = getCurrencyCode(match.groups['to']);
-	const amount = parseFloat(match.groups['amount']);
+	const from = getCurrencyCode(match.groups.from);
+	const to = getCurrencyCode(match.groups.to);
+	const amount = Number.parseFloat(match.groups.amount);
 	if (from === undefined || to === undefined) {
 		throw new Error('Invalid exchange query');
 	}
