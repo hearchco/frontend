@@ -17,7 +17,7 @@
 	"devDependencies": {
 		"@hearchco/sveltekit-adapter-aws": "npm:@jsr/hearchco__sveltekit-adapter-aws@^0.1.12",
 		"@playwright/test": "^1.48.2",
-		"@sveltejs/adapter-auto": "^3.3.0",
+		"@sveltejs/adapter-auto": "^3.3.1",
 		"@sveltejs/adapter-node": "^5.2.9",
 		"@sveltejs/kit": "^2.7.2",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
