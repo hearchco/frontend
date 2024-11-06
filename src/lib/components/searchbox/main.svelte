@@ -20,6 +20,9 @@
 		loading = $bindable(false)
 	} = $props();
 
+	/** @type {string} */
+	let currQuery = $state(query);
+
 	/** @type {HTMLElement | null} */
 	let searchBox = $state(null);
 	/** @type {HTMLElement | null} */
@@ -41,10 +44,10 @@
 
 	// Updates suggestions when the query changes.
 	$effect(() => {
-		if (query === '' || getQueryWithoutCategory(query) === '') {
+		if (getQueryWithoutCategory(currQuery) === '') {
 			suggestions = [];
 		} else if (currentIndex === -1) {
-			fetchSuggestions(getQueryWithoutCategory(query)).then((resp) => {
+			fetchSuggestions(getQueryWithoutCategory(currQuery)).then((resp) => {
 				const maxSize = 10;
 				if (resp.suggestions.length > maxSize)
 					resp.suggestions.splice(maxSize, resp.suggestions.length - maxSize);
@@ -60,24 +63,24 @@
 	$effect(() => {
 		if (!shouldShowSuggs) {
 			if (currentIndex !== -1) {
-				query = suggestions[currentIndex].value;
+				currQuery = suggestions[currentIndex].value;
 				currentIndex = -1;
 			}
-			oldQuery = query;
+			oldQuery = currQuery;
 		}
 	});
 
 	/** @param {SubmitEvent} e */
 	function handleSubmit(e) {
-		if (query === '') {
+		if (getQueryWithoutCategory(currQuery) === '') {
 			e.preventDefault();
 			return;
 		}
 
 		if (clickedIndex !== -1) {
-			query = suggestions[clickedIndex].value;
+			currQuery = suggestions[clickedIndex].value;
 		} else if (currentIndex !== -1) {
-			query = suggestions[currentIndex].value;
+			currQuery = suggestions[currentIndex].value;
 		}
 
 		// Used to activate animation.
@@ -88,7 +91,7 @@
 		currentIndex = -1;
 		shouldShowSuggs = false;
 		suggestions = [];
-		oldQuery = query;
+		oldQuery = currQuery;
 	}
 
 	/** @param {KeyboardEvent} event */
@@ -105,9 +108,9 @@
 				}
 
 				if (currentIndex !== -1) {
-					query = suggestions[currentIndex].value;
+					currQuery = suggestions[currentIndex].value;
 				} else {
-					query = oldQuery;
+					currQuery = oldQuery;
 				}
 
 				break;
@@ -126,7 +129,7 @@
 			case 'Enter':
 				break;
 			default:
-				oldQuery = query;
+				oldQuery = currQuery;
 		}
 	}
 </script>
@@ -192,15 +195,15 @@
 				autocorrect="off"
 				dir="auto"
 				autofocus={homepage}
-				bind:value={query}
+				bind:value={currQuery}
 			/>
-			{#if query !== ''}
+			{#if currQuery !== ''}
 				<button
 					aria-label="Clear search"
 					type="reset"
 					class="mx-1.5 max-5xs:hidden text-neutral-500 hover:text-hearchco-primary hover:dark:text-hearchco-secondary duration-100 ease-in-out"
 					onclick={() => {
-						query = '';
+						currQuery = '';
 						searchInput?.focus();
 					}}
 				>
@@ -280,7 +283,9 @@
 				{@const current = cat === category}
 				<button
 					onclick={() => {
-						query = getQueryWithoutCategory(query);
+						// Reset the query when the category is changed.
+						currQuery = query;
+						// Set the category to the clicked one.
 						category = cat;
 					}}
 					type="submit"
