@@ -3,8 +3,8 @@
 
 	/**
 	 * @typedef {object} Props
-	 * @property {ResultType} result
-	 * @property {ResultType | undefined} imagePreview
+	 * @property {ImagesResultType} result
+	 * @property {ImagesResultType | undefined} imagePreview
 	 */
 
 	/** @type {Props} */

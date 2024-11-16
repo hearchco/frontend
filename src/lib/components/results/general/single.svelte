@@ -4,7 +4,7 @@
 
 	/**
 	 * @typedef {object} Props
-	 * @property {ResultType} result
+	 * @property {WebResultType} result
 	 */
 
 	/** @type {Props} */

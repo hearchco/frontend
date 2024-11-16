@@ -1,7 +1,7 @@
 <script>
-	import { CategoryEnum } from '$lib/types/search/category';
+	import { CategoryEnum } from '$lib/types/search/categoryenum';
 	import { getQueryWithoutCategory } from '$lib/functions/query/category';
-	import { fetchSuggestions } from '$lib/functions/api/fetchapi';
+	import { fetchSuggestionsResults } from '$lib/functions/api/fetchapi';
 
 	/**
 	 * @typedef {object} Props
@@ -15,7 +15,7 @@
 	let {
 		homepage = false,
 		query = '',
-		category = CategoryEnum.GENERAL,
+		category = CategoryEnum.WEB,
 		// @ts-ignore
 		loading = $bindable(false)
 	} = $props();
@@ -36,7 +36,7 @@
 	// Whether to show suggestions or not.
 	let shouldShowSuggs = $state(homepage);
 
-	/** @type {SuggestionType[]} */
+	/** @type {SuggestionsResultType[]} */
 	let suggestions = $state([]);
 
 	// Determines if the suggestions can be shown.
@@ -47,7 +47,7 @@
 		if (getQueryWithoutCategory(currQuery) === '') {
 			suggestions = [];
 		} else if (currentIndex === -1) {
-			fetchSuggestions(getQueryWithoutCategory(currQuery)).then((resp) => {
+			fetchSuggestionsResults(getQueryWithoutCategory(currQuery)).then((resp) => {
 				const maxSize = 10;
 				if (resp.suggestions.length > maxSize)
 					resp.suggestions.splice(maxSize, resp.suggestions.length - maxSize);

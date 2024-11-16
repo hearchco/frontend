@@ -7,17 +7,25 @@
 
 /**
  * Defines the structure for results responses.
- * @typedef {Object} ResultsResponseType
+ * @typedef {Object} WebResultsResponseType
  * @property {string} version - The version of the API.
  * @property {number} duration - The duration of the search in milliseconds.
- * @property {ResultType[]} results - The search results.
+ * @property {WebResultType[]} results - The search results.
  */
 
 /**
- * @typedef {Object} SuggestionsResponseType
+ * Defines the structure for results responses.
+ * @typedef {Object} ImagesResultsResponseType
  * @property {string} version - The version of the API.
  * @property {number} duration - The duration of the search in milliseconds.
- * @property {SuggestionType[]} suggestions - The suggestions.
+ * @property {ImagesResultType[]} results - The search results.
+ */
+
+/**
+ * @typedef {Object} SuggestionsResultsResponseType
+ * @property {string} version - The version of the API.
+ * @property {number} duration - The duration of the search in milliseconds.
+ * @property {SuggestionsResultType[]} suggestions - The suggestions.
  */
 
 /**

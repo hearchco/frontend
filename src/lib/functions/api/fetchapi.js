@@ -7,41 +7,51 @@ import { fetchAPI } from './fetchapigeneric';
  * @returns {Promise<CurrenciesResponseType>}
  */
 export async function fetchCurrencies(fetcher = fetch) {
-	return await fetchAPI(fetcher, 'currencies');
+	return await fetchAPI(fetcher, '/exchange/currencies');
 }
 
+// /**
+//  * Fetches /exchange with params from the API.
+//  * @param {URLSearchParams} params
+//  * @param {typeof fetch} [fetcher]
+//  * @returns {Promise<ExchangeResponseType>}
+//  */
+// export async function fetchExchange(params, fetcher = fetch) {
+// 	return await fetchAPI(fetcher, '/exchange', params);
+// }
+
 /**
- * Fetches /exchange with params from the API.
+ * Fetches /search/web with params from the API.
  * @param {URLSearchParams} params
  * @param {typeof fetch} [fetcher]
- * @returns {Promise<ExchangeResponseType>}
+ * @returns {Promise<WebResultsResponseType>}
  */
-export async function fetchExchange(params, fetcher = fetch) {
-	return await fetchAPI(fetcher, 'exchange', params);
+export async function fetchWebResults(params, fetcher = fetch) {
+	return await fetchAPI(fetcher, '/search/web', params);
 }
 
 /**
- * Fetches /search with params from the API.
+ * Fetches /search/images with params from the API.
  * @param {URLSearchParams} params
  * @param {typeof fetch} [fetcher]
- * @returns {Promise<ResultsResponseType>}
+ * @returns {Promise<ImagesResultsResponseType>}
  */
-export async function fetchResults(params, fetcher = fetch) {
-	return await fetchAPI(fetcher, 'search', params);
+export async function fetchImagesResults(params, fetcher = fetch) {
+	return await fetchAPI(fetcher, '/search/images', params);
 }
 
 /**
- * Fetches /suggestions with query from the API.
+ * Fetches /search/suggestions with query from the API.
  * @param {string} query
  * @param {typeof fetch} [fetcher]
- * @returns {Promise<SuggestionsResponseType>}
+ * @returns {Promise<SuggestionsResultsResponseType>}
  */
-export async function fetchSuggestions(query, fetcher = fetch) {
+export async function fetchSuggestionsResults(query, fetcher = fetch) {
 	/** @type {URLSearchParams} */
 	const params = concatSearchParams([
 		['q', query],
 		['output', 'json']
 	]);
 
-	return await fetchAPI(fetcher, 'suggestions', params);
+	return await fetchAPI(fetcher, '/search/suggestions', params);
 }

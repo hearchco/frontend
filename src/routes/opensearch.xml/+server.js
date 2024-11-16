@@ -111,5 +111,5 @@ function getFaviconUrl() {
 
 /** @returns {string} */
 function getSuggestionsUrl() {
-	return createApiUrl('suggestions').toString();
+	return createApiUrl('/search/suggestions').toString();
 }

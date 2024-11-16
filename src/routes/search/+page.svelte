@@ -12,7 +12,7 @@
 	import Zero from '$lib/components/results/zero/main.svelte';
 	import General from '$lib/components/results/general/main.svelte';
 	import Images from '$lib/components/results/images/main.svelte';
-	import { CategoryEnum, toDisplayCategory } from '$lib/types/search/category.js';
+	import { assertImagesResultType } from '$lib/types/search/assert.js';
 
 	let { data } = $props();
 
@@ -31,10 +31,10 @@
 	const results = $derived(data.results);
 	const duration = $derived(data.duration);
 
-	/** @type {ResultType | undefined} */
+	/** @type {ImagesResultType | undefined} */
 	let imagePreview = $state(undefined);
 
-	/** @type {import('./$types').Snapshot<ResultType | undefined>} */
+	/** @type {import('./$types').Snapshot<ImagesResultType | undefined>} */
 	export const snapshot = {
 		capture: () => imagePreview,
 		restore: (value) => (imagePreview = value)
@@ -65,7 +65,7 @@
 
 {#if results.length === 0}
 	<Zero />
-{:else if toDisplayCategory(category) === CategoryEnum.IMAGES}
+{:else if assertImagesResultType(results, category)}
 	<Images {browser} {query} {category} {currentPage} {results} bind:imagePreview />
 {:else}
 	<General {browser} {query} {category} {currentPage} {results} />

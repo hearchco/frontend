@@ -19,7 +19,7 @@ export function proxyImageLink(url, hash, timestamp) {
 	/** @type {URL} */
 	let apiUrl;
 	try {
-		apiUrl = createApiUrl('proxy', params);
+		apiUrl = createApiUrl('/imageproxy', params);
 	} catch (err) {
 		// Internal Server Error.
 		throw error(500, `Failed to create API URL: ${err}`);
@@ -45,7 +45,7 @@ export function proxyFaviconLink(fqdn, hash, timestamp) {
 	/** @type {URL} */
 	let apiUrl;
 	try {
-		apiUrl = createApiUrl('proxy', params);
+		apiUrl = createApiUrl('/imageproxy', params);
 	} catch (err) {
 		// Internal Server Error.
 		throw error(500, `Failed to create API URL: ${err}`);

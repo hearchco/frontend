@@ -7,7 +7,7 @@ import { error } from '@sveltejs/kit';
  * @param {URLSearchParams} [params]
  * @returns {URL}
  */
-export function createApiUrl(path = '', params = new URLSearchParams()) {
+export function createApiUrl(path = '/', params = new URLSearchParams()) {
 	const apiUri = env.PUBLIC_API_URI;
 	if (!apiUri) {
 		// Internal Server Error.

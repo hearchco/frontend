@@ -1,14 +1,18 @@
 <script>
 	import { concatSearchParams } from '$lib/functions/api/concatparams';
-	import { fetchAdditionalResults } from '$lib/functions/api/additionalresults';
-	import { fetchResults } from '$lib/functions/api/fetchapi';
+	import {
+		fetchAdditionalWebResults,
+		fetchAdditionalImagesResults
+	} from '$lib/functions/api/additionalresults';
+	import { fetchWebResults, fetchImagesResults } from '$lib/functions/api/fetchapi';
+	import { assertImagesResultType } from '$lib/types/search/assert';
 
 	/**
 	 * @typedef {object} Props
 	 * @property {string} query
 	 * @property {string} category
 	 * @property {number} currentPage
-	 * @property {ResultType[]} results
+	 * @property {WebResultType[] | ImagesResultType[]} results
 	 */
 
 	/** @type {Props} */
@@ -23,7 +27,9 @@
 			['category', category],
 			['start', nextPage.toString()]
 		]);
-		const newResults = await fetchAdditionalResults(results, params);
+		const newResults = assertImagesResultType(results, category)
+			? await fetchAdditionalImagesResults(results, params)
+			: await fetchAdditionalWebResults(results, params);
 		results = newResults;
 		nextPage = nextPage + 1;
 	}
@@ -34,7 +40,12 @@
 			['category', category],
 			['start', nextPage.toString()]
 		]);
-		await fetchResults(params);
+
+		if (assertImagesResultType(results, category)) {
+			await fetchImagesResults(params);
+		} else {
+			await fetchWebResults(params);
+		}
 	}
 </script>
 
