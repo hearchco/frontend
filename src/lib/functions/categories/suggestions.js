@@ -1,8 +1,8 @@
 /**
- * Images category config.
+ * Suggestions category config.
  * @type {CategoryType}
  */
-export const imagesCategory = {
+export const suggestionsCategory = {
 	engines: {
 		duckduckgo: {
 			enabled: true,

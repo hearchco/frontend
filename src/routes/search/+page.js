@@ -6,6 +6,7 @@ import { concatSearchParams } from '$lib/functions/api/concatparams';
 import { fetchWebResults, fetchImagesResults, fetchCurrencies } from '$lib/functions/api/fetchapi';
 import { CategoryEnum, toCategoryEnumType } from '$lib/types/search/categoryenum';
 import { exchangery, extractExchangeQuery } from '$lib/functions/query/gadgets/exchange';
+import { getCategoryConfigBase64 } from '$lib/functions/categories/convert';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {
@@ -46,9 +47,9 @@ export async function load({ url, fetch }) {
 	// Concatenate search params.
 	const newSearchParams = concatSearchParams([
 		['q', queryWithoutCategory],
-		['category', category.toString()],
-		['start', currentPage !== 1 ? currentPage.toString() : ''],
-		['pages', maxPages !== 1 ? maxPages.toString() : '']
+		['category', getCategoryConfigBase64(category)],
+		['start', currentPage.toString()],
+		['pages', maxPages.toString()]
 	]);
 	console.debug('New search params:', newSearchParams);
 	console.debug('New search params string:', newSearchParams.toString());

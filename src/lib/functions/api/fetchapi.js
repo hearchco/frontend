@@ -1,3 +1,4 @@
+import { getSuggestionsCategoryConfigBase64 } from '../categories/convert';
 import { concatSearchParams } from './concatparams';
 import { fetchAPI } from './fetchapigeneric';
 
@@ -50,7 +51,8 @@ export async function fetchSuggestionsResults(query, fetcher = fetch) {
 	/** @type {URLSearchParams} */
 	const params = concatSearchParams([
 		['q', query],
-		['output', 'json']
+		['output', 'json'],
+		['category', getSuggestionsCategoryConfigBase64()]
 	]);
 
 	return await fetchAPI(fetcher, '/search/suggestions', params);

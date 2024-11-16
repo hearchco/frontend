@@ -6,6 +6,7 @@
 	} from '$lib/functions/api/additionalresults';
 	import { fetchWebResults, fetchImagesResults } from '$lib/functions/api/fetchapi';
 	import { assertImagesResultType } from '$lib/types/search/assert';
+	import { getCategoryConfigBase64 } from '$lib/functions/categories/convert';
 
 	/**
 	 * @typedef {object} Props
@@ -24,7 +25,7 @@
 		event.preventDefault();
 		const params = concatSearchParams([
 			['q', query],
-			['category', category],
+			['category', getCategoryConfigBase64(category)],
 			['start', nextPage.toString()]
 		]);
 		const newResults = assertImagesResultType(results, category)
@@ -37,7 +38,7 @@
 	async function preloadResults() {
 		const params = concatSearchParams([
 			['q', query],
-			['category', category],
+			['category', getCategoryConfigBase64(category)],
 			['start', nextPage.toString()]
 		]);
 
