@@ -80,7 +80,7 @@
 		}
 	});
 
-	/** @type {number|undefined} */
+	/** @type {NodeJS.Timeout|undefined} */
 	let interval = $state(undefined);
 	function toggleState() {
 		if (beeping) {
