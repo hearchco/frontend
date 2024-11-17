@@ -1,4 +1,5 @@
 import { CategoryEnum } from '$lib/types/search/categoryenum';
+import { objectToBase64 } from '../encoding/base64';
 import { imagesCategory } from './images';
 import { scienceCategory } from './science';
 import { suggestionsCategory } from './suggestions';
@@ -12,14 +13,14 @@ import { webCategory } from './web';
  */
 export function getCategoryConfigBase64(category) {
 	switch (category) {
-		case CategoryEnum.WEB:
-			return btoa(JSON.stringify(webCategory));
+		case CategoryEnum.GENERAL:
+			return objectToBase64(webCategory);
 		case CategoryEnum.IMAGES:
-			return btoa(JSON.stringify(imagesCategory));
+			return objectToBase64(imagesCategory);
 		case CategoryEnum.SCIENCE:
-			return btoa(JSON.stringify(scienceCategory));
+			return objectToBase64(scienceCategory);
 		case CategoryEnum.THOROUGH:
-			return btoa(JSON.stringify(thoroughCategory));
+			return objectToBase64(thoroughCategory);
 		default:
 			throw new Error(`Invalid category: ${category}`);
 	}
@@ -30,5 +31,5 @@ export function getCategoryConfigBase64(category) {
  * @returns {string} The suggestions category config.
  */
 export function getSuggestionsCategoryConfigBase64() {
-	return btoa(JSON.stringify(suggestionsCategory));
+	return objectToBase64(suggestionsCategory);
 }

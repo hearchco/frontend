@@ -15,7 +15,7 @@
 	let {
 		homepage = false,
 		query = '',
-		category = CategoryEnum.WEB,
+		category = CategoryEnum.GENERAL,
 		// @ts-ignore
 		loading = $bindable(false)
 	} = $props();

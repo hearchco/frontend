@@ -116,7 +116,7 @@ function getCategory(query, params) {
 			? toCategoryEnumType(categoryFromQuery)
 			: categoryParam !== ''
 				? toCategoryEnumType(categoryParam)
-				: CategoryEnum.WEB;
+				: CategoryEnum.GENERAL;
 
 	// Check if category is valid.
 	if (!category) {

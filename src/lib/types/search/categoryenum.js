@@ -4,7 +4,7 @@
  * @readonly
  */
 export const CategoryEnum = {
-	WEB: 'web',
+	GENERAL: 'general',
 	IMAGES: 'images',
 	SCIENCE: 'science',
 	THOROUGH: 'thorough'
@@ -17,10 +17,9 @@ export const CategoryEnum = {
  */
 export function toCategoryEnumType(category) {
 	switch (category) {
-		case 'web':
-		case 'normal':
 		case 'general':
-			return CategoryEnum.WEB;
+		case 'normal':
+			return CategoryEnum.GENERAL;
 		case 'images':
 		case 'image':
 		case 'imgs':
