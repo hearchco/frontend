@@ -10,7 +10,7 @@ export async function fetchVersion(fetcher = fetch) {
 	/** @type {URL} */
 	let apiUrl;
 	try {
-		apiUrl = createApiUrl('versionz');
+		apiUrl = createApiUrl('/versionz');
 	} catch (err) {
 		// Internal Server Error.
 		throw error(500, `Failed to create API URL: ${err}`);

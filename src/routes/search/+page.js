@@ -3,9 +3,10 @@ import { error } from '@sveltejs/kit';
 
 import { getCategoryFromQuery, getQueryWithoutCategory } from '$lib/functions/query/category';
 import { concatSearchParams } from '$lib/functions/api/concatparams';
-import { fetchResults, fetchCurrencies } from '$lib/functions/api/fetchapi';
-import { CategoryEnum, toCategoryType } from '$lib/types/search/category';
+import { fetchWebResults, fetchImagesResults, fetchCurrencies } from '$lib/functions/api/fetchapi';
+import { CategoryEnum, toCategoryEnumType } from '$lib/types/search/categoryenum';
 import { exchangery, extractExchangeQuery } from '$lib/functions/query/gadgets/exchange';
+import { getCategoryConfigBase64 } from '$lib/functions/categories/convert';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ url, fetch }) {
@@ -46,15 +47,19 @@ export async function load({ url, fetch }) {
 	// Concatenate search params.
 	const newSearchParams = concatSearchParams([
 		['q', queryWithoutCategory],
-		['category', category !== CategoryEnum.GENERAL ? category : ''],
-		['start', currentPage !== 1 ? currentPage.toString() : ''],
-		['pages', maxPages !== 1 ? maxPages.toString() : '']
+		['category', getCategoryConfigBase64(category)],
+		['start', currentPage.toString()],
+		['pages', maxPages.toString()]
 	]);
 	console.debug('New search params:', newSearchParams);
 	console.debug('New search params string:', newSearchParams.toString());
 
 	// Fetch results.
-	const respP = fetchResults(newSearchParams, fetch);
+	/** @type {Promise<WebResultsResponseType | ImagesResultsResponseType>} */
+	const respP =
+		category === CategoryEnum.IMAGES
+			? fetchImagesResults(newSearchParams, fetch)
+			: fetchWebResults(newSearchParams, fetch);
 
 	// If not an exchange query, return results.
 	if (!exchangery(queryWithoutCategory)) {
@@ -100,7 +105,7 @@ export async function load({ url, fetch }) {
  * Get category from URL or query.
  * @param {string} query - Query from URL.
  * @param {URLSearchParams} params - Parameters.
- * @returns {string} - Category.
+ * @returns {CategoryEnum} - Category.
  * @throws {Error} - If category is invalid.
  */
 function getCategory(query, params) {
@@ -108,9 +113,9 @@ function getCategory(query, params) {
 	const categoryParam = params.get('category') ?? '';
 	const category =
 		categoryFromQuery !== ''
-			? toCategoryType(categoryFromQuery)
+			? toCategoryEnumType(categoryFromQuery)
 			: categoryParam !== ''
-				? toCategoryType(categoryParam)
+				? toCategoryEnumType(categoryParam)
 				: CategoryEnum.GENERAL;
 
 	// Check if category is valid.

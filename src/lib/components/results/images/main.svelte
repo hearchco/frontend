@@ -10,8 +10,8 @@
 	 * @property {string} query
 	 * @property {string} category
 	 * @property {number} currentPage
-	 * @property {ResultType[]} results
-	 * @property {ResultType | undefined} imagePreview
+	 * @property {ImagesResultType[]} results
+	 * @property {ImagesResultType | undefined} imagePreview
 	 */
 
 	/** @type {Props} */

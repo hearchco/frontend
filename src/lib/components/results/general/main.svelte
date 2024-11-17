@@ -9,7 +9,7 @@
 	 * @property {string} query
 	 * @property {string} category
 	 * @property {number} currentPage
-	 * @property {ResultType[]} results
+	 * @property {WebResultType[]} results
 	 */
 
 	/** @type {Props} */
