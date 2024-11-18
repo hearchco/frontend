@@ -102,7 +102,7 @@ export const webCategory = {
 		timesreturnedscoreadd: 0,
 		engines: {
 			bing: {
-				mul: 1,
+				mul: 1.5,
 				add: 0
 			},
 			brave: {
@@ -110,7 +110,7 @@ export const webCategory = {
 				add: 0
 			},
 			duckduckgo: {
-				mul: 1,
+				mul: 1.25, // Same result as Bing
 				add: 0
 			},
 			etools: {
@@ -118,7 +118,7 @@ export const webCategory = {
 				add: 0
 			},
 			google: {
-				mul: 1,
+				mul: 1.5,
 				add: 0
 			},
 			mojeek: {
@@ -126,15 +126,15 @@ export const webCategory = {
 				add: 0
 			},
 			presearch: {
-				mul: 1,
+				mul: 1.1, // Kinda the same results as Google
 				add: 0
 			},
 			qwant: {
-				mul: 1,
+				mul: 1.1, // Kinda the same results as Bing
 				add: 0
 			},
 			startpage: {
-				mul: 1,
+				mul: 1.25, // Same result as Google
 				add: 0
 			},
 			swisscows: {
@@ -142,7 +142,7 @@ export const webCategory = {
 				add: 0
 			},
 			yahoo: {
-				mul: 1,
+				mul: 1.1, // Kinda the same results as Bing
 				add: 0
 			}
 			// WARN: Disabled currently
