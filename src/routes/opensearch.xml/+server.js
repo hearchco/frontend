@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/public';
 import { createApiUrl } from '$lib/functions/api/createurl';
+import { getSuggestionsCategoryConfigBase64 } from '$lib/functions/categories/convert';
 
 const opensearchType = 'application/opensearchdescription+xml';
 
@@ -43,47 +44,34 @@ function getOpensearchXml(opensearchMethod) {
 		description.length > 1024 ? 1024 : description.length
 	);
 
-	const faviconType = 'image/x-icon';
-	const faviconSize = 16;
-
 	const instanceUrl = getInstanceUrl();
-	const searchUrl = getSearchUrl();
-	const faviconUrl = getFaviconUrl();
-	const suggestionsUrl = getSuggestionsUrl();
+	const faviconSize = 16;
+	const faviconType = 'image/x-icon';
+	const faviconUrl = `${instanceUrl}favicon.ico`;
+	const searchUrl = `${instanceUrl}search`;
+	const suggestionsUrl = createApiUrl('/search/suggestions').toString();
+	const suggestionsCategory = getSuggestionsCategoryConfigBase64();
+	const opensearchUrl = `${instanceUrl}opensearch.xml`;
 
-	const searchUrlTag =
-		opensearchMethod === 'GET'
-			? `<Url rel="results" type="text/html" method="${opensearchMethod}" template="${searchUrl}?q={searchTerms}" />`
-			: `
-			<Url rel="results" type="text/html" method="${opensearchMethod}" template="${searchUrl}">
-				<Param name="q" value="{searchTerms}" />
-			</Url>
-			`;
-	const suggestionsUrlTag =
-		opensearchMethod === 'GET'
-			? `<Url rel="suggestions" type="application/x-suggestions+json" template="${suggestionsUrl}?q={searchTerms}" />`
-			: `
-			<Url rel="suggestions" type="application/x-suggestions+json" template="${suggestionsUrl}">
-				<Param name="q" value="{searchTerms}" />
-			</Url>
-			`;
-
-	const body = `
+	return `
 <?xml version="1.0" encoding="utf-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
 	<ShortName>${instanceNameShort}</ShortName>
 	<Description>${descriptionShort}</Description>
 	<InputEncoding>UTF-8</InputEncoding>
 	<Image width="${faviconSize}" height="${faviconSize}" type="${faviconType}">${faviconUrl}</Image>
-	${searchUrlTag}
-	${suggestionsUrlTag}
-	<Url rel="self" type="application/opensearchdescription+xml" method="${opensearchMethod}" template="${instanceUrl}opensearch.xml" />
-	<Query role="example" searchTerms="Hearchco" />
+	<Url rel="results" type="text/html" method="${opensearchMethod}" template="${searchUrl}">
+		<Param name="q" value="{searchTerms}" />
+	</Url>
+	<Url rel="suggestions" type="application/x-suggestions+json" method="${opensearchMethod}" template="${suggestionsUrl}">
+		<Param name="category" value="${suggestionsCategory}" />
+		<Param name="q" value="{searchTerms}" />
+	</Url>
+	<Url rel="self" type="application/opensearchdescription+xml" method="${opensearchMethod}" template="${opensearchUrl}" />
+	<Query role="example" searchTerms="Hearch..." />
 	<moz:SearchForm>${searchUrl}</moz:SearchForm>
 </OpenSearchDescription>
 	`.trim();
-
-	return body;
 }
 
 /** @returns {string} */
@@ -93,23 +81,5 @@ function getInstanceUrl() {
 		error(500, 'PUBLIC_URI is not set');
 	}
 
-	const instanceUrl = `${instanceUri}${instanceUri.endsWith('/') ? '' : '/'}`;
-	return instanceUrl;
-}
-
-/** @returns {string} */
-function getSearchUrl() {
-	const instanceUrl = getInstanceUrl();
-	return `${instanceUrl}search`;
-}
-
-/** @returns {string} */
-function getFaviconUrl() {
-	const instanceUrl = getInstanceUrl();
-	return `${instanceUrl}favicon.ico`;
-}
-
-/** @returns {string} */
-function getSuggestionsUrl() {
-	return createApiUrl('/search/suggestions').toString();
+	return `${instanceUri}${instanceUri.endsWith('/') ? '' : '/'}`;
 }
